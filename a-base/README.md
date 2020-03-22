@@ -1,0 +1,115 @@
+---
+description: O básico é muito importante
+---
+
+# A base
+
+Vamos chamar aqui de "base" ao invés de "básico" pelos motivos que já expliquei.  
+Para que fique mais prático para todos, independentemente se estiverem usando Linux/Windows/MacOS/BSD/etc, usaremos a linguagem C como "ambiente" para escrever código e podermos ver o resultado.  
+Certifique-se de ter o [GCC](http://gcc.gnu.org/)/[Mingw-w64](http://mingw-w64.org/) e o [NASM](https://www.nasm.us/) instalados no seu sistema.
+
+### Por que o GCC?
+
+Caso você já programe em C e utilize outro compilador, mesmo assim recomendo que instale o GCC. O motivo disso é que irei ensinar o Inline Assembly deste compilador entre outras particularidades do mesmo.  
+Também iremos analisar o código de saída, por isso é interessante que o código que você obter aí seja pelo menos parecido.
+
+Além disso também usaremos outras ferramentas do pacote GCC, como o gdb e o ld por exemplo.
+
+### Por que o NASM?
+
+De fato o pacote GCC já tem o [assembler Gas](https://en.wikipedia.org/wiki/GNU_Assembler) que é excelente. Mas prefiro usar aqui o nasm devido a vários fatores, dentre eles:
+
+* O pré-processador do nasm é absurdamente incrível
+* O nasm tem uma sintaxe mais "legível" comparando ao Gas
+* O nasm tem o ndisasm, vai ser útil na hora de estudar o código de máquina
+* Eu gosto do nasm
+
+Mais para frente no livro pretendo ensinar a usar o Gas também. Mas na base vamos usar só o nasm mesmo.
+
+### Preparando o ambiente
+
+Primeiramente eu recomendaria o uso de alguma distribuição Linux de 64-bit ou qualquer sistema operacional Unix-Like. \(\*BSD, MacOS etc\)  
+Isto porque mais para frente irei ensinar conteúdo que é exclusivo para sistemas operacionais compatíveis com o [UNIX](https://pt.wikipedia.org/wiki/Unix).  
+Porém caso use o Windows não tem problema, desde que instale o mingw-w64 como mencionei. O mais importante é ter um GCC que gere código para 64-bit e 32-bit.
+
+Vamos antes de mais nada preparar uma [PoC](https://pt.wikipedia.org/wiki/Prova_de_conceito) em C para chamar uma função em Assembly.  
+Este seria nosso arquivo **main.c**:
+
+{% code title="main.c" %}
+```c
+#include <stdio.h>
+
+int assembly(void);
+
+int main(void)
+{
+  printf("Resultado: %d\n", assembly());
+  return 0;
+}
+```
+{% endcode %}
+
+A ideia aqui é simplesmente chamar a função `assembly()` que iremos usar para testar algumas instruções escritas diretamente em Assembly.  
+Ainda não aprendemos nada de Assembly, então apenas copie e cole o código abaixo.  
+Este seria nosso arquivo **assembly.asm**:
+
+{% code title="assembly.asm" %}
+```text
+bits 64
+
+global assembly
+assembly:
+  mov eax, 777
+  ret
+```
+{% endcode %}
+
+No gcc você pode especificar se quer compilar código de 32-bit ou 64-bit usando a opção **-m** no Terminal. Por padrão o gcc já compila para 64-bit.  
+A opção **-c** no gcc serve para especificar que o compilador apenas faça o processo de compilação do código, sem fazer a ligação do mesmo. Deste jeito o gcc irá produzir um arquivo objeto como saída.
+
+  
+No nasm é necessário usar a opção **-f** para especificar o formato do arquivo de saída, no meu Linux eu usei -**f elf64** para especificar o formato de arquivo ELF.  
+Caso use Windows, então você deve especificar **-f win64**.
+
+Por fim, para fazer a ligação dos dois arquivos objeto de saída podemos usar mais uma vez o gcc. Se for usar o ld diretamente exigiria incluir alguns arquivos objeto da libc, o que varia de sistema para sistema, portanto prefiro optar pelo gcc direto.  
+Para compilar e [linkar](https://pt.wikipedia.org/wiki/Ligador) os dois arquivos então fica da seguinte forma:
+
+```text
+$ nasm assembly.asm -f elf64
+$ gcc -c main.c -o main.o
+$ gcc assembly.o main.o -o test -no-pie
+$ ./test
+```
+
+Usamos a opção **-o** no gcc para especificar o nome do arquivo de saída. E **-no-pie** para garantir que um determinado recurso do GCC não seja utilizado.  
+O comando final acima seria somente a execução do nosso executável test em um sistema Linux.  
+A execução do programa produziria o seguinte resultado no print abaixo, caso tudo tenha ocorrido bem.
+
+![](../.gitbook/assets/captura-de-tela-de-2019-07-16-10-47-32.png)
+
+{% hint style="info" %}
+Mantenha essa PoC guardada no seu computador para eventuais testes. Você não será capaz de entender como ela funciona agora, mas ela será útil para testar conceitos para poder vê-los na prática.  
+Eventualmente tudo será explicado.
+{% endhint %}
+
+### Makefile
+
+Caso você tenha o make instalado, a minha recomendação é que organize os arquivos em uma pasta específica e use o **Makefile** abaixo.
+
+{% code title="Makefile" %}
+```text
+all:
+	nasm *.asm -felf64
+	gcc -c *.c
+	gcc -no-pie *.o -o test
+```
+{% endcode %}
+
+Isso é meio que gambiarra, mas o importante agora é ter um ambiente funcionando.
+
+### Se tudo deu errado...
+
+Se você não conseguiu preparar nossa PoC aí no seu PC, entre no meu grupo no Facebook e faça uma pergunta. Clique no link abaixo:
+
+* [FreeDev](https://www.facebook.com/groups/fdcasm/)
+
