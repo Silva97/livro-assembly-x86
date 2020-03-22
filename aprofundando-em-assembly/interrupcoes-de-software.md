@@ -117,7 +117,7 @@ $ dosbox int.com
 
 A interrupção simplesmente escreve os caracteres na parte superior esquerda da tela.
 
-Note que a interrupção retorna usando a instrução `iret` ao invés de `ret`. Em 16-bit a única diferença nesta instrução é que ela também desempilha a interrupção de _flags_, que é empilhada pelo processador ao disparar a interrupção/exceção.
+Note que a interrupção retorna usando a instrução `iret` ao invés de `ret`. Em 16-bit a única diferença nesta instrução é que ela também desempilha o registrador de _flags_, que é empilhado pelo processador ao disparar a interrupção/exceção.
 
 {% hint style="danger" %}
 Perceba que é unicamente um código de exemplo. Esta não é uma maneira segura de se configurar uma interrupção tendo em vista que seu _handler_ está na memória do .com que, após finalizar sua execução, a memória será sobrescrita por outro programa executado posteriormente.
