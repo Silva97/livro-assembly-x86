@@ -17,7 +17,7 @@ Abaixo segue uma lista do conteúdo que pretendo inserir no livro:
   * [x] Instruções condicionais
   * [x] Programando no MS-DOS
   * [x] Interrupções de software e exceções
-  * [ ] Procedimentos da BIOS
+  * [x] Procedimentos do BIOS
   * [ ] Entrada e saída de dados
   * [ ] Usando instruções da FPU
   * [ ] Algumas instruções SSE

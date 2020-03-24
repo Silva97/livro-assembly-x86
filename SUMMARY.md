@@ -28,5 +28,6 @@
   * [Instruções condicionais](aprofundando-em-assembly/instrucoes-condicionais.md)
   * [Programando no MS-DOS](aprofundando-em-assembly/programando-no-ms-dos.md)
   * [Interrupções de software e exceções](aprofundando-em-assembly/interrupcoes-de-software.md)
+  * [Procedimentos do BIOS](aprofundando-em-assembly/procedimentos-do-bios.md)
 * [TO DO](to-do.md)
 

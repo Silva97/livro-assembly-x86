@@ -23,7 +23,7 @@ Todas essas imagens que você vê são geradas pixel a pixel para poderem serem 
 
 O MS-DOS rodava em modo de texto, cujo este modo é bem mais simples.  
 Ao invés de você definir cada pixel que o monitor apresenta, você define unicamente informações de caracteres.  
-Imagine por exemplo que seu monitor seja dividido em grade formando 80x24 quadrados na tela. Ou seja, 80 colunas e 24 linhas.  
+Imagine por exemplo que seu monitor seja dividido em grade formando 80x25 quadrados na tela. Ou seja, 80 colunas e 25 linhas.  
 Ao invés de definir cada pixel, você apenas definia qual caractere seria apresentado naquele quadrado e um atributo para este caractere.
 
 ### Executáveis .COM
