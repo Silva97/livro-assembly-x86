@@ -4,10 +4,6 @@ description: Explicação do porque aprender Assembly é útil
 
 # Introdução
 
-{% hint style="info" %}
-Se você está lendo isto no [repositório do GitHub](https://github.com/Silva97/livro-assembly-x86), recomendo que leia na plataforma do [GitBook clicando aqui](https://silva97.gitbook.io/assembly-x86/).
-{% endhint %}
-
 Sempre recebi muitas perguntas do tipo "como aprender Assembly?". Já faz um tempo que tenho em mente a ideia de produzir um conteúdo que sirva de introdução neste mundo.  
 Porém a ideia aqui não é servir apenas para ensinar a fazer um "Hello World" e te deixar sem entender coisa alguma do que está fazendo.  
 Vamos abordar parte por parte dos conceitos da linguagem Assembly até entendê-la completamente, e para isso, vamos inclusive ver um pouco de código de máquina da arquitetura x86.

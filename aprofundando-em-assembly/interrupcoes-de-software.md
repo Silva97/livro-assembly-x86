@@ -51,7 +51,7 @@ A instrução `int` é usada para disparar interrupções de software ou exceç�
 
 Vamos ver na prática a configuração de uma interrupção em 16-bit. Para isso vamos usar o MS-DOS para que fique mais simples.
 
-Basicamente o que precisamos fazer é acessar o índice que queremos modificar na IDT, depois é só jogar o _offset_ e segmento do procedimento que queremos que seja executado. Em 16-bit isso acontece de uma maneira muito mais simples do que em _protected mode_, por isso é ideal para entender na prática.
+A IDT está localizada no endereço 0, por isso podemos configurar para acessar o segmento zero e assim o _offset_ seria o índice de cada elemento da IDT. O que precisamos fazer é acessar o índice que queremos modificar na IDT, depois é só jogar o _offset_ e segmento do procedimento que queremos que seja executado. Em 16-bit isso acontece de uma maneira muito mais simples do que em _protected mode_, por isso é ideal para entender na prática.
 
 Eis o código:
 
@@ -130,7 +130,7 @@ Se você já usou um depurador, ou pelo menos tem uma noção à respeito, sabe 
 Os depuradores modificam a instrução original colocando a instrução que dispara a exceção de _breakpoint_, depois tratam o sinal enviado para o processo, restauram a instrução original e continuam seu trabalho.
 {% endhint %}
 
-O _breakpoint_ nada mais é que uma exceção que é disparada por uma instrução. Podemos usar `int 0x03`para fazer isso, porém esta instrução tem 2 bytes de tamanho e não é muito apropriada para um depurador usar. Por isto existe a instrução `int3` que dispara \#BP explicitamente e tem somente 1 byte de tamanho. \(_opcode_ CC\)
+O _breakpoint_ nada mais é que uma exceção que é disparada por uma instrução. Podemos usar `int 0x03`para fazer isso, porém esta instrução tem 2 bytes de tamanho e não é muito apropriada para um depurador usar. Por isto existe a instrução `int3` que dispara \#BP explicitamente e tem somente 1 byte de tamanho. \(_opcode_ 0xCC\)
 
 {% code title="int.asm" %}
 ```c
@@ -188,6 +188,7 @@ void segfault(int signum)
   exit(signum);
 }
 
+// Esse código também funciona no Windows.
 int main(void)
 {
   char *desastre = NULL;
