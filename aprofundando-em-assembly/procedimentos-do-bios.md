@@ -252,7 +252,7 @@ puts 0x000C, str2
 
 ret
 
-str1: db "Hello World!", 0x0D, 0x0A, 0
+str1: db `Hello World!\r\n`, 0
 str2: db "Second message.", 0
 
 ; BL = Atributo
