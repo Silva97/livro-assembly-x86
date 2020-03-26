@@ -206,7 +206,7 @@ Pega _status_ relacionados ao teclado. É retornado em AL 8 _flags_ diferentes, 
 
 ### Memória de Vídeo em _Text Mode_
 
-Quando o sistema está em modo texto, a memória onde se armazena os caracteres começa no endereço 0xb800 e ela é estruturada da seguinte forma:
+Quando o sistema está em modo texto, a memória onde se armazena os caracteres começa no endereço 0xb800:0x0000 e ela é estruturada da seguinte forma:
 
 ```c
 // Em modo de texto 80x25, padrão do MS-DOS
@@ -219,7 +219,7 @@ struct character {
 struct character vmem[8][25][80];
 ```
 
-Ou seja, começando em 0xb800 as páginas estão uma atrás da outra na memória como uma grande _array_.
+Ou seja, começando em 0xb800:0x0000 as páginas estão uma atrás da outra na memória como uma grande _array_.
 
 #### Atributo
 
