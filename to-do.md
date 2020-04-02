@@ -18,8 +18,7 @@ Abaixo segue uma lista do conteúdo que pretendo inserir no livro:
   * [x] Programando no MS-DOS
   * [x] Interrupções de software e exceções
   * [x] Procedimentos do BIOS
-  * [ ] Entrada e saída de dados
-  * [ ] Usando instruções da FPU
+  * [x] Usando instruções da FPU
   * [ ] Algumas instruções SSE
 * [ ] Programando junto com C
   * [ ] Convenção de chamada cdecl

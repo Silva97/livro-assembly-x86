@@ -29,5 +29,6 @@
   * [Programando no MS-DOS](aprofundando-em-assembly/programando-no-ms-dos.md)
   * [Interrupções de software e exceções](aprofundando-em-assembly/interrupcoes-de-software.md)
   * [Procedimentos do BIOS](aprofundando-em-assembly/procedimentos-do-bios.md)
+  * [Usando instruções da FPU](aprofundando-em-assembly/usando-instrucoes-da-fpu.md)
 * [TO DO](to-do.md)
 
