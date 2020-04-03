@@ -387,7 +387,7 @@ f2xm1
 Faz o cálculo de 2 elevado a **st0** menos 1, e armazena o resultado em **st0**.
 
 $$
-st0 = 2^{st1} - 1
+st0 = 2^{st0} - 1
 $$
 
 ### FYL2X \| y \* log2\(x\)
