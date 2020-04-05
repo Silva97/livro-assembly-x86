@@ -375,7 +375,7 @@ fpatan
 Calcula o arco-tangente de **st1** dividido por **st0**, armazena o resultado em **st1** e depois faz o _pop_. O resultado tem o mesmo sinal que o operando que estava em **st1**.
 
 $$
-st1 = arctan( st1 / st0 )
+st1 = \arctan( st1 \div st0 )
 $$
 
 ### F2XM1 \| 2^x - 1
@@ -399,7 +399,7 @@ fyl2x
 Faz esse cálculo aí, com logaritmo de base 2:
 
 $$
-st1 = st1 * log_2(st0)
+st1 = st1 \cdot \log_2(st0)
 $$
 
 Após o cálculo é feito um _pop_.
@@ -413,7 +413,7 @@ fyl2xp1
 Mesma coisa que a instrução anterior, porém somando 1.
 
 $$
-st1 = st1 * log_2(st0 + 1)
+st1 = st1 \cdot \log_2(st0 + 1)
 $$
 
 ### FRNDINT \| Round to Integer
