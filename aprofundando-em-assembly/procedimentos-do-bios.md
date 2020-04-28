@@ -225,7 +225,7 @@ Ou seja, começando em 0xb800:0x0000 as páginas estão uma atrás da outra na m
 
 O caractere nada mais é que o código ASCII do mesmo, já o atributo é um valor usado para especificar informações de cor e _blink_ do caractere. Podemos representar o valor em hexadecimal e desta forma o digito hexadecimal mais a direita seria referente ao atributo do texto, e o mais a esquerda referente ao atributo do fundo.
 
-Os 4 bits \(_nibble_\) mais significativo indicam o atributo do fundo e os 4 bits menos significativos o atributo do texto, gerando uma cor na escala RGB. Caso não conheça, esta é a escala de cor da luz onde as cores primárias _Red_ \(vermelo\), _Green_ \(verde\) e _Blue_ \(azul\) são usadas em conjunto para formar qualquer outra cor. Conforme tabela abaixo, podemos ver qual bit significa o quê:
+Os 4 bits \(_nibble_\) mais significativo indicam o atributo do fundo e os 4 bits menos significativos o atributo do texto, gerando uma cor na escala RGB. Caso não conheça, esta é a escala de cor da luz onde as cores primárias _Red_ \(vermelo\), _Green_ \(verde\) e _Blue_ \(azul\) são usadas em conjunto para formar qualquer outra cor. Conforme figura abaixo, podemos ver qual bit significa o quê:
 
 ![Bits de um atributo e seus significados](../.gitbook/assets/figura-atributos-de-caractere.png)
 
