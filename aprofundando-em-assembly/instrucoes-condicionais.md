@@ -49,12 +49,15 @@ Enquanto "maior" e "menor" é usado para se referir a um valor numérico sinaliz
 
 ### JCXZ e JECXZ
 
-Além das condições acima, existem mais dois `Jcc` que testam o valor de CX e ECX respectivamente.
+Além das condições acima, existem mais três `Jcc` que testam o valor de CX, ECX e RCX respectivamente.
 
 | Jcc | Descrição | Condição |
 | :--- | :--- | :--- |
 | JCXZ | Jump if CX is zero/pula se CX for igual a zero | CX=0 |
 | JECXZ | Jump if ECX is zero/pula se ECX for igual a zero | ECX=0 |
+| JRCXZ | Jump if RCX is zero/pula se RCX for igual a zero | RCX=0 |
 
+A última instrução, obviamente, somente existe em submodo de 64-bit. Enquanto `JCXZ` não existe em 64-bit.
 
+No código de máquina o opcode desta instrução é **E3** e a alternância entre o tamanho do registrador é feita de acordo com o atributo _address-size_, sendo modificado pelo prefixo **67**.
 
