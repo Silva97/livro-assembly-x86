@@ -4,8 +4,7 @@ description: Ainda não acabou
 
 # TO DO
 
-Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.  
-Abaixo segue uma lista do conteúdo que pretendo inserir no livro:
+Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita. Abaixo segue uma lista do conteúdo que pretendo inserir no livro:
 
 * [x] A base
 * [ ] Aprofundando em Assembly
@@ -68,13 +67,4 @@ Esta lista não é absoluta, é só para dar uma noção do que pretendo produzi
 ## De graça
 
 Isso aqui vai ser produzido do início ao suposto fim totalmente de graça. Não espere precisão nas informações e nem espere que a lista acima seja completamente implementada um dia.
-
-Porém se você gostou do conteúdo e quer ver ele finalizado, pode colaborar para que isto aconteça.  
-Recebendo colaborações eu ~~não passo fome~~ vou ter coragem de ir até o fim já que me sentirei obrigado a isso.  
-Quem sabe até adiciono mais conteúdo do que inicialmente foi planejado.  
-Por favor, se quiser colaborar com o projeto veja no link abaixo como fazer isso:
-
-* [Liberapay](https://liberapay.com/Silva97/)
-
-
 
