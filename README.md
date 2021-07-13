@@ -5,12 +5,10 @@ description: Explicação do porque aprender Assembly é útil
 # Introdução
 
 {% hint style="info" %}
-Se você está lendo isto no [repositório do GitHub](https://github.com/Silva97/livro-assembly-x86), recomendo que leia na plataforma do [GitBook clicando aqui](https://silva97.gitbook.io/assembly-x86/).
+Se você está lendo isto no [repositório do GitHub](https://github.com/Silva97/livro-assembly-x86), recomendo que leia na plataforma do [GitBook clicando aqui](https://mentebinaria.gitbook.io/assembly-x86/).
 {% endhint %}
 
-Sempre recebi muitas perguntas do tipo "como aprender Assembly?". Já faz um tempo que tenho em mente a ideia de produzir um conteúdo que sirva de introdução neste mundo.  
-Porém a ideia aqui não é servir apenas para ensinar a fazer um "Hello World" e te deixar sem entender coisa alguma do que está fazendo.  
-Vamos abordar parte por parte dos conceitos da linguagem Assembly até entendê-la completamente, e para isso, vamos inclusive ver um pouco de código de máquina da arquitetura x86.
+Sempre recebi muitas perguntas do tipo "como aprender Assembly?". Já faz um tempo que tenho em mente a ideia de produzir um conteúdo que sirva de introdução neste mundo. Porém a ideia aqui não é servir apenas para ensinar a fazer um "Hello World" e te deixar sem entender coisa alguma do que está fazendo. Vamos abordar parte por parte dos conceitos da linguagem Assembly até entendê-la completamente, e para isso, vamos inclusive ver um pouco de código de máquina da arquitetura x86.
 
 ## Por que aprender Assembly?
 
@@ -58,15 +56,11 @@ Meu nome é Luiz Felipe. Pronto, agora você sabe tudo sobre mim.
 
 * [GitHub](https://github.com/Silva97)
 * [Facebook](https://www.facebook.com/B4.0E.B0.48.CD.10.B0.69.CD.10.C3)
-* [Medium](https://medium.com/@FreeDev)
+* [Medium](https://freedev.medium.com/)
 
 ## Licença
 
-Este conteúdo está sendo compartilhado sobre os termos da licença [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/legalcode) e é totalmente de minha autoria.  
-Esta licença permite que você compartilhe o conteúdo, mesmo que para fins lucrativos, desde que seja compartilhado sob os termos da mesma licença e sem adicionar novas restrições. Como também é necessário que me dê os créditos pelo trabalho original.
-
-Quando for me dar os créditos, basta citar meu nome e deixar o link para o meu Facebook e/ou GitHub.  
-Outra opção é que deixe um link para este material original além de citar meu nome.
+Este conteúdo está sendo compartilhado sobre os termos da licença [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/legalcode) e é totalmente de minha autoria. Essa licença permite que você compartilhe o conteúdo, mesmo que para fins lucrativos, desde que seja compartilhado sob os termos da mesma licença e sem adicionar novas restrições. Como também é necessário que dê os créditos pelo trabalho original.
 
 Para mais detalhes da licença, pode consultar no link abaixo:
 
