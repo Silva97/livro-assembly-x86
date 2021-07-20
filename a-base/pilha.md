@@ -62,7 +62,7 @@ ESP = ESP - 4
 {% endtab %}
 
 {% tab title="pop-pseudo.c" %}
-```
+```c
 operando = [ESP]
 ESP = ESP + 4
 ```
