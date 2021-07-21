@@ -73,7 +73,7 @@ Se usarmos essa ferramenta nos nossos arquivos objetos podemos ver que, dentre v
 
 ![](../.gitbook/assets/captura-de-tela-de-2019-07-23-21-43-00.png)
 
-### O executável
+### Executável
 
 Depois do _linker_ fazer o trabalho dele, ele gera o arquivo final que nós normalmente chamamos de executável. O executável de um sistema operacional nada mais é que um arquivo objeto que pode ser executado.
 
