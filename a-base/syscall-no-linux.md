@@ -102,14 +102,15 @@ E para simplificar a consulta de syscalls no meu Linux eu implementei e uso a se
 ```bash
 function syscall() {
 	if [ -z "$1" ]; then
-			echo "Usage: syscall name [32|64]"
-			return 0
+		echo "Usage: syscall name [32|64]"
+		return 0
 	fi
 
 	name="$1"
 	bits="${2-64}"
-	number=$(grep -m1 "__NR_$name" "/usr/include/x86_64-linux-gnu/asm/unistd_$bits.h"\
-				| cut -d' ' -f3)
+	number=$(grep -m1 "__NR_$name" \
+			 "/usr/include/x86_64-linux-gnu/asm/unistd_$bits.h" \
+			 | cut -d' ' -f3)
 
 	[ -z "$number" ] && return 1
 
@@ -121,11 +122,20 @@ function syscall() {
 		arguments="EBX, ECX, EDX, ESI, EDI, EBP"
 	fi
 
-	echo "Syscall number: $number ($sysnumRegister)"
-	echo "Argument order: $arguments"
+	echo "Syscall number ($sysnumRegister): $number"
+	echo "Arguments: $arguments"
 	echo
 	echo "Synopsis:"
-	man 2 "$name" | awk '/SYNOPSIS/,/DESCRIPTION/{ if ($1 != "SYNOPSIS" && $1 != "DESCRIPTION") {  print $0 } }'
+
+	awkCode='
+		/SYNOPSIS/,/DESCRIPTION/{
+			if ($1 != "SYNOPSIS" && $1 != "DESCRIPTION") {
+				print $0
+			}
+		}
+	'
+
+	man 2 "$name" | awk "$awkCode"
 
 	return 0
 }
