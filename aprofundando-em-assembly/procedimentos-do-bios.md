@@ -6,25 +6,29 @@ description: >-
 
 # Procedimentos do BIOS
 
-BIOS — _Basic Input/Output System_ — é o firmware da placa-mãe responsável pela inicialização do hardware. Ele quem começa o processo de _boot_ do sistema, além de anteriormente fazer um teste rápido \(POST — _Power-On Self Test_\) para verificar se o hardware está funcionando apropriadamente.
+BIOS — _Basic Input/Output System_ — é o firmware da placa-mãe responsável pela inicialização do hardware. Ele quem começa o processo de _boot_ do sistema além de anteriormente fazer um teste rápido \(POST — _Power-On Self Test_\) para verificar se o hardware está funcionando apropriadamente.
 
-Mas além de fazer essa tarefa de inicialização do PC, ele também define algumas interrupções que podem ser usadas pelo software em 16-bit para tarefas básicas. E é daí que vem seu nome, já que estas tarefas são operações básicas de entrada e saída de dados para o hardware.
+{% hint style="info" %}
+BIOS é um sistema legado de boot, sistemas mais modernos usam [UEFI](https://pt.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface) para o processo de boot do sistema.
+{% endhint %}
 
-Cada interrupção não faz um procedimento único, mas sim vários procedimentos relacionados à um determinado hardware. Qual procedimento especificamente será executado é, na maioria das vezes, definido no registrador `AH`ou `AX`.
+Mas além de fazer essa tarefa de inicialização do PC ele também define algumas interrupções que podem ser usadas pelo software em _real mode_ para tarefas básicas. E é daí que vem seu nome, já que essas tarefas são operações básicas de entrada e saída de dados para o hardware.
+
+Cada interrupção não faz um procedimento único mas sim vários procedimentos relacionados à um determinado hardware. Qual procedimento especificamente será executado é, na maioria das vezes, definido no registrador `AH` ou `AX`.
 
 ### INT 0x10
 
-Esta interrupção tem procedimentos relacionados ao vídeo, como a escrita de caracteres na tela ou até mesmo alterar o modo de vídeo.
+Essa interrupção tem procedimentos relacionados ao vídeo, como a escrita de caracteres na tela ou até mesmo alterar o modo de vídeo.
 
 #### AH 0x0E
 
-O procedimento INT 0x10 / AH 0x0E simplesmente escreve um caractere na tela em modo _teletype_, que é um nome chique para dizer que o caractere é impresso na posição atual do cursor e atualiza a posição do mesmo. É algo bem semelhante ao que a gente vê sobre um sistema operacional usando uma função como `putchar()`em C.
+O procedimento INT 0x10 / AH 0x0E simplesmente escreve um caractere na tela em modo _teletype_, que é um nome chique para dizer que o caractere é impresso na posição atual do cursor e atualiza a posição do mesmo. É algo bem semelhante ao que a gente vê sob um sistema operacional usando uma função como `putchar()` em C.
 
-Esse procedimento recebe como argumento no registrador `AL`o caractere a ser impresso, e em `BH`o número da página.
+Esse procedimento recebe como argumento no registrador `AL` o caractere a ser impresso, e em `BH` o número da página.
 
-O número da página varia entre 0 e 7. São 8 páginas diferentes que podem ser apresentadas para o monitor como o conteúdo da tela. Por padrão é usada a página 0, mas você pode alternar entre as páginas fazendo com que conteúdo diferente seja apresentado na tela sem perder o conteúdo da outra página.
+O número da página varia entre 0 e 7. São 8 páginas diferentes que podem ser apresentadas para o monitor como o conteúdo da tela. Por padrão é usada a página 0 mas você pode alternar entre as páginas fazendo com que conteúdo diferente seja apresentado na tela sem perder o conteúdo da outra página.
 
-Se você já usou o MS-DOS deve ter visto programas, como editores de código, que imprimiam uma interface de texto \(TUI\), mas depois que finalizava o conteúdo do prompt voltava para a tela... Esses programas basicamente alternavam de página.
+Se você já usou o MS-DOS deve ter visto programas, como editores de código, que imprimiam uma interface de texto \(TUI\), mas depois que finalizava o conteúdo do prompt voltava para a tela. Esses programas basicamente alternavam de página.
 
 {% code title="exemplo.asm" %}
 ```text
@@ -100,7 +104,7 @@ Pega a posição atual do cursor na página especificada. Retornando:
 | :--- | :--- |
 | 0x05 | Página |
 
-Alterna para a página especificada por AL, que deve ser um número entre 0 e 7.
+Alterna para a página especificada por AL que deve ser um número entre 0 e 7.
 
 #### AH 0x09
 
@@ -108,7 +112,7 @@ Alterna para a página especificada por AL, que deve ser um número entre 0 e 7.
 | :--- | :--- | :--- | :--- | :--- |
 | 0x09 | Caractere | Página | Atributo | Vezes para imprimir o caractere |
 
-Imprime o caractere AL na posição atual do cursor CX vezes, sem atualizar o cursor. BL é o atributo do caractere, que será explicado mais embaixo.
+Imprime o caractere AL na posição atual do cursor CX vezes, sem atualizar o cursor. BL é o atributo do caractere que será explicado mais embaixo.
 
 #### AH 0x0A
 
@@ -116,7 +120,7 @@ Imprime o caractere AL na posição atual do cursor CX vezes, sem atualizar o cu
 | :--- | :--- | :--- | :--- |
 | 0x0A | Caractere | Página | Vezes para imprimir |
 
-Mesma coisa que o procedimento anterior, mudando somente que não é especificado um atributo para o caractere.
+Mesma coisa que o procedimento anterior porém mudando somente que não é especificado um atributo para o caractere.
 
 #### AH 0x13
 
@@ -125,17 +129,17 @@ Mesma coisa que o procedimento anterior, mudando somente que não é especificad
 | AL | Modo de escrita |
 | BH | Página |
 | BL | Atributo |
-| CX | Tamanho da _string_ |
+| CX | Tamanho da _string \(número de caracteres a serem escritos\)_ |
 | DH | Linha |
 | DL | Coluna |
 | ES:BP | Endereço da _string_ |
 
-Este procedimento imprime uma _string_ na tela podendo ser especificado um atributo. O modo de escrita pode variar entre 0 e 3, se trata de 2 bits especificando duas informações diferentes:
+Esse procedimento imprime uma _string_ na tela podendo ser especificado um atributo. O modo de escrita pode variar entre 0 e 3, se trata de 2 bits especificando duas informações diferentes:
 
 | Bit | Informação |
 | :--- | :--- |
-| 0 | Se ligado, atualiza a posição do cursor. |
-| 1 | Se desligado, BL é usado para definir o atributo. Se ligado, o atributo é lido da _string_. |
+| 0 | Se ligado atualiza a posição do cursor. |
+| 1 | Se desligado BL é usado para definir o atributo. Se ligado, o atributo é lido da _string_. |
 
 No caso do segundo bit, se estiver ligado então o procedimento irá ler a _string_ considerando que se trata de uma sequência de caractere e atributo. Assim cada caractere pode ter um atributo diferente. Conforme exemplo abaixo:
 
@@ -143,9 +147,9 @@ No caso do segundo bit, se estiver ligado então o procedimento irá ler a _stri
 str: db 'A', 0x05, 'B', 0x0C, 'C', 0x0A
 ```
 
-#### Caracteres de Ação
+#### Caracteres de ação
 
-Os procedimentos 0x0E e 0x13 interpretam caracteres especiais como determinadas ações que devem ser executadas ao invés de imprimir o caractere na tela. Cada caractere faz uma ação diferente, conforme tabela abaixo:
+Os procedimentos 0x0E e 0x13 interpretam caracteres especiais como determinadas ações que devem ser executadas ao invés de imprimir o caractere na tela. Cada caractere faz uma ação diferente conforme tabela abaixo:
 
 | Caractere | Nome | Seq. de escape | Ação |
 | :--- | :--- | :--- | :--- |
@@ -161,7 +165,7 @@ Você pode combinar 0x0D e 0x0A para fazer uma quebra de linha.
 
 ### INT 0x16
 
-Os procedimentos definidos nesta interrupção são todos relacionados à entrada do teclado. Toda vez que o usuário pressiona uma tecla, esta é lida e armazenada no _buffer_ do teclado. Se você tentar ler do _buffer_ sem haver dados lá, então o sistema irá ficar esperando o usuário inserir uma entrada.
+Os procedimentos definidos nessa interrupção são todos relacionados à entrada do teclado. Toda vez que o usuário pressiona uma tecla ela é lida e armazenada no _buffer_ do teclado. Se você tentar ler do _buffer_ sem haver dados lá, então o sistema irá ficar esperando o usuário inserir uma entrada.
 
 #### AH 0x00
 
@@ -170,13 +174,13 @@ Lê um caractere do _buffer_ do teclado e o remove de lá. Retorna os seguintes 
 | Registrador | Valor |
 | :--- | :--- |
 | AL | Código ASCII do caractere |
-| AH | _Scancode_ da tecla. \* |
+| AH | _Scancode_ da tecla. |
 
 _Scancode_ é um número que identifica a tecla e não especificamente o caractere inserido.
 
 #### AH 0x01
 
-Verifica se há um caractere disponível no _buffer_ sem removê-lo do mesmo. Se houver caractere disponível, retorna:
+Verifica se há um caractere disponível no _buffer_ sem removê-lo de lá. Se houver caractere disponível, retorna:
 
 | Registrador | Valor |
 | :--- | :--- |
@@ -206,7 +210,7 @@ Pega _status_ relacionados ao teclado. É retornado em AL 8 _flags_ diferentes, 
 
 ### Memória de Vídeo em _Text Mode_
 
-Quando o sistema está em modo texto, a memória onde se armazena os caracteres começa no endereço 0xb800:0x0000 e ela é estruturada da seguinte forma:
+Quando o sistema está em modo texto a memória onde se armazena os caracteres começa no endereço 0xb800:0x0000 e ela é estruturada da seguinte forma:
 
 ```c
 // Em modo de texto 80x25, padrão do MS-DOS
@@ -225,12 +229,11 @@ Ou seja, começando em 0xb800:0x0000 as páginas estão uma atrás da outra na m
 
 O caractere nada mais é que o código ASCII do mesmo, já o atributo é um valor usado para especificar informações de cor e _blink_ do caractere. Podemos representar o valor em hexadecimal e desta forma o digito hexadecimal mais a direita seria referente ao atributo do texto, e o mais a esquerda referente ao atributo do fundo.
 
-Os 4 bits \(_nibble_\) mais significativo indicam o atributo do fundo e os 4 bits menos significativos o atributo do texto, gerando uma cor na escala RGB. Caso não conheça, esta é a escala de cor da luz onde as cores primárias _Red_ \(vermelo\), _Green_ \(verde\) e _Blue_ \(azul\) são usadas em conjunto para formar qualquer outra cor. Conforme figura abaixo, podemos ver qual bit significa o quê:
+Os 4 bits \(_nibble_\) mais significativo indicam o atributo do fundo e os 4 bits menos significativos o atributo do texto, gerando uma cor na escala RGB. Caso não conheça essa é a escala de cor da luz onde as cores primárias _Red_ \(vermelo\), _Green_ \(verde\) e _Blue_ \(azul\) são usadas em conjunto para formar qualquer outra cor. Conforme figura abaixo podemos ver qual bit significa o quê:
 
 ![Bits de um atributo e seus significados](../.gitbook/assets/figura-atributos-de-caractere.png)
 
-O atributo intensidade no atributo de texto, caso ligado, faz com que a cor do texto fique mais viva. Desligado as cores são mais escuras.  
-Já o atributo _blink_ especifica se o texto deve permanecer piscando. Caso ativo, o texto irá ficar aparecendo e desaparecendo da tela constantemente.
+O atributo intensidade no atributo de texto, caso ligado, faz com que a cor do texto fique mais viva. Desligado as cores são mais escuras. Já o atributo _blink_ especifica se o texto deve permanecer piscando. Caso ativo o texto irá ficar aparecendo e desaparecendo da tela constantemente.
 
 ### Olá Mundo
 
