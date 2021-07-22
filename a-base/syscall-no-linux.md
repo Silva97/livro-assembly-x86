@@ -103,7 +103,7 @@ E para simplificar a consulta de syscalls no meu Linux eu implementei e uso a se
 function syscall() {
 	if [ -z "$1" ]; then
 		echo "Developed by Luiz Felipe <felipe.silva337@yahoo.com>"
-		echo "See (in Portuguese): https://mentebinaria.gitbook.io/assembly-x86"
+		echo "See (Portuguese): https://mentebinaria.gitbook.io/assembly-x86"
 		echo
 		echo "Usage: syscall name [32|64]"
 		return 0
