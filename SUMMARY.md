@@ -21,7 +21,7 @@
   * [Revisão](a-base/revisao.md)
 * [Aprofundando em Assembly](aprofundando-em-assembly/README.md)
   * [Registradores de segmento](aprofundando-em-assembly/registradores-de-segmento.md)
-  * [Call e Ret](aprofundando-em-assembly/call-e-ret.md)
+  * [CALL e RET](aprofundando-em-assembly/call-e-ret.md)
   * [Atributos](aprofundando-em-assembly/atributos.md)
   * [Prefixos](aprofundando-em-assembly/prefixos.md)
   * [Flags do processador](aprofundando-em-assembly/flags-do-processador.md)
