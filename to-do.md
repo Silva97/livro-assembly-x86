@@ -19,6 +19,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Procedimentos do BIOS
   * [x] Usando instruções da FPU
   * [ ] Algumas instruções SSE
+  * [ ] Position-independent executable
 * [ ] Programando junto com C
   * [ ] Convenção de chamada cdecl
   * [ ] Convenção de chamada x86-64

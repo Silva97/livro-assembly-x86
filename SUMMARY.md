@@ -15,7 +15,7 @@
   * [Seções e símbolos](a-base/secoes-e-simbolos.md)
   * [Instruções assembly x86](a-base/instrucoes.md)
   * [Instruções do NASM](a-base/instrucoes-do-nasm.md)
-  * [Pré-processador do nasm](a-base/pre-processador-do-nasm.md)
+  * [Pré-processador do NASM](a-base/pre-processador-do-nasm.md)
   * [Syscall no Linux](a-base/syscall-no-linux.md)
   * [Olá mundo no Linux](a-base/ola-mundo-no-linux.md)
   * [Revisão](a-base/revisao.md)
