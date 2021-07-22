@@ -51,7 +51,21 @@ A instrução `pop` recebe como operando um registrador ou endereçamento de mem
 
 A instrução `push` recebe como operando o valor a ser empilhado. O tamanho de cada valor na pilha também acompanha o barramento interno \(64 bits em 64-bit, 32 bits em _protected mode_ e 16 bits em _real mode_\). Pode-se passar como operando um valor na memória, registrador ou valor imediato.
 
-{% hint style="info" %}
-A pilha "cresce" para baixo. O que significa que toda vez que um valor é inserido nela o valor de ESP é subtraído pelo tamanho em bytes do valor. E na mesma lógica um `pop` incrementa o valor de ESP.
-{% endhint %}
+A pilha "cresce" para baixo. O que significa que toda vez que um valor é inserido nela o valor de ESP é subtraído pelo tamanho em bytes do valor. E na mesma lógica um `pop` incrementa o valor de ESP. Logo as instruções seriam equivalentes aos dois pseudocódigos abaixo \(considerando um código de 32-bit\):
+
+{% tabs %}
+{% tab title="push-pseudo.c" %}
+```c
+ESP = ESP - 4
+[ESP] = operando
+```
+{% endtab %}
+
+{% tab title="pop-pseudo.c" %}
+```c
+operando = [ESP]
+ESP = ESP + 4
+```
+{% endtab %}
+{% endtabs %}
 

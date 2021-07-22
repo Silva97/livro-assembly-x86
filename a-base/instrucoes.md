@@ -1,19 +1,18 @@
 ---
-description: Algumas instruções do ASM x86
+description: Entendendo algumas instruções do Assembly x86
 ---
 
-# Instruções
+# Instruções assembly x86
 
-Já expliquei os conceitos principais por trás da linguagem Assembly da arquitetura x86, agora que já entendemos como a base funciona precisamos nos munir de algumas instruções para poder fazer códigos mais complexos.  
-Pensando nisso vou listar aqui algumas instruções e uma explicação bem básica de como utilizá-la.
+Até agora já foram explicados alguns dos conceitos principais da linguagem Assembly da arquitetura x86, agora que já entendemos como a base funciona precisamos nos munir de algumas instruções para poder fazer códigos mais complexos. Pensando nisso vou listar aqui algumas instruções e uma explicação bem básica de como utilizá-las.
 
-### Formato de uma instrução
+### Formato da instrução
 
-Já expliquei a sintaxe de uma instrução, mas não expliquei o formato em si da instrução no código de máquina. Para simplificar aqui uma instrução pode ter os seguintes operandos:
+Já expliquei a sintaxe de uma instrução no NASM mas não expliquei o formato em si da instrução no código de máquina. Para simplificar uma instrução pode ter os seguintes operandos:
 
 * Um operando registrador
-* Um operando registrador OU operando na memória
-* Um valor imediato, que é um operando digitado diretamente
+* Um operando registrador **OU** operando na memória
+* Um operando imediato, que é um valor numérico que faz parte da instrução.
 
 Basicamente são três tipos de operandos: Um registrador, valor na memória e um valor imediato. Um exemplo de cada um para ilustrar sendo mostrado como o segundo operando de MOV:
 
@@ -25,17 +24,17 @@ mov eax, "A"      ; "A"   = Valor imediato, mesmo que 65
 ```
 
 {% hint style="info" %}
-Como demonstrado na linha 4, strings podem ser passadas como um operando imediato. O assembler irá converter a string em sua respectiva representação em bytes, só que é necessário ter atenção em relação ao tamanho da string que não pode ser maior do que o operando destino.
+Como demonstrado na linha 4 strings podem ser passadas como um operando imediato. O assembler irá converter a string em sua respectiva representação em bytes, só que é necessário ter atenção em relação ao tamanho da string que não pode ser maior do que o operando destino.
 {% endhint %}
 
-São três operandos diferentes e cada um deles é opcional, isto é, pode ou não ser utilizado pela instrução. \(opcional para a instrução e não para nós\)  
-Repare que somente um dos operandos pode ser um valor na memória ou registrador, enquanto o outro é especificamente um registrador.  
-É devido a isto que nasce a limitação que haver apenas um operando na memória, enquanto que o uso de dois registradores é permitido.
+São três operandos diferentes e cada um deles é opcional, isto é, pode ou não ser utilizado pela instrução \(opcional para a instrução e não para nós\).
+
+Repare que somente um dos operandos pode ser um valor na memória ou registrador, enquanto o outro é especificamente um registrador. É devido a isso que há a limitação de haver apenas um operando na memória, enquanto que o uso de dois operandos registradores é permitido.
 
 ### Notação
 
 {% hint style="info" %}
-Irei utilizar uma explicação simplificada aqui que irá deixar muita informação importante de fora. Depois irei especificar as instruções com mais detalhes.
+Irei utilizar uma explicação simplificada aqui que irá deixar muita informação importante de fora.
 {% endhint %}
 
 As seguintes nomenclaturas serão utilizadas:
@@ -43,19 +42,16 @@ As seguintes nomenclaturas serão utilizadas:
 | Nomenclatura | Significado |
 | :--- | :--- |
 | reg | Um operando registrador |
-| r/m | Um operando registrador ou na memória |
+| r/m | Um operando registrador **ou** na memória |
 | imm | Um operando imediato |
 | addr | Denota um endereço, geralmente se usa um rótulo. Na prática é um valor imediato assim como o operando imediato. |
 
-Em alguns casos eu posso colocar um número junto a esta nomenclatura para especificar o tamanho do operando em bits. Por exemplo `r/m16` indica um operando registrador/memória de 16 bits.
+Em alguns casos eu posso colocar um número junto a essa nomenclatura para especificar o tamanho do operando em bits. Por exemplo `r/m16` indica um operando registrador/memória de 16 bits.
 
-Em cada instrução irei apresentar a notação demonstrando cada combinação diferente de operandos que é possível utilizar.  
-Lembrando que o **operando destino** é o mais a esquerda, enquanto que o **operando fonte** é o operando mais a direita.
+Em cada instrução irei apresentar a notação demonstrando cada combinação diferente de operandos que é possível utilizar. Lembrando que o **operando destino** é o mais à esquerda, enquanto que o **operando fonte** é o operando mais à direita.
 
 {% hint style="info" %}
-Cada nome de uma instrução em Assembly é um mnemônico, que é basicamente uma abreviatura feita para fácil memorização.  
-Pensando nisto, leia cada instrução com seu nome extenso equivalente para lembrar o que ela faz.  
-No título de cada instrução irei deixar após um "\|" o nome extenso da instrução para facilitar nesta tarefa.
+Cada nome de instrução em Assembly é um mnemônico, que é basicamente uma abreviatura feita para fácil memorização. Pensando nisso leia cada instrução com seu nome extenso equivalente para lembrar o que ela faz. No título de cada instrução irei deixar após um "\|" o nome extenso da instrução para facilitar nessa tarefa.
 {% endhint %}
 
 ### MOV \| Move
@@ -84,7 +80,7 @@ add r/m, reg
 add r/m, imm
 ```
 
-Soma o valor do operando destino com o valor do operando fonte.
+Soma o valor do operando destino com o valor do operando fonte, armazenando o resultado no próprio operando destino.
 
 {% code title="pseudo.c" %}
 ```c
@@ -143,8 +139,7 @@ Decrementa o valor do operando destino em 1.
 mul r/m
 ```
 
-Multiplica uma parte do mapeamento de RAX pelo operando passado.  
-Com base no tamanho do operando uma parte diferente de RAX será multiplicada e o resultado armazenado em um registrador diferente.
+Multiplica uma parte do mapeamento de RAX pelo operando fonte passado. Com base no tamanho do operando uma parte diferente de RAX será multiplicada e o resultado armazenado em um registrador diferente.
 
 | Operando 1 | Operando 2 | Destino |
 | :--- | :--- | :--- |
@@ -153,12 +148,13 @@ Com base no tamanho do operando uma parte diferente de RAX será multiplicada e 
 | EAX | r/m32 | EDX:EAX |
 | RAX | r/m64 | RDX:RAX |
 
-No caso por exemplo de DX:AX, os registradores de 16 bits são usados em conjunto para representar o valor de 32 bits. Onde DX armazena os 2 bytes mais significativos do valor, e AX os 2 bytes menos significativos.
+No caso por exemplo de DX:AX, os registradores de 16 bits são usados em conjunto para representar um valor de 32 bits. Onde DX armazena os 2 bytes mais significativos do valor e AX os 2 bytes menos significativos.
 
 {% code title="pseudo.c" %}
 ```c
 // Se operando de 8 bits
 AX = AL * operand;
+
 
 // Se operando de 16 bits
 aux = AX * operand;
@@ -173,7 +169,7 @@ AX  = aux & 0x0000ffff;
 div r/m
 ```
 
-Seguindo uma premissa inversa de MUL, faz a divisão de um valor pelo operando passado e armazena o quociente e a sobra desta divisão.
+Seguindo uma premissa inversa de MUL, essa instrução faz a divisão de um valor pelo operando fonte passado e armazena o quociente e a sobra dessa divisão.
 
 | Operando 1 | Operando 2 | Destino quociente | Destino sobra |
 | :--- | :--- | :--- | :--- |
@@ -196,13 +192,14 @@ AH = AX % operand;
 lea reg, mem
 ```
 
-Calcula o endereço efetivo do operando fonte e armazena o resultado no endereço destino.
+Calcula o endereço efetivo do operando fonte e armazena o resultado do cálculo no registrador destino. Ou seja, ao invés de ler o valor no endereço do operando na memória o próprio endereço resultante do cálculo de endereço será armazenado no registrador. Exemplo:
 
-{% code title="pseudo.c" %}
-```c
-destiny = address_of(source);
+```text
+mov rbx, 5
+lea rax, [rbx + 7]
+
+; Aqui RAX teria o valor 12
 ```
-{% endcode %}
 
 ### AND
 
@@ -262,8 +259,7 @@ xchg reg, r/m
 xchg r/m, reg
 ```
 
-O operando destino recebe o valor do operando fonte, e o operando fonte recebe o valor anterior do operando destino.  
-Fazendo assim uma troca nos valores dos mesmos.
+O operando **2** recebe o valor do operando **1** e o operando **1** recebe o valor anterior do operando **2**. Fazendo assim uma troca nos valores dos dois operandos. Repare que diferente das instruções anteriores essa modifica também o valor do segundo operando.
 
 ```c
 auxiliary = destiny;
@@ -277,8 +273,7 @@ source    = auxiliary;
 xadd r/m, reg
 ```
 
-O operando fonte recebe o valor do operando destino e, em seguida, o operando destino é somado com o valor anterior do operando fonte.  
-Basicamente preserva o valor do destino ao mesmo tempo que faz um ADD nele.
+O operando **2** recebe o valor do operando **1** e, em seguida, o operando **1** é somado com o valor anterior do operando **2**. Basicamente preserva o valor anterior do operando **1** no operando **2** ao mesmo tempo que faz um ADD nele.
 
 {% code title="pseudo.c" %}
 ```c
@@ -288,6 +283,13 @@ destiny   = destiny + auxiliary;
 ```
 {% endcode %}
 
+Essa instrução é equivalente a seguinte sequência de instruções:
+
+```c
+xchg rax, rbx
+add rax, rbx
+```
+
 ### SHL \| Shift Left
 
 ```text
@@ -296,8 +298,7 @@ shl r/m, imm
 shl r/m, CL
 ```
 
-Faz o deslocamento de bits do operando destino para a esquerda com base no número especificado no operando fonte.  
-Se o operando fonte não é especificado, então faz o _shift left_ apenas 1 vez.
+Faz o deslocamento de bits do operando destino para a esquerda com base no número especificado no operando fonte. Se o operando fonte não é especificado então faz o _shift left_ apenas 1 vez.
 
 {% code title="pseudo.c" %}
 ```c
@@ -314,7 +315,7 @@ shr r/m, imm
 shr r/m, CL
 ```
 
-Mesmo caso que SHL, porém faz o deslocamento de bits para a direita.
+Mesmo caso que SHL porém faz o deslocamento de bits para a direita.
 
 {% code title="pseudo.c" %}
 ```c
@@ -339,24 +340,29 @@ Compara o valor dos dois operandos e define RFLAGS de acordo.
 ```
 {% endcode %}
 
-### SETcc \| Set byte if Condition
+### SETcc \| Set byte if condition
 
 ```text
 SETcc r/m8
 ```
 
-Define o valor do operando de 8 bits para 1 ou 0 dependendo se a condição for atendida \(1\) ou não \(0\).  
-Assim como no caso dos _jumps_ condicionais, o 'cc' aqui denota uma sigla para uma condição. Cuja elas podem ser as mesmas utilizadas nos _jumps_. Exemplo:
+Define o valor do operando de 8 bits para 1 ou 0 dependendo se a condição for atendida \(1\) ou não \(0\). Assim como no caso dos _jumps_ condicionais, o 'cc' aqui denota uma sigla para uma condição. Cuja a condição pode ser uma das mesmas utilizadas nos _jumps_. Exemplo:
 
 ```text
 sete al
-; Se RFLAGS indica um valor igual, AL = 1. Se não AL = 0
+; Se RFLAGS indica um valor igual: AL = 1. Se não: AL = 0
 ```
 
 {% code title="pseudo.c" %}
 ```c
-if(verify_rflags(condition) == true) destiny = 1;
-else                                 destiny = 0;
+if (verify_rflags(condition) == true)
+{
+  destiny = 1;
+}
+else
+{
+  destiny = 0;
+}
 ```
 {% endcode %}
 
@@ -366,11 +372,14 @@ else                                 destiny = 0;
 CMOVcc reg, r/m
 ```
 
-Basicamente uma instrução MOV condicional, só irá definir o valor do operando destino caso a condição seja atendida.
+Basicamente uma instrução MOV condicional. Só irá definir o valor do operando destino caso a condição seja atendida.
 
 {% code title="pseudo.c" %}
 ```c
-if(verify_rflags(condition) == true) destiny = source;
+if (verify_rflags(condition) == true)
+{
+  destiny = source;
+}
 ```
 {% endcode %}
 
@@ -411,8 +420,7 @@ movsd  ; double word (4 bytes)
 movsq  ; quad word   (8 bytes)
 ```
 
-Copia um valor do tamanho de um **b**yte, **w**ord, **d**ouble word ou **q**uad word a partir do endereço apontado por RSI \(_Source Index_\) para o endereço apontado por RDI. \(_Destiny Index_\).  
-Depois disso incrementa o valor dos dois registradores com base no tamanho do dado que foi movido.
+Copia um valor do tamanho de um **b**yte, **w**ord, **d**ouble word ou **q**uad word a partir do endereço apontado por RSI \(_Source Index_\) para o endereço apontado por RDI \(_Destiny Index_\). Depois disso incrementa o valor dos dois registradores com o tamanho em bytes do dado que foi movido.
 
 {% code title="pseudo.c" %}
 ```c
@@ -432,7 +440,7 @@ cmpsd  ; double word (4 bytes)
 cmpsq  ; quad word   (8 bytes)
 ```
 
-Compara os valores na memória apontados por RDI e RSI, e depois incrementa os registradores com base no tamanho do dado.
+Compara os valores na memória apontados por RDI e RSI, depois incrementa os registradores com o tamanho em bytes do dado.
 
 {% code title="pseudo.c" %}
 ```c
@@ -452,7 +460,7 @@ lodsd  ; double word (4 bytes)
 lodsq  ; quad word   (8 bytes)
 ```
 
-Copia o valor na memória apontado por RSI para uma parte do mapeamento de RAX equivalente ao tamanho do dado, e depois incrementa RSI de acordo.
+Copia o valor na memória apontado por RSI para uma parte do mapeamento de RAX equivalente ao tamanho do dado, e depois incrementa RSI com o tamanho do valor.
 
 {% code title="pseudo.c" %}
 ```c
@@ -471,7 +479,7 @@ scasd  ; double word (4 bytes)
 scasq  ; quad word   (8 bytes)
 ```
 
-Compara o valor em uma parte mapeada de RAX com o valor na memória apontado por RDI, e depois incrementa RDI de acordo.
+Compara o valor em uma parte mapeada de RAX com o valor na memória apontado por RDI e depois incrementa RDI de acordo.
 
 {% code title="pseudo.c" %}
 ```c
@@ -510,24 +518,32 @@ loopne addr8
 ```
 {% endcode %}
 
-Essas instruções são utilizadas para gerar procedimentos de laço \(_loop_\) usando o registrador RCX como contador.  
-Elas primeiro decrementam o valor de RCX e comparam o mesmo com o valor zero. Se RCX for diferente de zero, a instrução faz um salto para o endereço passado com operando, senão o fluxo de código continua normalmente.  
-No caso de `loope` e `loopne`, os sufixos indicam a condição de **igual** e **não igual** respectivamente.  
-Ou seja, além da comparação do valor de RCX elas também verificam o valor de RFLAGS como uma condição extra.
+Essas instruções são utilizadas para gerar procedimentos de laço \(_loop_\) usando o registrador RCX como contador. Elas primeiro decrementam o valor de RCX e comparam o mesmo com o valor zero. Se RCX for diferente de zero a instrução faz um salto para o endereço passado como operando, senão o fluxo de código continua normalmente.
+
+No caso de `loope` e `loopne` os sufixos indicam a condição de **igual** e **não igual** respectivamente. Ou seja, além da comparação do valor de RCX elas também verificam o valor de RFLAGS como uma condição extra.
 
 {% code title="pseudo.c" %}
 ```c
 // loop
 RCX = RCX - 1;
-if(RCX != 0) goto operand;
+if(RCX != 0)
+{
+  goto operand;
+}
 
 // loope
 RCX = RCX - 1;
-if(RCX != 0 && verify_rflags(EQUAL) == true) goto operand;
+if(RCX != 0 && verify_rflags(EQUAL) == true)
+{
+  goto operand;
+}
 
 // loopne
 RCX = RCX - 1;
-if(RCX != 0 && verify_rflags(EQUAL) == false) goto operand;
+if(RCX != 0 && verify_rflags(EQUAL) == false)
+{
+  goto operand;
+}
 ```
 {% endcode %}
 
@@ -537,11 +553,17 @@ if(RCX != 0 && verify_rflags(EQUAL) == false) goto operand;
 nop
 ```
 
-Não faz nenhuma operação... Sério, não faz nada.
+Não faz nenhuma operação... Sério, não faz nada. Essa instrução normalmente é utilizada apenas como um "preenchimento" por compiladores afim de alinhar o endereço de código por motivos de otimização.
 
 {% code title="pseudo.c" %}
 ```c
 EAX = EAX;
 ```
 {% endcode %}
+
+{% hint style="info" %}
+Não cabe a esse livro explicar porque esse alinhamento melhora a performance do código mas se estiver curioso estude à respeito do cache do processador e _cache line_. Para simplificar um desvio de código para um endereço que esteja próximo ao início de uma linha de cache é mais performático.
+
+Se você for um escovador de bits sugiro ler à respeito no [manual de otimização da Intel](https://software.intel.com/content/www/us/en/develop/download/intel-64-and-ia-32-architectures-optimization-reference-manual.html) no tópico **3.4.1.4 Code Alignment**.
+{% endhint %}
 
