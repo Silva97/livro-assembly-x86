@@ -1,5 +1,5 @@
 ---
-description: Segmentação da memória RAM.
+description: Segmentação da memória RAM
 ---
 
 # Registradores de segmento
@@ -81,5 +81,5 @@ Em _protected mode_ os registradores de segmento não são usados para gerar um 
 
 ### Segmentação em x86-64
 
-Em x86-64 não é mais usado esse esquema de segmentação de memória, portanto os registradores de segmento são usados com outros objetivos no submodo de 64-bit.
+Em x86-64 não é mais usado esse esquema de segmentação de memória, portanto os registradores de segmento são usados com outros objetos no submodo de 64-bit.
 
