@@ -156,45 +156,23 @@ Os registradores gerais em x86-64 são estendidos para 64 bits e ganham o prefix
 
 Todos os registradores gerais em IA-32 são mapeados nos 4 bytes menos significativos dos registradores re-estendidos, seguindo o mesmo padrão de mapeamento anterior.
 
-Mas esses na verdade são nomes alternativos para o novo padrão de mapeamento do x86-64, que recebe mais registradores gerais. Os novos nomes dos registradores são uma letra 'R' seguido de um número de 0 a 15. Os primeiros 8 registradores, R0 a R7, são nomes diferentes para os mesmos registradores gerais listados mais acima. Como demonstra a tabela abaixo:
+E há também um novo padrão de mapeamento do x86-64 com novos registradores gerais. Os novos nomes dos registradores são uma letra 'R' seguido de um número de 8 a 15.
 
-| Nome | Alias |
+O mapeamento dos novos registradores é um pouco diferente. Podemos usar o sufixo 'B' para acessar o byte menos significativo, o sufixo 'W' para acessar a _word_ \(2 bytes\) menos significativa e 'D' para acessar a _double word_ \(4 bytes\) menos significativa. Usando R8 como exemplo podemos montar a tabela abaixo:
+
+| Registrador | Descrição |
 | :--- | :--- |
-| R0 | RAX |
-| R1 | RCX |
-| R2 | RDX |
-| R3 | RBX |
-| R4 | RSP |
-| R5 | RBP |
-| R6 | RSI |
-| R7 | RDI |
+| R8B | Byte menos significativo de R8. |
+| R8W | Word \(2 bytes\) menos significativa de R8. |
+| R8D | Double word \(4 bytes\) menos significativa de R8. |
 
-Quando se usa o nome no padrão numérico `R0` o mapeamento é feito de maneira diferente. Podemos usar o sufixo 'B' para acessar o byte menos significativo, o sufixo 'W' para acessar a _word_ \(2 bytes\) menos significativa e 'D' para acessar a _double word_ \(4 bytes\) menos significativa. Usando RAX/R0 como exemplo, podemos montar a tabela abaixo com o novo mapeamento e seu alias:
-
-| Nome | Alias |
-| :--- | :--- |
-| R0B | AL |
-| R0W | AX |
-| R0D | EAX |
+Em x86-64 também é possível acessar o byte menos significativo dos registradores RSP, RBP, RSI e RDI. O que não é possível em IA-32 ou IA-16. Eles são mapeados em `SPL`, `BPL`, `SIL` e `DIL`.
 
 {% hint style="info" %}
-O _Higher_ byte \(AH por exemplo\) de AX, BX, CX e DX não deixa de ser mapeado, ele apenas não tem um nome no novo padrão que o x86-64 implementa.
+Esses registradores novos podem ser usados da maneira que você quiser, assim como os outros registradores gerais.
 {% endhint %}
 
-Repare que agora é possível acessar o byte menos significativo dos registradores SP, BP, SI e DI. O que não é possível em IA-32. Eles também ganham um alias, conforme tabela abaixo:
-
-| Nome | Alias |
-| :--- | :--- |
-| R4B | SPL |
-| R5B | BPL |
-| R6B | SIL |
-| R7B | DIL |
-
-{% hint style="info" %}
-Os registradores de R8 até R15 não tem nenhum alias. Esses registradores podem ser usados da maneira que você quiser, assim como os outros registradores gerais.
-{% endhint %}
-
-### Escrita nos registradores gerais \(x86-64\)
+### Escrita nos registradores gerais em x86-64
 
 A escrita de dados nos 4 bytes menos significativos de um registrador em x86-64 funciona de maneira um pouco diferente da que nós estamos acostumados. Observe o exemplo:
 
@@ -206,6 +184,6 @@ mov eax, 0x1234
 A instrução na linha 2 mudaria o valor de RAX para `0x0000000000001234`. Isso acontece porque o valor é _zero-extended_, ou seja, ele é estendido de forma que os 4 bytes mais significativos de RAX são zerados.
 
 {% hint style="info" %}
-O mesmo vale para todos os registradores gerais, incluindo os registradores R8..R15 caso você escreva algum valor em R8D..R15D
+O mesmo vale para todos os registradores gerais, incluindo os registradores R8..R15 caso você escreva algum valor em R8D..R15D.
 {% endhint %}
 
