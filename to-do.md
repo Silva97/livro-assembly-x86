@@ -62,7 +62,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
 * [ ] Referência de instruções x86-64
 
 {% hint style="info" %}
-Esta lista não é absoluta, é só para dar uma noção do que pretendo produzir de conteúdo. Durante a escrita posso adicionar mais coisas que não me lembrei de colocar aqui e também mudar a ordem dos tópicos.
+Essa lista não é absoluta, é só para dar uma noção do que pretendo produzir de conteúdo. Durante a escrita posso adicionar mais coisas que não me lembrei de colocar aqui e também mudar a ordem dos tópicos.
 {% endhint %}
 
 ## De graça

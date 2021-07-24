@@ -1,5 +1,5 @@
 ---
-description: Explicação do porque aprender Assembly é útil
+description: Livro gratuito sobre Assembly x86 e x86-64
 ---
 
 # Introdução
