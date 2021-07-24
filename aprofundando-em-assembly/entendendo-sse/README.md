@@ -22,7 +22,7 @@ Esses registradores podem armazenar vários dados diferentes de mesmo tipo/taman
 
 ![Intel Developer&apos;s manual \| 4.6.2 128-Bit Packed SIMD Data Types](../../.gitbook/assets/image%20%289%29.png)
 
-Esses são os tipos empacotados \(_packed_\), onde em um único registrador há vários valores de um mesmo tipo. Existem instruções SIMD específicas que executam operações _packed_ onde elas trabalham com os vários dados armazenados no registrador ao mesmo tempo. Em contraste existem também as operações escalares \(_scalar_\) que operam com um único dado \(_unpacked_\) _float_ de 64-bits no registrador, onde esse dado estaria armazenado na _double word_ \(4 bytes\) menos significativa do registrador.
+Esses são os tipos empacotados \(_packed_\), onde em um único registrador há vários valores de um mesmo tipo. Existem instruções SIMD específicas que executam operações _packed_ onde elas trabalham com os vários dados armazenados no registrador ao mesmo tempo. Em contraste existem também as operações escalares \(_scalar_\) que operam com um único dado \(_unpacked_\) no registrador, onde esse dado estaria armazenado na parte menos significativa do registrador.
 
 {% hint style="info" %}
 Na convenção de chamada para x86-64 da linguagem C os primeiros argumentos _float/double_ passados para uma função vão nos registradores XMM0, XMM1 etc. como valores escalares. E o retorno do tipo _float/double_ fica no registrador XMM0 também como um valor escalar.
@@ -59,7 +59,41 @@ Para facilitar o entendimento irei usar o termo _float_ para se referir aos núm
 
 As instruções SSE terminam com um sufixo de duas letras onde a penúltima indica se ela lida com dados _packed_ ou _scalar_, e a última letra indica o tipo do dado sendo manipulado. Por exemplo a instrução MOVA**PS** onde o **P** indica que a instrução manipula dados _packed_, enquanto o **S** indica o tipo do dado como _**s**ingle-precision floating-point_, ou seja, _float_ de 32 bits de tamanho.
 
-Já o **D** de MOVAP**D** indica que a instrução lida com valores do tipo _double_ \(64 bits\).
+Já o **D** de MOVAP**D** indica que a instrução lida com valores do tipo _double-precision floating-point_ \(64 bits\). Eis a lista de sufixos e seus respectivos tipos:
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Sufixo</th>
+      <th style="text-align:left">Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">S</td>
+      <td style="text-align:left"><em>Single-precision float</em>. Equivalente ao tipo <b>float</b> em C.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">D</td>
+      <td style="text-align:left">
+        <p><em>Double-precision float</em>. Equivalente ao tipo <b>double</b> em C.</p>
+        <p>Ou inteiro <em>doubleword</em> (4 bytes) que seria um inteiro de 32 bits.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">B</td>
+      <td style="text-align:left">Inteiro de um byte (8 bits).</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">W</td>
+      <td style="text-align:left">Inteiro word (2 bytes | 16 bits).</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Q</td>
+      <td style="text-align:left">Inteiro <em>quadword</em> (8 bytes | 64 bits).</td>
+    </tr>
+  </tbody>
+</table>
 
 {% hint style="danger" %}
 Todas as instruções SSE que lidam com valores na memória **exigem** que o valor esteja em um endereço alinhado em 16 bytes, exceto as instruções que explicitamente dizem lidar com dados desalinhados \(_unaligned_\).
