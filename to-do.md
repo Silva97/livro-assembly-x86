@@ -18,7 +18,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Interrupções de software e exceções
   * [x] Procedimentos do BIOS
   * [x] Usando instruções da FPU
-  * [ ] Algumas instruções SSE
+  * [x] Entendendo SSE
   * [ ] Position-independent executable
 * [ ] Programando junto com C
   * [ ] Convenção de chamada cdecl

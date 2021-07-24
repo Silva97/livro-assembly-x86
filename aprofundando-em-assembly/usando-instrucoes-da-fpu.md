@@ -4,19 +4,19 @@ description: Aprendendo a usar o x87 para fazer cálculos.
 
 # Usando instruções da FPU
 
-Podemos usar a FPU para fazer cálculos com valores de ponto flutuante. Mas também é possível usar valores inteiros nos cálculos com a FPU.
-
-A arquitetura x86 segue a padronização [IEEE-754](https://pt.wikipedia.org/wiki/IEEE_754) para a representação de valores de ponto flutuante.
+Podemos usar a FPU para fazer cálculos com valores de ponto flutuante. A arquitetura x86 segue a padronização [IEEE-754](https://pt.wikipedia.org/wiki/IEEE_754) para a representação de valores de ponto flutuante.
 
 {% hint style="info" %}
 Apenas algumas instruções da FPU serão ensinadas aqui, não sendo uma lista completa.
+
+Um adendo que normalmente compiladores de C não trabalham com valores de ponto flutuante desta maneira em x86-64 porque a arquitetura x86 hoje em dia tem maneiras mais eficientes de fazer esses cálculos. Isso será demonstrado no próximo tópico.
 {% endhint %}
 
 ### Registradores
 
 As instruções da FPU trabalham com os registradores de **st0** até **st7**, são 8 registradores de 80 bits de tamanho cada. Juntos eles formam uma _stack_ \(pilha\) onde você pode empilhar valores para trabalhar com eles ou desempilhar para armazenar o resultado das operações em algum lugar.
 
-O empilhamento de valores funciona colocando o novo valor em **st0** e, todos os outros valores anteriores, são "empurrados" para os registradores posteriores. Um exemplo bem leviano desta operação:
+O empilhamento de valores funciona colocando o novo valor em **st0** e todos os outros valores anteriores são "empurrados" para os registradores posteriores. Um exemplo bem leviano dessa operação:
 
 ```text
 st0 = 10
@@ -37,11 +37,7 @@ st1 = 20
 st2 = 30
 ```
 
-{% hint style="info" %}
-Um adendo que convencionalmente compiladores de C não trabalham com valores de ponto flutuante desta maneira, porque a arquitetura x86 hoje em dia tem maneiras mais eficientes de fazer estes cálculos.
-{% endhint %}
-
-Detalhe que só é possível usar esses registradores em instruções da FPU, algo como este código está errado:
+Detalhe que só é possível usar esses registradores em instruções da FPU, algo como esse código está errado:
 
 ```text
 mov eax, st1
@@ -49,17 +45,17 @@ mov eax, st1
 
 ### Formato das instruções
 
-As instruções da FPU todas começam com um prefixo **F**, e as que operam com valores inteiros também tem uma letra **I** após a letra **F**. Por fim, instruções que fazem o _pop_ de um valor da pilha, isto é, remove o valor de lá, terminam com um sufixo **P**. Entendendo isto fica muito mais fácil identificar o que cada mnemônico significa e assim você não perde tempo tentando decorar uma sopa de letrinhas, se estas letras existem é porque tem um motivo.
+As instruções da FPU todas começam com um prefixo **F**, e as que operam com valores inteiros \(convertendo DE ou PARA inteiro\) também tem uma letra **I** após a letra **F**. Por fim, instruções que fazem o _pop_ de um valor da pilha, isto é, remove o valor de lá, terminam com um sufixo **P**. Entendendo isso fica muito mais fácil identificar o que cada mnemônico significa e assim você não perde tempo tentando decorar uma sopa de letrinhas, se essas letras existem é porque tem um significado.
 
 {% hint style="info" %}
 Caso tenha vindo de uma arquitetura RISC, geralmente o termo _load_ é usado para a operação em que você carrega um valor da memória para um registrador. Já _store_ é usado para se referir a operação contrária, do registrador para a memória.
 
-Neste caso as operações podem ser feita entre registradores da FPU também, conforme será explicado.
+Nesse caso as operações podem ser feita entre registradores da FPU também, conforme será explicado.
 {% endhint %}
 
 Fazer _load_ de um valor é basicamente carregar um valor da memória para a pilha em **st0**, é como um _push_ quando estamos falando da pilha convencional. A diferença aqui é a maneira como o valor é colocado na pilha, como já foi explicado anteriormente.
 
-Já o _store_ é pegar o valor da pilha, mais especificamente em **st0**, e armazenar em algum lugar da memória. Algumas instruções _store_ permite armazenar o valor em outro registrador da FPU.
+Já o _store_ é pegar o valor da pilha, mais especificamente em **st0**, e armazenar em algum lugar da memória. Algumas instruções _store_ permitem armazenar o valor em outro registrador da FPU.
 
 Aqui eu vou ensinar a usar a FPU mas sem diretamente trabalhar com a linguagem C e os tipos **float** ou **double**, pois como já foi mencionado, não é assim que o compilador trabalha com cálculos de ponto flutuante.
 
@@ -71,7 +67,7 @@ Vou usar a notação `memXXfp`e `memXXint` para especificar valores na memória 
 finit
 ```
 
-Normalmente vamos usar esta instrução antes de começar a usar a FPU, pois ela reseta a FPU para o estado inicial. Deste jeito quaisquer operações anteriores com a FPU são descartadas e podemos começar tudo do zero. Assim não é necessário, por exemplo, a gente limpar a pilha da FPU toda vez que terminar as operações com ela. Basta rodar esta instrução antes de usá-la.
+Normalmente vamos usar essa instrução antes de começar a usar a FPU, pois ela reseta a FPU para o estado inicial. Dessa forma quaisquer operações anteriores com a FPU são descartadas e podemos começar tudo do zero. Assim não é necessário, por exemplo, a gente limpar a pilha da FPU toda vez que terminar as operações com ela. Basta rodar essa instrução antes de usá-la.
 
 ### FLD, FILD \| \(Integer\) Load
 
@@ -86,9 +82,9 @@ fild mem32int
 fild mem64int
 ```
 
-A instrução `fld`carrega um valor float de 32, 64 ou 80 bits para **st0**. Repare como é possível dar _load_ em um dos registradores da pilha, o que torna possível retrabalhar com valores anteriormente carregados. Se você rodar `fld st0`estará basicamente duplicando o último valor carregado.
+A instrução `fld` carrega um valor _float_ de 32, 64 ou 80 bits para **st0**. Repare como é possível dar _load_ em um dos registradores da pilha, o que torna possível retrabalhar com valores anteriormente carregados. Se você rodar `fld st0` estará basicamente duplicando o último valor carregado.
 
-Já `fild`carrega um valor inteiro sinalizado de 16, 32 ou 64 bits, o convertendo para _float_ de 64 bits.
+Já `fild` carrega um valor inteiro sinalizado de 16, 32 ou 64 bits o convertendo para _float_ de 64 bits.
 
 ### Load Constant
 
@@ -100,7 +96,7 @@ Existem várias instruções para dar _push_ de valores constantes na pilha da F
 | FLDZ | +0.0 |
 | FLDL2T | log2\(10\) |
 | FLDL2E | log2\(e\) |
-| FLDPI | Valor de PI. \(3.14 blabla\) |
+| FLDPI | Valor de PI. \(3.1415 blabla...\) |
 | FLDLG2 | log10\(2\) |
 | FLDLN2 | logE\(2\) |
 
@@ -117,7 +113,7 @@ fstp mem80fp
 fstp st(i)
 ```
 
-Pega o valor _float_ ****de **st0** e copia para o operando destino. A versão com o sufixo **P** também faz o _pop_ do valor da _stack_, sendo possível dar _store_ em um _float_ de 80 bits somente com esta instrução.
+Pega o valor _float_ ****de **st0** e copia para o operando destino. A versão com o sufixo **P** também faz o _pop_ do valor da _stack_, sendo possível dar _store_ em um _float_ de 80 bits somente com essa instrução.
 
 ### FIST, FISTP \| Integer Store \(and Pop\)
 
@@ -172,7 +168,7 @@ int main(void)
 {% endtab %}
 {% endtabs %}
 
-Se você rodar esse teste irá notar que o valor foi convertido para 24, já que houve um arredondamento.
+Se você rodar esse teste irá notar que o valor foi convertido para 24 já que houve um arredondamento.
 
 ### FADD, FADDP, FIADD \| \(Integer\) Add \(and Pop\)
 
@@ -189,7 +185,7 @@ fiadd mem16int
 fiadd mem32int
 ```
 
-As versões de `fadd`com operando na memória faz a soma do operando com **st0** e armazena o resultado da soma no próprio **st0**. Já `fiadd`com operando em memória faz a mesma coisa, porém convertendo o valor inteiro para _float_ 64 bits antes.
+As versões de `fadd` com operando na memória faz a soma do operando com **st0** e armazena o resultado da soma no próprio **st0**. Já `fiadd` com operando em memória faz a mesma coisa, porém convertendo o valor inteiro para _float_ 64 bits antes.
 
 As instruções com registradores fazem a soma e armazenam o resultado no operando mais a esquerda, o operando destino. Enquanto a `faddp` sem operandos soma **st0** com **st1**, armazena o resultado em **st1** e depois faz o _pop_.
 
@@ -288,7 +284,7 @@ Cansei de repetir, já sabe né? Operação de multiplicação.
 
 ### FSUBR, FSUBRP, FISUBR \| \(Integer\) Subtract Reverse \(and Pop\)
 
-Faz a mesma coisa que a família **FSUB**, só que ao contrário. Conforme ilustração:
+Faz a mesma coisa que a família **FSUB** só que com os operandos ao contrário. Conforme ilustração:
 
 ```text
 a = a - b // fsub etc.
@@ -340,7 +336,7 @@ Inverte o sinal de **st0**, se era negativo passa a ser positivo e vice-versa.
 fcos
 ```
 
-Calcula o cosseno de **st0**, que deve ser um valor radiano, e armazena o resultado nele próprio.
+Calcula o cosseno de **st0** que deve ser um valor radiano, e armazena o resultado nele próprio.
 
 ### FSIN \| Sine
 
@@ -356,7 +352,7 @@ Calcula o seno de **st0**, que deve estar em radianos.
 fsincos
 ```
 
-Calcula o seno e o cosseno de **st0**. O seno é armazenado em **st0** enquanto o cosseno é dado _push_ na pilha. Detalhe que após o _push_, o valor do cosseno vai estar em **st0** enquanto o valor do seno estará em **st1**.
+Calcula o seno e o cosseno de **st0**. O cosseno é armazenado em **st0** enquanto o seno estará em **st1**.
 
 ### FPTAN \| Partial Tangent
 
@@ -396,7 +392,7 @@ $$
 fyl2x
 ```
 
-Faz esse cálculo aí, com logaritmo de base 2:
+Faz esse cálculo aí com logaritmo de base 2:
 
 $$
 st1 = st1 \cdot \log_2(st0)
@@ -410,7 +406,7 @@ Após o cálculo é feito um _pop_.
 fyl2xp1
 ```
 
-Mesma coisa que a instrução anterior, porém somando 1.
+Mesma coisa que a instrução anterior porém somando 1 a **st0**.
 
 $$
 st1 = st1 \cdot \log_2(st0 + 1)
@@ -431,7 +427,7 @@ fprem
 fprem1
 ```
 
-As duas instruções armazenam a sobra da divisão entre **st0** e **st1** no registrador **st0**. Com a diferença que `fprem1`segue a padronização IEEE-754.
+As duas instruções armazenam a sobra da divisão entre **st0** e **st1** no registrador **st0**. Com a diferença que `fprem1` segue a padronização IEEE-754.
 
 ### FCOMI, FCOMIP, FUCOMI, FUCOMIP \| Compare
 
@@ -443,7 +439,7 @@ fucomi  st(0), st(i)
 fucomip st(0), st(i)
 ```
 
-Faz a comparação entre **st0** e **st\(i\)** setando as _status flags_ de acordo. A diferença de `fucomi`e `fucomip`é que estas duas verificam se os valores nos registradores não são NaN, sendo o caso a instrução irá disparar uma _exception_ \#IA.
+Faz a comparação entre **st0** e **st\(i\)** setando as _status flags_ de acordo. A diferença de `fucomi` e `fucomip` é que essas duas verificam se os valores nos registradores não são NaN, sendo o caso a instrução irá disparar uma _exception_ \#IA.
 
 ### FCMOVcc \| Conditional Move
 
@@ -463,7 +459,7 @@ Faz uma operação _move_ condicional levando em consideração as _status flags
 
 ### Vendo os resultados
 
-Não vou explicar sobre a SSE ou seus registradores neste tópico, mas saiba que um valor _float_ na convenção de chamada do C é retornado no registrador **xmm0**. Podemos ver o resultado de nossos testes da seguinte forma, usando a instrução `movss`:
+Não vou explicar sobre SSE ou seus registradores nesse tópico, mas saiba que um valor _float_ na convenção de chamada do C é retornado no registrador **xmm0**. Podemos ver o resultado de nossos testes da seguinte forma, usando a instrução `movss`:
 
 {% tabs %}
 {% tab title="assembly.asm" %}

@@ -30,5 +30,10 @@
   * [Interrupções de software e exceções](aprofundando-em-assembly/interrupcoes-de-software.md)
   * [Procedimentos do BIOS](aprofundando-em-assembly/procedimentos-do-bios.md)
   * [Usando instruções da FPU](aprofundando-em-assembly/usando-instrucoes-da-fpu.md)
+  * [Entendendo SSE](aprofundando-em-assembly/entendendo-sse/README.md)
+    * [Instruções de movimentação de dados](aprofundando-em-assembly/entendendo-sse/instrucoes-de-movimentacao-de-dados.md)
+    * [Instruções aritméticas](aprofundando-em-assembly/entendendo-sse/instrucoes-aritmeticas.md)
+    * [Instruções lógicas e de comparação](aprofundando-em-assembly/entendendo-sse/instrucoes-logicas-e-de-comparacao.md)
+    * [Instruções com inteiros 128-bit](aprofundando-em-assembly/entendendo-sse/instrucoes-com-inteiros-128-bit.md)
 * [TO DO](to-do.md)
 
