@@ -71,7 +71,7 @@ SIB é sigla para _**S**cale, **I**ndex and **B**ase_. Que são os três valores
 
 ### Endereçamento em x86-64
 
-Em x86-64 segue a mesma premissa de IA-32, com alguns adendos:
+Em x86-64 segue a mesma premissa de IA-32 com alguns adendos:
 
 * É possível usar registradores de 32 ou 64 bit.
 * Os registradores de R8 a R15 ou R8D a R15D podem ser usados como base ou índice.
@@ -102,10 +102,10 @@ mov [my_label], rax
 ```
 
 {% hint style="info" %}
-Na configuração padrão do NASM o endereçamento é montado como um endereço absoluto \(**default abs**\). Mais à frente irei abordar o assunto de Position-independent Executable \(PIE\) e aí entenderemos qual é a utilidade de se usar um endereço relativo ao RIP.
+Na configuração padrão do NASM o endereçamento é montado como um endereço absoluto \(**default abs**\). Mais à frente irei abordar o assunto de [Position-independent executable](../aprofundando-em-assembly/position-independent-executable.md) \(PIE\) e aí entenderemos qual é a utilidade de se usar um endereço relativo ao RIP.
 {% endhint %}
 
-### Truque do nasm
+### Truque do NASM
 
 Cuidado para não se confundir em relação ao fator de escala. Veja por exemplo esta instrução 64-bit:
 
