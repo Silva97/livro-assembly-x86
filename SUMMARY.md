@@ -22,6 +22,7 @@
 * [Aprofundando em Assembly](aprofundando-em-assembly/README.md)
   * [Registradores de segmento](aprofundando-em-assembly/registradores-de-segmento.md)
   * [CALL e RET](aprofundando-em-assembly/call-e-ret.md)
+  * [Position-independent executable](aprofundando-em-assembly/position-independent-executable.md)
   * [Atributos](aprofundando-em-assembly/atributos.md)
   * [Prefixos](aprofundando-em-assembly/prefixos.md)
   * [Flags do processador](aprofundando-em-assembly/flags-do-processador.md)
@@ -36,6 +37,5 @@
     * [Instruções lógicas e de comparação](aprofundando-em-assembly/entendendo-sse/instrucoes-logicas-e-de-comparacao.md)
     * [Instruções com inteiros 128-bit](aprofundando-em-assembly/entendendo-sse/instrucoes-com-inteiros-128-bit.md)
     * [Instruções de conversão](aprofundando-em-assembly/entendendo-sse/instrucoes-de-conversao.md)
-  * [Position-independent executable](aprofundando-em-assembly/position-independent-executable.md)
 * [TO DO](to-do.md)
 

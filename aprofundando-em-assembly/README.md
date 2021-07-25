@@ -4,10 +4,6 @@ description: Aprendendo mais um pouco
 
 # Aprofundando em Assembly
 
-{% hint style="danger" %}
-Esta parte do livro ainda está sendo escrita. Tópicos podem estar fora de ordem ou com informações incompletas.
-{% endhint %}
-
 Agora temos conhecimento o bastante para entender como um código em Assembly funciona e porque é importante estudar diversos assuntos relacionados ao sistema operacional, formato do binário e a arquitetura em si para poder programar em Assembly.
 
 Mas vimos tudo isso com código rodando sobre um sistema operacional em submodo 64-bit.  
@@ -38,6 +34,4 @@ O uso básico é só especificar se as instruções devem ser desmontadas como i
 ```text
 $ ndisasm -b32 binary
 ```
-
-Qualquer dúvida pode entrar no [meu grupo](https://www.facebook.com/groups/fdcasm/) e fazer uma pergunta. Ou então acesse o [fórum do Mente Binária](https://www.mentebinaria.com.br/forums/).
 

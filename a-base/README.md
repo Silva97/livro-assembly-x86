@@ -92,5 +92,5 @@ Isso é meio que gambiarra mas o importante agora é ter um ambiente funcionando
 
 ### Se tudo deu errado...
 
-Se você não conseguiu preparar nossa PoC aí no seu computador, você pode entrar no [meu grupo](https://www.facebook.com/groups/fdcasm/) no Facebook para fazer uma pergunta ou acessar [o fórum do Mente Binária](https://www.mentebinaria.com.br/forums/).
+Se você não conseguiu preparar nossa PoC aí no seu computador, acesse [o fórum do Mente Binária](https://www.mentebinaria.com.br/forums/) para tirar sua dúvida.
 
