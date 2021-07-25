@@ -47,9 +47,11 @@ Cada instrução do código de máquina tem um tamanho que pode variar de 1 até
 
 A arquitetura x86 segue o modelo da arquitetura de [Von Neumann](https://pt.wikipedia.org/wiki/Arquitetura_de_von_Neumann) onde esse, mais uma vez resumindo, trabalha principalmente usando uma unidade central de processamento \(CPU\) e uma memória principal.
 
-![Diagrama da arquitetura de Von Neumann](../.gitbook/assets/arquitecturaneumann.jpg)
+![Diagrama da arquitetura de Von Neumann](../.gitbook/assets/cpu.png)
 
-As instruções podem trabalhar manipulando/lendo dados em registradores, que são pequenas áreas de memória internas a CPU, e na memória principal que no caso é a memória RAM. Bem como também usar o sistema de entrada e saída de dados, feito pelas portas físicas.
+As instruções podem trabalhar manipulando/lendo dados em registradores que são pequenas áreas de memória internas à CPU. E também pode manipular dados na memória principal que no caso é a memória RAM. Bem como também usar o sistema de entrada e saída de dados, feito pelas portas físicas.
+
+O registrador _Program Counter_ no diagrama acima armazena o endereço da próxima instrução que será executada na memória principal. Na arquitetura x86 esse registrador é chamado de _Instruction Pointer_.
 
 ### Portas físicas
 
