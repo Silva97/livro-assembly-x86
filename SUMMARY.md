@@ -37,5 +37,7 @@
     * [Instruções lógicas e de comparação](aprofundando-em-assembly/entendendo-sse/instrucoes-logicas-e-de-comparacao.md)
     * [Instruções com inteiros 128-bit](aprofundando-em-assembly/entendendo-sse/instrucoes-com-inteiros-128-bit.md)
     * [Instruções de conversão](aprofundando-em-assembly/entendendo-sse/instrucoes-de-conversao.md)
+* [Programando junto com C](programando-junto-com-c/README.md)
+  * [Sintaxe do GAS](programando-junto-com-c/sintaxe-do-gas.md)
 * [TO DO](to-do.md)
 
