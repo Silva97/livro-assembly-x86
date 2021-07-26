@@ -45,7 +45,7 @@ int main(void)
   float array[4];
   assembly(array);
 
-  printf("Resultado: %f, %f, %f, %f\n", array[0], array[1], array[2], array[3]);
+  printf("%f, %f, %f, %f\n", array[0], array[1], array[2], array[3]);
   return 0;
 }
 ```

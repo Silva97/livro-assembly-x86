@@ -34,7 +34,16 @@ Na sintaxe da Intel o tamanho dos operandos é especificado com base em palavra-
 | L | long/doubleword \(32 bits\) | dword |
 | Q | quadword \(64 bits\) | qword |
 
-Assim como o NASM muitas vezes consegue identificar o tamanho do operando e a palavra-chave se torna opcional, o mesmo acontece no GAS e o sufixo também é opcional nesses casos.
+Exemplos:
+
+```text
+# AT&T               # Intel
+
+movl $5, %eax        # mov dword eax, 5
+movb $'A', (%ebx)    # mov byte [ebx], 'A'
+```
+
+Assim como o NASM consegue identificar o tamanho do operando quando é usado um registrador e a palavra-chave se torna opcional, o mesmo acontece no GAS e o sufixo também é opcional nesses casos.
 
 ### Far jump e call
 
@@ -203,7 +212,7 @@ A diretiva `.align` pode ser usada para alinhamento dos dados. Você pode usá-l
 
 A diretiva `.intel_syntax` pode ser usada para habilitar a sintaxe da Intel para o GAS. Opcionalmente pode-se passar um parâmetro `noprefix` para desabilitar o prefixo `%` dos registradores.
 
-Uma diferença importante da sintaxe Intel do GAS em relação ao NASM é que as palavra-chaves de especificam o tamanho do operando precisa ser seguidos por `ptr`, conforme exemplo abaixo:
+Uma diferença importante da sintaxe Intel do GAS em relação ao NASM é que as palavra-chaves que especificam o tamanho do operando precisam ser seguidas por `ptr`, conforme exemplo abaixo:
 
 ```text
     .intel_syntax noprefix
@@ -232,7 +241,7 @@ int main(void)
   float array[4];
   assembly(array);
 
-  printf("Resultado: %f, %f, %f, %f\n", array[0], array[1], array[2], array[3]);
+  printf("%f, %f, %f, %f\n", array[0], array[1], array[2], array[3]);
   return 0;
 }
 
