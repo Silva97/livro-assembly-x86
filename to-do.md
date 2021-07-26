@@ -9,8 +9,9 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
 * [x] A base
 * [x] Aprofundando em Assembly
 * [ ] Programando junto com C
+  * [x] Sintaxe do GAS
+  * [x] Convenção de chamada da System V ABI
   * [ ] Convenção de chamada cdecl
-  * [ ] Convenção de chamada x86-64
   * [ ] Entendendo o protótipo de uma função
   * [ ] Estrutura de um executável em C com a libc
   * [ ] Compilação freestanding

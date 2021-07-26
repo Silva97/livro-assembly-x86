@@ -33,6 +33,7 @@ Na sintaxe da Intel o tamanho dos operandos é especificado com base em palavra-
 | W | word \(16 bits\) | word |
 | L | long/doubleword \(32 bits\) | dword |
 | Q | quadword \(64 bits\) | qword |
+| T | ten word \(80 bits\) | tword |
 
 Exemplos:
 
