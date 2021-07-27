@@ -35,7 +35,7 @@ Provavelmente você já ouviu falar em _exception_.  A _exception_ nada mais é 
 
 Nesse caso a exceção que foi disparada pelo processador se chama _General Protection_ e pode ser referida pelo mnemônico \#GP, seu índice na tabela é 13.
 
-![SDM volume 1, cap&#xED;tulo 6](../.gitbook/assets/image%20%283%29.png)
+![Intel Developer&apos;s Manuals - volume 1, cap&#xED;tulo 6](../.gitbook/assets/image%20%283%29.png)
 
 Essa exceção é disparada quando há um problema na referência de memória ou qualquer proteção à memória que foi violada. Como por exemplo ao tentar escrever em um segmento de memória que não tem permissão para escrita.
 
@@ -68,8 +68,7 @@ VADDR equ 0xb800
 %macro setint 3
   mov bx, (%1) * 4
   mov word [es:bx], %3
-  add bx, 2
-  mov word [es:bx], %2
+  mov word [es:bx + 2], %2
 %endmacro
 
 
@@ -131,7 +130,7 @@ Vamos dessa vez configurar uma exceção. A exceção que vamos configurar é a 
 Os depuradores modificam a instrução original colocando a instrução que dispara a exceção de _breakpoint_. Depois tratam o sinal enviado para o processo, restauram a instrução original e continuam seu trabalho.
 {% endhint %}
 
-O _breakpoint_ nada mais é que uma exceção que é disparada por uma instrução. Podemos usar `int 0x03` \(**CD 03** \| em código de máquina\) para fazer isso porém essa instrução tem 2 bytes de tamanho e não é muito apropriada para um depurador usar. Por isso existe a instrução `int3` que dispara \#BP explicitamente e tem somente 1 byte de tamanho \(_opcode_ **0xCC**\).
+O _breakpoint_ nada mais é que uma exceção que é disparada por uma instrução. Podemos usar `int 0x03` \(**CD 03** em código de máquina\) para fazer isso porém essa instrução tem 2 bytes de tamanho e não é muito apropriada para um depurador usar. Por isso existe a instrução `int3` que dispara \#BP explicitamente e tem somente 1 byte de tamanho \(_opcode_ **0xCC**\).
 
 {% code title="int.asm" %}
 ```c
@@ -142,8 +141,7 @@ org  0x100
 %macro setint 3
   mov bx, (%1) * 4
   mov word [es:bx], %3
-  add bx, 2
-  mov word [es:bx], %2
+  mov word [es:bx + 2], %2
 %endmacro
 
 
@@ -171,7 +169,7 @@ break:
 
 ![](../.gitbook/assets/image%20%281%29.png)
 
-Repare que a cada execução de `int3` executou o código do nosso procedimento **break**. Esse por sua vez imprimiu o caractere 'X' na tela do Dosbox usando a interrupção 0x10 que será explicada no próximo capítulo.
+Repare que a cada execução de `int3` executou o código do nosso procedimento **break**. Esse por sua vez imprimiu o caractere 'X' na tela do Dosbox usando a interrupção 0x10 que será explicada no [próximo tópico](procedimentos-do-bios.md).
 
 ### Sinais
 

@@ -459,7 +459,7 @@ Faz uma operação _move_ condicional levando em consideração as _status flags
 
 ### Vendo os resultados
 
-Não vou explicar sobre SSE ou seus registradores nesse tópico, mas saiba que um valor _float_ na convenção de chamada do C é retornado no registrador **xmm0**. Podemos ver o resultado de nossos testes da seguinte forma, usando a instrução `movss`:
+Adiantando que um valor _float_ na [convenção de chamada](../programando-junto-com-c/convencao-de-chamada-da-system-v-abi.md) do C é retornado no registrador **XMM0**. Podemos ver o resultado de nossos testes da seguinte forma usando a instrução MOVSS:
 
 {% tabs %}
 {% tab title="assembly.asm" %}
@@ -500,4 +500,6 @@ int main(void)
 ```
 {% endtab %}
 {% endtabs %}
+
+A instrução [MOVSS](entendendo-sse/instrucoes-de-movimentacao-de-dados.md#movs-s-or-d-or-move-scalar-single-or-double-precision-floating-point) e os registradores XMM serão explicados no [próximo tópico](entendendo-sse/).
 
