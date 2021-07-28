@@ -69,7 +69,7 @@ add $24, %esp
 Assim que a função fosse chamada `8(%rsp)`, `16(%rsp)` e `24(%rsp)` apontariam para os argumentos 7, 8 e 9 respectivamente.
 
 {% hint style="warning" %}
-A função **chamadora** precisa garantir que o último valor empilhado esteja em um endereço alinhado por 16 bytes.
+A função **chamadora** \(_caller_\) precisa garantir que o último valor empilhado esteja em um endereço alinhado por 16 bytes.
 
 A função **chamadora** é a responsável por remover os argumentos empilhados da pilha.
 {% endhint %}
