@@ -22,25 +22,25 @@ Lá nos primórdios da arquitetura x86 os registradores tinham o tamanho de 16 b
 
 ### Registradores gerais \(IA-16\)
 
-Os chamados "registradores gerais" são registradores que são, como o nome sugere, de uso geral pelas instruções. Na arquitetura IA-16 nós temos os registradores de 16 bits que são mapeados em subdivisões como explicado acima.
+Os registradores de propósito geral \(GPR na sigla em inglês\) são registradores que são, como o nome sugere, de uso geral pelas instruções. Na arquitetura IA-16 nós temos os registradores de 16 bits que são mapeados em subdivisões como explicado acima.
 
-Determinadas instruções da arquitetura usam alguns desses registradores para tarefas específicas, mas eles não são limitados somente para esse uso. Você pode usá-los da maneira que quiser porém recomendo seguir o padrão para melhorar a legibilidade do código. O "apelido" na tabela abaixo é o nome dado aos registradores em inglês, serve para fins de memorização.
+Determinadas instruções da arquitetura usam alguns desses registradores para tarefas específicas mas eles não são limitados somente para esse uso. Você pode usá-los da maneira que quiser porém recomendo seguir o padrão para melhorar a legibilidade do código. O "apelido" na tabela abaixo é o nome dado aos registradores em inglês, serve para fins de memorização.
 
 | Registrador | Apelido | Uso |
 | :--- | :--- | :--- |
 | AX | Accumulator | Usado em instruções de operações aritméticas para receber o resultado de um cálculo. |
 | BX | Base | Usado geralmente em endereçamento de memória para se referir ao endereço inicial, isto é, o endereço base. |
-| CX | Counter | Usado em instruções de repetição de código, _loops_, para controlar o número de repetições. |
+| CX | Counter | Usado em instruções de repetição de código \(_loops_\) para controlar o número de repetições. |
 | DX | Data | Usado em operações de entrada e saída por portas físicas para armazenar o dado enviado/recebido. |
-| SP | Stack Pointer | Usado como ponteiro para o topo da _stack_. |
-| BP | Base Pointer | Usado como ponteiro para o endereço inicial do _stack frame_. |
+| SP | Stack Pointer | Usado como ponteiro para o topo da [_stack_](pilha.md). |
+| BP | Base Pointer | Usado como ponteiro para o endereço inicial do [_stack frame_](../programando-junto-com-c/convencao-de-chamada-da-system-v-abi.md#stack-frame). |
 | SI | Source Index | Em operações com blocos de dados, ou _strings_, esse registrador é usado para apontar para o endereço de origem de onde os dados serão lidos. |
 | DI | Destination Index | Trabalhando em conjunto com o registrador acima, esse aponta para o endereço destino onde os dados serão gravados. |
 
-Os registradores AX, BX, CX e DX são subdivididos em 2 registradores cada um. Um dos registradores é mapeado no seu byte mais significativo \(_Higher_ byte\) e o outro no byte menos significativo. \(_Lower_ byte\)  
-Reparou que os registradores são uma sequência de letras seguido do X? Para simplificar podemos dizer que os registradores são A, B, C e D. E o sufixo **X** serve para mapear todo o registrador, enquanto o sufixo **H** mapeia o _Higher_ byte e o sufixo **L** mapeia o _Lower_ byte.
+Os registradores AX, BX, CX e DX são subdivididos em 2 registradores cada um. Um dos registradores é mapeado no seu byte mais significativo \(_Higher byte_\) e o outro no byte menos significativo \(_Lower byte_\).  
+Reparou que os registradores são uma de letra seguido do X? Para simplificar podemos dizer que os registradores são A, B, C e D e o sufixo **X** serve para mapear todo o registrador, enquanto o sufixo **H** mapeia o _Higher byte_ e o sufixo **L** mapeia o _Lower byte_.
 
-Ou seja, se alteramos o valor de AL na verdade estamos alterando o byte menos significativo de AX. E se alteramos AH, então é o byte mais significativo de AX. Como no exemplo abaixo:
+Ou seja se alteramos o valor de AL na verdade estamos alterando o byte menos significativo de AX. E se alteramos AH então é o byte mais significativo de AX. Como no exemplo abaixo:
 
 {% code title="exemplo.asm" %}
 ```text
@@ -66,7 +66,7 @@ Como já explicado no IA-32 os registradores são estendidos para 32 bits de tam
 
 ![](../.gitbook/assets/captura-de-tela-de-2019-07-21-13-21-29.png)
 
-Já vimos o registrador "EAX" sendo manipulado na nossa PoC, como o prefixo 'E' indica ele é de 32 bits \(4 bytes\) de tamanho. Poderíamos **simular** esse registrador com uma `union` em C da seguinte forma:
+Já vimos o registrador "EAX" sendo manipulado na nossa PoC. Como o prefixo 'E' indica ele é de 32 bits \(4 bytes\) de tamanho. Poderíamos **simular** esse registrador com uma `union` em C da seguinte forma:
 
 {% code title="reg.c" %}
 ```c
@@ -76,7 +76,7 @@ Já vimos o registrador "EAX" sendo manipulado na nossa PoC, como o prefixo 'E' 
 union reg
 {
   uint32_t eax;
-  uint32_t ax;
+  uint16_t ax;
 
   struct
   {
@@ -114,7 +114,7 @@ Podemos testar o mapeamento de EAX com nossa PoC:
 {% tab title="assembly.asm" %}
 ```text
 ; Repare que também adicionei o arquivo main.c
-; Veja a aba logo acima
+; Veja a aba logo acima.
 
 bits 64
 
@@ -141,24 +141,23 @@ int main(void)
 {% endtab %}
 {% endtabs %}
 
-Na linha 8 alteramos o valor de EAX para `0x11223344` e logo em seguida, na linha 9, alteramos AX para `0xaabb`. Isso deveria resultar em `EAX = 0x1122aabb`
+Na linha 8 alteramos o valor de EAX para `0x11223344` e logo em seguida, na linha 9, alteramos AX para `0xaabb`. Isso deveria resultar em `EAX = 0x1122aabb`.
 
 Teste o código e tente alterar AH e/ou AL ao invés de AX diretamente.
 
 {% hint style="info" %}
-Caso ainda não tenha reparado o retorno da nossa função `assembly()` é guardado no registrador EAX. Isso será explicado mais para frente.
+Caso ainda não tenha reparado o retorno da nossa função `assembly()` é guardado no registrador EAX. Isso será explicado mais para frente nos tópicos sobre [convenção de chamada](../programando-junto-com-c/convencao-de-chamada-da-system-v-abi.md).
 {% endhint %}
 
 ### Registradores gerais \(x86-64\)
 
-Os registradores gerais em x86-64 são estendidos para 64 bits e ganham o prefixo 'R', ficando a lista:  
-`RAX, RBX, RCX, RDX, RSP, RBP, RSI, RDI`
+Os registradores de propósito geral em x86-64 são estendidos para 64 bits e ganham o prefixo 'R', ficando a lista: `RAX, RBX, RCX, RDX, RSP, RBP, RSI, RDI`
 
-Todos os registradores gerais em IA-32 são mapeados nos 4 bytes menos significativos dos registradores re-estendidos, seguindo o mesmo padrão de mapeamento anterior.
+Todos os registradores gerais em IA-32 são mapeados nos 4 bytes menos significativos dos registradores re-estendidos seguindo o mesmo padrão de mapeamento anterior.
 
 E há também um novo padrão de mapeamento do x86-64 com novos registradores gerais. Os novos nomes dos registradores são uma letra 'R' seguido de um número de 8 a 15.
 
-O mapeamento dos novos registradores é um pouco diferente. Podemos usar o sufixo 'B' para acessar o byte menos significativo, o sufixo 'W' para acessar a _word_ \(2 bytes\) menos significativa e 'D' para acessar a _double word_ \(4 bytes\) menos significativa. Usando R8 como exemplo podemos montar a tabela abaixo:
+O mapeamento dos novos registradores são um pouco diferentes. Podemos usar o sufixo 'B' para acessar o byte menos significativo, o sufixo 'W' para acessar a _word_ \(2 bytes\) menos significativa e 'D' para acessar a _doubleword_ \(4 bytes\) menos significativa. Usando R8 como exemplo podemos montar a tabela abaixo:
 
 | Registrador | Descrição |
 | :--- | :--- |
@@ -174,7 +173,7 @@ Esses registradores novos podem ser usados da maneira que você quiser, assim co
 
 ### Escrita nos registradores gerais em x86-64
 
-A escrita de dados nos 4 bytes menos significativos de um registrador em x86-64 funciona de maneira um pouco diferente da que nós estamos acostumados. Observe o exemplo:
+A escrita de dados nos 4 bytes menos significativos de um registrador em x86-64 funciona de maneira um pouco diferente do que nós estamos acostumados. Observe o exemplo:
 
 ```text
 mov rax, 0x11223344aabbccdd
@@ -183,7 +182,5 @@ mov eax, 0x1234
 
 A instrução na linha 2 mudaria o valor de RAX para `0x0000000000001234`. Isso acontece porque o valor é _zero-extended_, ou seja, ele é estendido de forma que os 4 bytes mais significativos de RAX são zerados.
 
-{% hint style="info" %}
 O mesmo vale para todos os registradores gerais, incluindo os registradores R8..R15 caso você escreva algum valor em R8D..R15D.
-{% endhint %}
 
