@@ -18,6 +18,10 @@ Neste livro não será ensinado a programar em C e nem muito menos como elaborar
 
 Por fim e o mais importante: Você precisa de um computador da arquitetura x86 rodando um sistema operacional de **64-bit**. Mas não adianta apenas tê-lo, use-o para programar o que iremos aprender aqui.
 
+{% hint style="info" %}
+Caso queira aprender C, o Mente Binária tem um treinamento gratuito intitulado [Programação Moderna em C](https://www.mentebinaria.com.br/treinamentos/programa%C3%A7%C3%A3o-moderna-em-c/).
+{% endhint %}
+
 ### Ferramentas necessárias
 
 Todas as ferramentas que utilizaremos são **gratuitas**, de **código aberto** e com versão para Linux e Windows. Não se preocupe pois você não terá que desembolsar nada e nem baixar softwares em um site "alternativo". Não ensinarei como instalar as ferramentas, você pode facilmente encontrar tutoriais pesquisando no Google ou na própria documentação da ferramenta. De preferência já deixe todas as ferramentas instaladas e, caso use o Windows, não esqueça de setar a [variável de ambiente](https://pt.wikipedia.org/wiki/Vari%C3%A1vel_de_ambiente) PATH corretamente.
