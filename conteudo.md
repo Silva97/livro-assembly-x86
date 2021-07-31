@@ -4,7 +4,7 @@ description: Conteúdo que será apresentado neste livro
 
 # Conteúdo
 
-Neste livro você irá aprender Assembly da arquitetura **x86** e **x86-64** desde os conceitos base até conteúdo mais "avançado". Digo conceitos "base" e não "básico" porque infelizmente o termo "básico" é mal empregado na internet afora. As pessoas estão acostumadas a verem conteúdo básico como algo superficial, quando na verdade é a parte mais importante para o aprendizado. É a partir de entender os conceitos básicos que nós conseguimos aprender todo o resto. Mas infelizmente devido ao mal uso do termo ele acabou sendo associado a uma enorme quantidade de conteúdo superficial encontrado na internet.
+Neste livro você irá aprender Assembly da arquitetura **x86** e **x86-64** desde os conceitos base até conteúdo mais "avançado". Digo conceitos "base" e não "básico" porque infelizmente o termo "básico" é mal empregado na internet afora. As pessoas estão acostumadas a verem conteúdo básico como algo superficial quando na verdade é a parte mais importante para o aprendizado. É a partir de entender os conceitos básicos que nós conseguimos aprender todo o resto. Mas infelizmente devido ao mal uso do termo ele acabou sendo associado a uma enorme quantidade de conteúdo superficial encontrado na internet.
 
 > **Significado de básico**:  
 > Que serve como base; essencial, basilar.  

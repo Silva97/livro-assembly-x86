@@ -4,19 +4,21 @@ description: Livro gratuito sobre Assembly x86 e x86-64
 
 # Introdução
 
-{% hint style="info" %}
-Se você está lendo isto no [repositório do GitHub](https://github.com/Silva97/livro-assembly-x86), recomendo que leia na plataforma do [GitBook clicando aqui](https://mentebinaria.gitbook.io/assembly-x86/).
-{% endhint %}
+Este livro é mais um projeto do [Mente Binária](https://mentebinaria.com.br/) cujo o intuito é ensinar os fundamentos do Assembly x86 e x86-64. Nele será abordado desde o zero até conceitos mais avançados afim de dar um entendimento profundo e uma base sólida de conhecimento.
 
-Sempre recebi muitas perguntas do tipo "como aprender Assembly?". Já faz um tempo que tenho em mente a ideia de produzir um conteúdo que sirva de introdução neste mundo. Porém a ideia aqui não é servir apenas para ensinar a fazer um "Hello World" e te deixar sem entender coisa alguma do que está fazendo. Vamos abordar parte por parte dos conceitos da linguagem Assembly até entendê-la completamente, e para isso, vamos inclusive ver um pouco de código de máquina da arquitetura x86.
+O Mente Binária também tem um livro sobre [Fundamentos de Engenharia Reversa](https://mentebinaria.gitbook.io/engenharia-reversa/) e diversos [treinamentos gratuitos](https://www.mentebinaria.com.br/treinamentos/).
+
+{% hint style="info" %}
+Se você está lendo isto no [repositório do GitHub](https://github.com/Silva97/livro-assembly-x86), recomendo que leia na plataforma do GitBook [clicando aqui](https://mentebinaria.gitbook.io/assembly-x86/).
+{% endhint %}
 
 ## Por que aprender Assembly?
 
-Se você quer aprender Assembly achando que vai conseguir fazer programas mais rápidos diretamente em Assembly, saiba que está enganado. Os algoritmos de otimização dos compiladores de hoje em dia tem uma eficiência impressionante a ponto de superar as habilidades humanas. Ou seja, é muito mais eficiente escrever um código em C, por exemplo, do que diretamente em Assembly. Claro que ainda é possível fazer código mais eficiente diretamente em Assembly, porém apenas em casos específicos e se você tiver bastante experiência. Ou seja é mais interessante usar Assembly em conjunto com C do que fazer todo o software em Assembly.
+Se você quer aprender Assembly achando que vai conseguir fazer programas mais rápidos diretamente em Assembly, saiba que está \(quase\) enganado. Os algoritmos de otimização dos compiladores de hoje em dia tem uma eficiência impressionante a ponto de superar as habilidades humanas. Ou seja, é muito mais eficiente escrever um código em C, por exemplo, do que diretamente em Assembly. Claro que ainda é possível fazer código mais eficiente diretamente em Assembly, porém apenas em casos específicos e se você tiver bastante experiência. Ou seja é mais interessante usar Assembly em conjunto com C do que fazer todo o software em Assembly.
 
 Apesar disso aprender Assembly nos dias atuais tem sim utilidade e irei listar algumas:
 
-1. Engenharia Reversa \(de softwares\) Entender como um software funciona na prática só é de fato possível se você souber Assembly. Usar [_decompiler_](https://pt.wikipedia.org/wiki/Descompilador) até funciona em parte, mas não pense que isso tem grandes utilidades o tempo todo.
+1. Engenharia Reversa \(de software\) Entender como um software funciona na prática só é de fato possível se você souber Assembly. Usar [_decompiler_](https://pt.wikipedia.org/wiki/Descompilador) até funciona em parte, mas não pense que isso tem grandes utilidades o tempo todo.
 2. Exploração de binários Para quem quer fazer testes de segurança em binários, Assembly é indispensável.
 3. Otimização de código Sim, como eu já disse é mais eficiente não escrever o código diretamente em Assembly. Porém saber Assembly e usar esse conhecimento para estudar o código de saída de um compilador de uma determinada linguagem \(GCC por exemplo\) vai te fazer aprender muita coisa sobre o código resultante. Esse conhecimento vai te ajudar e muito a fazer códigos mais eficientes nesta linguagem. Isto é claro, é especialmente útil em linguagens que te permitem prever o código de saída. \(volto a repetir C como exemplo\)
 4. Otimização de código² Também dá para fazer otimizações de código para processadores específicos manualmente. Podemos ver vários exemplos desta façanha no famigerado ffmpeg, [veja aqui](https://github.com/FFmpeg/FFmpeg/blob/a0ac49e38ee1d1011c394d7be67d0f08b2281526/libavcodec/x86/ac3dsp.asm).
