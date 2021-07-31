@@ -19,7 +19,7 @@ Nosso cérebro tem o hábito de **fabricar informações**. Quando nós estudamo
 Quando começamos a aprender algo costumamos ter muito viés ao conteúdo que consumimos primeiro. Se este viés for baseado em uma informação fabricada pela nossa mente ela vai nos induzir ao erro.
 
 {% hint style="info" %}
-É devido a este hábito que muita gente desenvolve uma superioridade ilusória, já que onde não deveria ter informação alguma tem informação fabricada. O que faz algumas pessoas crerem que "sabem muito" sobre o assunto. Esse é o chamado efeito Dunning-Kruger.
+É devido a esse hábito que muita gente desenvolve uma superioridade ilusória já que onde não deveria ter informação alguma tem informação fabricada. O que faz algumas pessoas crerem que "sabem muito" sobre o assunto. Esse é o chamado efeito Dunning-Kruger.
 {% endhint %}
 
 #### 2. Por quê?
@@ -54,7 +54,7 @@ Já teve ou tem muita dificuldade em aprender algo? Provavelmente é porque tem 
 
 #### 3. Só avance depois que aprender
 
-Como eu já disse estou tentando ao máximo passar informação de forma que você possa testar. É importante que você **faça testes** para poder compreender melhor a informação. No fim de cada assunto explicado, e após fazer alguns testes, tente explicar o conteúdo para si mesmo ou para outra pessoa. Se você não conseguir fazer isso é porque ainda não aprendeu. Evite avançar no conteúdo sem ter entendido o anterior. Se precisar de ajuda pode entrar no [meu grupo](https://www.facebook.com/groups/fdcasm/) no Facebook para fazer uma pergunta.
+Como eu já disse estou tentando ao máximo passar informação de forma que você possa testar. É importante que você **faça testes** para poder compreender melhor a informação. No fim de cada assunto explicado, e após fazer alguns testes, tente explicar o conteúdo para si mesmo ou para outra pessoa. Se você não conseguir fazer isso é porque ainda não entendeu muito bem. Evite avançar no conteúdo sem ter entendido o anterior.
 
 ### Não tenha pressa
 
@@ -76,7 +76,7 @@ Vou destacar isto: **Tire suas próprias conclusões, pense por conta própria**
 
 Como eu já disse não existe fonte absoluta de informação. A **única maneira** de se ter mais segurança sobre uma determinada informação é discutindo sobre ela. Entre em alguns fóruns e grupos, questione o que as pessoas falam e dê a oportunidade para que elas questionem o que você fala também. Não aceite nada como verdade absoluta e nem dê nada como verdade absoluta.
 
-Isso é muito importante **porque** assim você irá encontrar pontos de vista opostos ao seu, isso irá abranger seu conhecimento e lhe dar a oportunidade para reavaliar as informações, para que assim, tire mais uma vez suas próprias conclusões. Ter um só ponto de vista é horrível, péssimo. Além de ter uma enorme chance de você estar errado, a sua intolerância à discordância alheia vai estar lá no alto.
+Isso é muito importante **porque** assim você irá encontrar pontos de vista opostos ao seu, isso irá abranger seu conhecimento e lhe dar a oportunidade para reavaliar as informações, para que assim, tire mais uma vez suas próprias conclusões. Ter um só ponto de vista é horrível. Além de ter uma enorme chance de você estar errado a sua intolerância à discordância alheia vai estar lá no alto.
 
 Ou seja, discutir não é apenas benéfico para você mas também para as pessoas a sua volta. Porque ninguém merece aquele tipo de pessoa que, no menor sinal de discordância, já estufa o peito e bate na mesa para mostrar quem é que manda.
 

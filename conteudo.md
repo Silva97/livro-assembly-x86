@@ -31,5 +31,5 @@ Eis a lista de ferramentas:
 * [qemu](https://www.qemu.org/) -- Emulador de várias arquiteturas diferentes, usaremos a i386
 * É recomendável que tenha o [make](http://gnuwin32.sourceforge.net/packages/make.htm), porém é opcional.
 
-Qualquer dúvida você pode entrar no grupo [FreeDev](https://www.facebook.com/groups/fdcasm/) no Facebook para fazer perguntas. Também sugiro que acesse o [fórum do Mente Binária](https://www.mentebinaria.com.br/forums/) afim de tirar dúvidas e ter acesso a outros conteúdos.
+Qualquer dúvida sugiro que acesse o [fórum do Mente Binária](https://www.mentebinaria.com.br/forums/) afim de tirar dúvidas e ter acesso a outros conteúdos.
 
