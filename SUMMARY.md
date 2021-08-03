@@ -41,5 +41,6 @@
   * [Sintaxe do GAS](programando-junto-com-c/sintaxe-do-gas.md)
   * [Convenção de chamada da System V ABI](programando-junto-com-c/convencao-de-chamada-da-system-v-abi.md)
   * [Convenções de chamada no Windows](programando-junto-com-c/convencoes-de-chamada-no-windows.md)
+  * [Variáveis em C](programando-junto-com-c/variaveis-em-c.md)
 * [TO DO](to-do.md)
 

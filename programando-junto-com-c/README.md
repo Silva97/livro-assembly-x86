@@ -59,12 +59,10 @@ Caso tenha algum problema e precise de ajuda, pode entrar no [fórum do Mente Bi
 Ao usar o GCC é possível passar o parâmetro `-masm=intel` para que o compilador gere código Assembly na sintaxe da Intel, onde por padrão ele gera código na sintaxe da AT&T. Você pode ver o código de saída da seguinte forma:
 
 ```text
-$ gcc main.c -o main.s -S -masm=intel -fno-asynchronous-unwind-tables
+$ gcc main.c -o main.s -S -masm=intel
 ```
 
 Onde a _flag_ `-S` faz com que o compilador apenas compile o código, sem produzir o arquivo objeto de saída e ao invés disso salvando o código em Assembly. Pode ser útil fazer isso para aprender mais sobre a sintaxe do GAS.
-
-A _flag_ `-fno-asynchronous-unwind-tables` serve para desabilitar as [diretivas CFI](https://sourceware.org/binutils/docs/as/CFI-directives.html) e melhorar a leitura do código de saída. Essas diretivas servem para gerar informação útil para um depurador mas para fins de leitura do código não precisamos delas.
 
 Você também pode habilitar as otimizações do GCC com a opção `-O2` assim o código de saída será otimizado. Pode ser interessante fazer isso para aprender alguns truques de otimização.
 

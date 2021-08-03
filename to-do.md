@@ -12,15 +12,12 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Sintaxe do GAS
   * [x] Convenção de chamada da System V ABI
   * [x] Convenções de chamada no Windows
-  * [ ] Entendendo o protótipo de uma função
+  * [x] Variáveis em C
+  * [ ] Funções em C
   * [ ] Estrutura de um executável em C com a libc
   * [ ] Compilação freestanding
-  * [ ] Tipos, tamanhos e representações
-  * [ ] Variáveis locais, static e globais
-  * [ ] Ponteiros
-  * [ ] Strings
-  * [ ] Lidando com estruturas e arrays
   * [ ] Inline Assembly no GCC
+  * [ ] Instruções intrínsecas
 * [ ] Programando no Linux
   * [ ] Syscall x86 e x64
   * [ ] Executáveis ELF
