@@ -9,26 +9,26 @@ description: >-
 BIOS — _Basic Input/Output System_ — é o firmware da placa-mãe responsável pela inicialização do hardware. Ele quem começa o processo de _boot_ do sistema além de anteriormente fazer um teste rápido \(POST — _Power-On Self Test_\) para verificar se o hardware está funcionando apropriadamente.
 
 {% hint style="info" %}
-BIOS é um sistema legado de boot, sistemas mais modernos usam [UEFI](https://pt.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface) para o processo de boot do sistema.
+BIOS é um sistema legado de _boot_, sistemas mais modernos usam [UEFI](https://pt.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface) para o processo de _boot_ do sistema.
 {% endhint %}
 
 Mas além de fazer essa tarefa de inicialização do PC ele também define algumas interrupções que podem ser usadas pelo software em _real mode_ para tarefas básicas. E é daí que vem seu nome, já que essas tarefas são operações básicas de entrada e saída de dados para o hardware.
 
 Cada interrupção não faz um procedimento único mas sim vários procedimentos relacionados à um determinado hardware. Qual procedimento especificamente será executado é, na maioria das vezes, definido no registrador `AH` ou `AX`.
 
-### INT 0x10
+## INT 0x10
 
 Essa interrupção tem procedimentos relacionados ao vídeo, como a escrita de caracteres na tela ou até mesmo alterar o modo de vídeo.
 
-#### AH 0x0E
+### AH 0x0E
 
 O procedimento INT 0x10 / AH 0x0E simplesmente escreve um caractere na tela em modo _teletype_, que é um nome chique para dizer que o caractere é impresso na posição atual do cursor e atualiza a posição do mesmo. É algo bem semelhante ao que a gente vê sob um sistema operacional usando uma função como `putchar()` em C.
 
-Esse procedimento recebe como argumento no registrador `AL` o caractere a ser impresso, e em `BH` o número da página.
+Esse procedimento recebe como argumento no registrador `AL` o caractere a ser impresso e em `BH` o número da página.
 
 O número da página varia entre 0 e 7. São 8 páginas diferentes que podem ser apresentadas para o monitor como o conteúdo da tela. Por padrão é usada a página 0 mas você pode alternar entre as páginas fazendo com que conteúdo diferente seja apresentado na tela sem perder o conteúdo da outra página.
 
-Se você já usou o MS-DOS deve ter visto programas, como editores de código, que imprimiam uma interface de texto \(TUI\), mas depois que finalizava o conteúdo do prompt voltava para a tela. Esses programas basicamente alternavam de página.
+Se você já usou o MS-DOS deve ter visto programas, como editores de código, que imprimiam uma interface de texto \(TUI\) mas depois que finalizava o conteúdo do prompt voltava para a tela. Esses programas basicamente alternavam de página.
 
 {% code title="exemplo.asm" %}
 ```text
@@ -78,7 +78,7 @@ echo:
 ```
 {% endcode %}
 
-#### AH 0x02
+### AH 0x02
 
 | AH | BH | DH | DL |
 | :--- | :--- | :--- | :--- |
@@ -86,7 +86,7 @@ echo:
 
 Esse procedimento seta a posição do cursor em uma determinada página.
 
-#### AH 0x03
+### AH 0x03
 
 | AH | BH |
 | :--- | :--- |
@@ -98,7 +98,7 @@ Pega a posição atual do cursor na página especificada. Retornando:
 | :--- | :--- | :--- | :--- |
 | _Scanline_ inicial | _Scanline_ final | Linha | Coluna |
 
-#### AH 0x05
+### AH 0x05
 
 | AH | AL |
 | :--- | :--- |
@@ -106,7 +106,7 @@ Pega a posição atual do cursor na página especificada. Retornando:
 
 Alterna para a página especificada por AL que deve ser um número entre 0 e 7.
 
-#### AH 0x09
+### AH 0x09
 
 | AH | AL | BH | BL | CX |
 | :--- | :--- | :--- | :--- | :--- |
@@ -114,7 +114,7 @@ Alterna para a página especificada por AL que deve ser um número entre 0 e 7.
 
 Imprime o caractere AL na posição atual do cursor CX vezes, sem atualizar o cursor. BL é o atributo do caractere que será explicado mais embaixo.
 
-#### AH 0x0A
+### AH 0x0A
 
 | AH | AL | BH | CX |
 | :--- | :--- | :--- | :--- |
@@ -122,7 +122,7 @@ Imprime o caractere AL na posição atual do cursor CX vezes, sem atualizar o cu
 
 Mesma coisa que o procedimento anterior porém mudando somente que não é especificado um atributo para o caractere.
 
-#### AH 0x13
+### AH 0x13
 
 | Registrador | Parâmetro |
 | :--- | :--- |
@@ -163,11 +163,11 @@ Os procedimentos 0x0E e 0x13 interpretam caracteres especiais como determinadas 
 Você pode combinar 0x0D e 0x0A para fazer uma quebra de linha.
 {% endhint %}
 
-### INT 0x16
+## INT 0x16
 
 Os procedimentos definidos nessa interrupção são todos relacionados à entrada do teclado. Toda vez que o usuário pressiona uma tecla ela é lida e armazenada no _buffer_ do teclado. Se você tentar ler do _buffer_ sem haver dados lá, então o sistema irá ficar esperando o usuário inserir uma entrada.
 
-#### AH 0x00
+### AH 0x00
 
 Lê um caractere do _buffer_ do teclado e o remove de lá. Retorna os seguintes valores:
 
@@ -178,7 +178,7 @@ Lê um caractere do _buffer_ do teclado e o remove de lá. Retorna os seguintes 
 
 _Scancode_ é um número que identifica a tecla e não especificamente o caractere inserido.
 
-#### AH 0x01
+### AH 0x01
 
 Verifica se há um caractere disponível no _buffer_ sem removê-lo de lá. Se houver caractere disponível, retorna:
 
@@ -193,7 +193,7 @@ O procedimento também modifica a _Zero Flag_ para especificar se há ou não ca
 Você pode usar em seguida o AH 0x00 para remover o caractere do _buffer_, se assim desejar. Desse jeito é possível pegar um caractere sem fazer uma pausa.
 {% endhint %}
 
-#### AH 0x02
+### AH 0x02
 
 Pega _status_ relacionados ao teclado. É retornado em AL 8 _flags_ diferentes, cada uma especificando informações diferentes sobre o estado atual do teclado. Conforme tabela:
 
@@ -208,7 +208,7 @@ Pega _status_ relacionados ao teclado. É retornado em AL 8 _flags_ diferentes, 
 | 6 | _Caps lock_ está ligado. |
 | 7 | Modo _Insert_ está ligado. |
 
-### Memória de Vídeo em _Text Mode_
+## Memória de Vídeo em _Text Mode_
 
 Quando o sistema está em modo texto a memória onde se armazena os caracteres começa no endereço 0xb800:0x0000 e ela é estruturada da seguinte forma:
 
@@ -223,21 +223,21 @@ struct character {
 struct character vmem[8][25][80];
 ```
 
-Ou seja, começando em 0xb800:0x0000 as páginas estão uma atrás da outra na memória como uma grande _array_.
+Ou seja começando em 0xb800:0x0000 as páginas estão uma atrás da outra na memória como uma grande _array_.
 
-#### Atributo
+### Atributo
 
-O caractere nada mais é que o código ASCII do mesmo, já o atributo é um valor usado para especificar informações de cor e _blink_ do caractere. Podemos representar o valor em hexadecimal e desta forma o digito hexadecimal mais a direita seria referente ao atributo do texto, e o mais a esquerda referente ao atributo do fundo.
+O caractere nada mais é que o código ASCII do mesmo, já o atributo é um valor usado para especificar informações de cor e _blink_ do caractere.
 
 Os 4 bits \(_nibble_\) mais significativo indicam o atributo do fundo e os 4 bits menos significativos o atributo do texto, gerando uma cor na escala RGB. Caso não conheça essa é a escala de cor da luz onde as cores primárias _Red_ \(vermelo\), _Green_ \(verde\) e _Blue_ \(azul\) são usadas em conjunto para formar qualquer outra cor. Conforme figura abaixo podemos ver qual bit significa o quê:
 
 ![Bits de um atributo e seus significados](../.gitbook/assets/figura-atributos-de-caractere.png)
 
-O atributo intensidade no atributo de texto, caso ligado, faz com que a cor do texto fique mais viva. Desligado as cores são mais escuras. Já o atributo _blink_ especifica se o texto deve permanecer piscando. Caso ativo o texto irá ficar aparecendo e desaparecendo da tela constantemente.
+O bit de intensidade no atributo de texto, caso ligado, faz com que a cor do texto fique mais viva enquanto desligado as cores são mais escuras. Já o bit de _blink_ especifica se o texto deve permanecer piscando. Caso ativo o texto ficará aparecendo e desaparecendo da tela constantemente.
 
-### Olá Mundo
+## Olá Mundo
 
-Um exemplo de "Hello World" usando alguns conceitos apresentados aqui.
+Um exemplo de "Hello World" usando alguns conceitos apresentados aqui:
 
 ```c
 bits 16
