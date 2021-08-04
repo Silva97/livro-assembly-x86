@@ -120,11 +120,14 @@ Dando um pouco de _spoiler_ do próximo tópico do livro, o byte que sobrou ali 
 
 ### Segment
 
-Como explicado no tópico que fala sobre registradores de segmentos, algumas instruções fazem o endereçamento em determinados segmentos. O atributo de segmento padrão é definido de acordo com qual registrador é acessado pela instrução.
+Como explicado no tópico que fala sobre registradores de segmentos, algumas instruções fazem o endereçamento em determinados segmentos. O atributo de segmento padrão é definido de acordo com qual registrador é usado como base no [endereçamento](../a-base/enderecamento.md).
 
-* RIP -- Segmento CS.
-* RSP ou RBP -- Segmento SS.
-* Qualquer outro registrador -- Segmento DS.
+| Registrador base | Segmento |
+| :--- | :--- |
+| RIP | CS |
+| SP/ESP/RSP | SS |
+| BP/EBP/RBP | SS |
+| Qualquer outro registrador | DS |
 
 Exemplos:
 
@@ -133,5 +136,7 @@ mov eax, [rbx]  ; Lê do endereço DS:RBX
 mov eax, [rbp]  ; Lê do endereço SS:RBP
 ```
 
-Determinadas instruções usam segmentos específicos, como no caso dos _far_ `call` ou `movsb`. Onde esse último acessa `DS:RSI` e `ES:RDI`.
+{% hint style="info" %}
+Determinadas instruções usam segmentos específicos, como é o caso da `movsb`. Onde ela acessa `DS:RSI` e `ES:RDI`.
+{% endhint %}
 
