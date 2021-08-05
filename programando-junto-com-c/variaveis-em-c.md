@@ -1,5 +1,5 @@
 ---
-description: Aprendendo sobre as variáveis em C
+description: Entendendo como variáveis em C são representadas em Assembly.
 ---
 
 # Variáveis em C

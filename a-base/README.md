@@ -1,10 +1,12 @@
 ---
-description: O básico é muito importante
+description: >-
+  Capítulo explicando os principais tópicos à respeito do Assembly e da
+  arquitetura.
 ---
 
 # A base
 
-Vamos chamar aqui de "base" ao invés de "básico" pelos motivos que já expliquei. Para que fique mais prático para todos, independentemente se estiverem usando Linux/Windows/MacOS/BSD/etc, usaremos a linguagem C como "ambiente" para escrever código e podermos ver o resultado. Certifique-se de ter o [GCC](http://gcc.gnu.org/)/[Mingw-w64](http://mingw-w64.org/) e o [NASM](https://www.nasm.us/) instalados no seu sistema.
+Para que fique mais prático para todos, independentemente se estiverem usando Linux/Windows/MacOS/BSD/etc, usaremos a linguagem C como "ambiente" para escrever código e podermos ver o resultado. Certifique-se de ter o [GCC](http://gcc.gnu.org/)/[Mingw-w64](http://mingw-w64.org/) e o [NASM](https://www.nasm.us/) instalados no seu sistema.
 
 ### Por que o GCC?
 
@@ -12,18 +14,18 @@ Caso você já programe em C e utilize outro compilador, mesmo assim recomendo q
 
 ### Por que o NASM?
 
-O pacote GCC já tem o [assembler GAS](https://en.wikipedia.org/wiki/GNU_Assembler) que é excelente mas prefiro usar aqui o nasm devido a vários fatores, dentre eles:
+O pacote GCC já tem o [assembler GAS](https://en.wikipedia.org/wiki/GNU_Assembler) que é excelente mas prefiro usar aqui o NASM devido a vários fatores, dentre eles:
 
-* O pré-processador do nasm é absurdamente incrível.
-* O nasm tem uma sintaxe mais "legível" comparada sintaxe do GAS.
-* O nasm tem o ndisasm, vai ser útil na hora de estudar o código de máquina.
-* Eu gosto do nasm.
+* O pré-processador do NASM é absurdamente incrível.
+* O NASM tem uma sintaxe mais "legível" comparada a sintaxe do GAS.
+* O NASM tem o ndisasm, vai ser útil na hora de estudar o código de máquina.
+* Eu gosto do NASM.
 
-Mais para frente no livro pretendo ensinar a usar o GAS também. Mas na base vamos usar só o nasm mesmo.
+Mais para frente no livro pretendo ensinar a usar o GAS também. Mas na base vamos usar só o NASM mesmo.
 
 ### Preparando o ambiente
 
-Primeiramente eu recomendaria o uso de alguma distribuição Linux de 64-bit ou qualquer sistema operacional Unix-Like \(\*BSD, MacOS etc\). Isso porque mais para frente irei ensinar conteúdo que é exclusivo para sistemas operacionais compatíveis com o [UNIX](https://pt.wikipedia.org/wiki/Unix). Porém caso use o Windows não tem problema, desde que instale o mingw-w64 como mencionei. O mais importante é ter um GCC que pode gerar código para 64-bit e 32-bit.
+Primeiramente eu recomendaria o uso de alguma distribuição Linux de 64-bit ou qualquer sistema operacional Unix-Like \(\*BSD, MacOS etc\). Isso porque mais para frente irei ensinar conteúdo que é exclusivo para sistemas operacionais compatíveis com o [UNIX](https://pt.wikipedia.org/wiki/Unix). Porém caso use o Windows não tem problema desde que instale o mingw-w64 como mencionei. O mais importante é ter um GCC que pode gerar código para 64-bit e 32-bit.
 
 Vamos antes de mais nada preparar uma [PoC](https://pt.wikipedia.org/wiki/Prova_de_conceito) em C para chamar uma função escrita em Assembly. Este seria nosso arquivo **main.c**:
 
@@ -67,7 +69,7 @@ $ gcc assembly.o main.o -o test -no-pie
 $ ./test
 ```
 
-Usamos a opção **-o** no GCC para especificar o nome do arquivo de saída. E **-no-pie** para garantir que um [determinado recurso](https://en.wikipedia.org/wiki/Position-independent_executable) do GCC não seja habilitado. O comando final acima seria somente a execução do nosso executável test em um sistema Linux. A execução do programa produziria o seguinte resultado no print abaixo, caso tudo tenha ocorrido bem.
+Usamos a opção **-o** no GCC para especificar o nome do arquivo de saída. E **-no-pie** para garantir que um [determinado recurso](https://en.wikipedia.org/wiki/Position-independent_executable) do GCC não seja habilitado. O comando final acima seria somente a execução do nosso executável `test` em um sistema Linux. A execução do programa produziria o seguinte resultado no print abaixo, caso tudo tenha ocorrido bem.
 
 ![](../.gitbook/assets/captura-de-tela-de-2019-07-16-10-47-32.png)
 
