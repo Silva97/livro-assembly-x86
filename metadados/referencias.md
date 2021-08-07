@@ -24,9 +24,11 @@
 ## Linguagem C
 
 1. [C11 Standard - ISO/IEC 9899:201x draft n1570](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf)
+2. [The GNU C Reference Manual](https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html)
 
-## System calls
+## Linux
 
 1. [Linux System Call Table for x86 64](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
 2. Linux Programmer's Manual
+3. [Lazy binding](http://www.qnx.com/developers/docs/qnxcar2/topic/com.qnx.doc.neutrino.prog/topic/devel_Lazy_binding.html)
 

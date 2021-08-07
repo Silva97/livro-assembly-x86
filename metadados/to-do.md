@@ -13,7 +13,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Convenção de chamada da System V ABI
   * [x] Convenções de chamada no Windows
   * [x] Variáveis em C
-  * [ ] Funções em C
+  * [x] Funções em C
   * [ ] Estrutura de um executável em C com a libc
   * [ ] Compilação freestanding
   * [ ] Inline Assembly no GCC
