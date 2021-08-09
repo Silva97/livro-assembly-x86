@@ -287,9 +287,9 @@ real_printf_address.got:
 
   .section .plt
 puts.plt:
-  jmp real_puts_address.got
+  jmp *real_puts_address.got
 printf.plt:
-  jmp real_printf_address.got
+  jmp *real_printf_address.got
 
   .data
 message:

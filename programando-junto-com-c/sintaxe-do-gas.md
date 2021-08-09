@@ -76,6 +76,25 @@ mov my_var(%rip), %rax       # mov rax, [rel my_var]
 
 Como demonstrado no último exemplo o **endereço relativo** na sintaxe do GAS é feito explicitando RIP como base, enquanto na sintaxe do NASM isso é feito usando a palavra-chave `rel`.
 
+### Saltos
+
+Na sintaxe da AT&T os saltos para endereços armazenados na memória devem ter um `*` antes do rótulo para indicar que o salto deve ocorrer para o endereço que está armazenado naquele endereço de memória. Sem o `*` o salto ocorre para o rótulo em si. Exemplo:
+
+```text
+# AT&T               # Intel
+
+jmp my_code          # jmp my_code
+jmp *my_pointer      # jmp [my_pointer]
+```
+
+Saltos que especificam segmento e _offset_ separam os dois valores por vírgula. Como em:
+
+```text
+# AT&T               # Intel
+
+jmp $1234, $5678     # jmp 1234:5678
+```
+
 ## Aprendendo a usar o GAS
 
 As diretivas do GAS funcionam de maneira semelhante as diretivas do NASM com a diferença que todas elas são prefixadas por um ponto.
