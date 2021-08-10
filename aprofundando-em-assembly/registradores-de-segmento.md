@@ -81,5 +81,7 @@ Em _protected mode_ os registradores de segmento não são usados para gerar um 
 
 ### Segmentação em x86-64
 
-Em x86-64 não é mais usado esse esquema de segmentação de memória, portanto os registradores de segmento são usados com outros objetivos no submodo de 64-bit.
+Em x86-64 não é mais usado esse esquema de segmentação de memória. CS, DS, ES e SS são tratados como se o endereço base fosse zero independentemente do valor nesses registradores.
+
+Já os registradores FS e GS são exceções e ainda podem ser usados pelo sistema operacional para endereçamento de estruturas especiais na memória. Como por exemplo no Linux, em x86-64, FS é usado para apontar para a [Thread Local Storage](../programando-junto-com-c/variaveis-em-c.md#variaveis-_thread_local).
 
