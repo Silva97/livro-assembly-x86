@@ -45,4 +45,5 @@ Alguns trechos do livro foram baseados em conhecimento que obtive lendo diretame
 1. [/csu/\*](https://sourceware.org/git/?p=glibc.git;a=tree;f=csu;hb=refs/heads/master)
 2. [/sysdeps/x86\_64/start.S](https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/x86_64/start.S;hb=refs/heads/master)
 3. [/sysdeps/x86\_64/crti.S](https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/x86_64/crti.S;hb=refs/heads/master)
+4. [/sysdeps/x86\_64/crtn.S](https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/x86_64/crtn.S;hb=refs/heads/master)
 

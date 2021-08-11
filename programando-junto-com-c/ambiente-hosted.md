@@ -197,7 +197,7 @@ As funções registradas por `atexit()` são invocadas na ordem inversa a que fo
 
 Quando a função `quick_exit()` é invocada o programa é finalizado sem invocar as funções registradas por `atexit()` e sem executar quaisquer _handlers_ de sinal.
 
-A funções registradas por `at_quick_exit` são invocadas na ordem inversa em que foram registradas.
+As funções registradas por `at_quick_exit` são invocadas na ordem inversa em que foram registradas.
 
 Exemplo:
 
