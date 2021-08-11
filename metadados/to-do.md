@@ -14,8 +14,8 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Convenções de chamada no Windows
   * [x] Variáveis em C
   * [x] Funções em C
-  * [ ] Estrutura de um executável em C com a libc
-  * [ ] Compilação freestanding
+  * [x] Ambiente hosted
+  * [ ] Ambiente freestanding
   * [ ] Inline Assembly no GCC
   * [ ] Instruções intrínsecas
 * [ ] Programando no Linux
