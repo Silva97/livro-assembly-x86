@@ -15,7 +15,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Variáveis em C
   * [x] Funções em C
   * [x] Ambiente hosted
-  * [ ] Ambiente freestanding
+  * [x] Ambiente freestanding
   * [ ] Inline Assembly no GCC
   * [ ] Instruções intrínsecas
 * [ ] Programando no Linux

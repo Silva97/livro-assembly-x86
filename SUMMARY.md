@@ -44,6 +44,7 @@
   * [Variáveis em C](programando-junto-com-c/variaveis-em-c.md)
   * [Funções em C](programando-junto-com-c/funcoes-em-c.md)
   * [Ambiente hosted](programando-junto-com-c/ambiente-hosted.md)
+  * [Ambiente freestanding](programando-junto-com-c/ambiente-freestanding.md)
 
 ## Metadados
 
