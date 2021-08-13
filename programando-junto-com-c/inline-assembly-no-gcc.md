@@ -371,3 +371,21 @@ int add(int a, int b)
 }
 ```
 
+### Escolhendo o registrador/símbolo para uma variável
+
+Ao usar o _storage-class_ `register` é possível escolher em qual registrador a variável será armazenada usando a seguinte sintaxe:
+
+```c
+register int x asm("r12") = 5;
+```
+
+Nesse exemplo a variável `x` **obrigatoriamente** seria alocada no registrador R12.
+
+Também é possível escolher o nome do símbolo para variáveis locais com _storage-class_ `static` ou para variáveis globais. Como em:
+
+```c
+static int x asm("my_var") = 5;
+```
+
+A variável no código fonte é referida como `x` mas o símbolo gerado para a variável seria definido como `my_var`.
+
