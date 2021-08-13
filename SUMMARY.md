@@ -45,6 +45,7 @@
   * [Funções em C](programando-junto-com-c/funcoes-em-c.md)
   * [Ambiente hosted](programando-junto-com-c/ambiente-hosted.md)
   * [Ambiente freestanding](programando-junto-com-c/ambiente-freestanding.md)
+  * [Inline Assembly no GCC](programando-junto-com-c/inline-assembly-no-gcc.md)
 
 ## Metadados
 

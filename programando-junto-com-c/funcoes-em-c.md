@@ -222,7 +222,7 @@ add:
 
 ### naked
 
-O atributo `naked` é usado para desativar a geração do [prólogo e epílogo](convencao-de-chamada-da-system-v-abi.md#prologo-e-epilogo) para a função. Isso é útil para se escrever funções usando Inline Assembly dentro das mesmas.
+O atributo `naked` é usado para desativar a geração do [prólogo e epílogo](convencao-de-chamada-da-system-v-abi.md#prologo-e-epilogo) para a função. Isso é útil para se escrever funções usando [_inline_ Assembly](inline-assembly-no-gcc.md) dentro das mesmas.
 
 ### target \("option1", "option2", ...\)
 

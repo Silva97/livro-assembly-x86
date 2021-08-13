@@ -23,12 +23,12 @@
 3. [NASM version 2.15.05 documentation](https://www.nasm.us/xdoc/2.15.05/html/nasmdoc0.html)
 4. [Using the GNU Compiler Collection \(GCC\) \| GNU Project](https://gcc.gnu.org/onlinedocs/gcc/)
 5. [GNU Compiler Collection \(GCC\) Internals](https://gcc.gnu.org/onlinedocs/gccint/)
-6. [Linker Scripts \(LD\)](https://sourceware.org/binutils/docs/ld/Scripts.html)
 
 ### Linguagem C
 
 1. [C11 Standard - ISO/IEC 9899:201x draft n1570](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf)
 2. [The GNU C Reference Manual](https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html)
+3. [Dicas - C e Assembly para arquitetura x86-64](https://www.mentebinaria.com.br/files/file/31-dicas-c-e-assembly-para-arquitetura-x86-64/)
 
 ### Linux
 

@@ -16,7 +16,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Funções em C
   * [x] Ambiente hosted
   * [x] Ambiente freestanding
-  * [ ] Inline Assembly no GCC
+  * [x] Inline Assembly no GCC
   * [ ] Instruções intrínsecas
 * [ ] Programando no Linux
   * [ ] Syscall x86 e x64
