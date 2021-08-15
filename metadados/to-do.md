@@ -8,7 +8,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
 
 * [x] A base
 * [x] Aprofundando em Assembly
-* [ ] Programando junto com C
+* [x] Programando junto com C
   * [x] Sintaxe do GAS
   * [x] Convenção de chamada da System V ABI
   * [x] Convenções de chamada no Windows
@@ -17,7 +17,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [x] Ambiente hosted
   * [x] Ambiente freestanding
   * [x] Inline Assembly no GCC
-  * [ ] Instruções intrínsecas
+  * [x] Instruções intrínsecas
 * [ ] Programando no Linux
   * [ ] Syscall x86 e x64
   * [ ] Executáveis ELF

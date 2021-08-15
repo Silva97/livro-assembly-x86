@@ -46,6 +46,7 @@
   * [Ambiente hosted](programando-junto-com-c/ambiente-hosted.md)
   * [Ambiente freestanding](programando-junto-com-c/ambiente-freestanding.md)
   * [Inline Assembly no GCC](programando-junto-com-c/inline-assembly-no-gcc.md)
+  * [Instruções intrínsecas](programando-junto-com-c/instrucoes-intrinsecas.md)
 
 ## Metadados
 

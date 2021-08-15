@@ -24,6 +24,13 @@
 4. [Using the GNU Compiler Collection \(GCC\) \| GNU Project](https://gcc.gnu.org/onlinedocs/gcc/)
 5. [GNU Compiler Collection \(GCC\) Internals](https://gcc.gnu.org/onlinedocs/gccint/)
 
+### Instruções intrínsecas
+
+1. [Intrinsics \| Intel® C++ Compiler Classic Developer Guide and Reference](https://software.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top/compiler-reference/intrinsics.html)
+2. Intel® 64 and IA-32 Architectures Software Developer Manuals - Volume 2, Appendix C
+3. [Intel® Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/)
+4. [An Introduction to GCC Compiler Intrinsics in Vector Processing](https://www.linuxjournal.com/content/introduction-gcc-compiler-intrinsics-vector-processing)
+
 ### Linguagem C
 
 1. [C11 Standard - ISO/IEC 9899:201x draft n1570](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf)
