@@ -157,11 +157,11 @@ Depuradores não são apenas capazes de executar o software e esperar por um _br
 
 Isso é implementado na arquitetura x86-64 usando a _trap flag_ \(TF\) no registrador [EFLAGS](../aprofundando-em-assembly/flags-do-processador.md#system-flags). Quando a TF está ligada cada instrução executada dispara [uma exceção](../aprofundando-em-assembly/interrupcoes-de-software.md) \#BP, permitindo assim que o depurador retome o controle após executar uma instrução.
 
-Existe também o conceito de _step over_ que é quando o depurador executa apenas "uma instrução" porém pulando todas as instruções de um CALL. O que ele faz na prática é definir um _breakpoint_ temporário para a instrução seguinte ao CALL, como na ilustração:
+Existe também o conceito de _step over_ que é quando o depurador executa apenas "uma instrução" porém passando todas as instruções da rotina chamada pelo CALL. O que ele faz na prática é definir um _breakpoint_ temporário para a instrução seguinte ao CALL, como na ilustração:
 
 ```c
     mov rdi, 5     # Última instrução executada
---> call anything  # CALL que iremos "saltar"
+--> call anything  # CALL que iremos "passar por cima"
     test rax, rax  # Instrução onde o breakpoint será definido
 ```
 
@@ -182,13 +182,12 @@ global _start
 _start:
 	call oops
 	nop
-.ret:
 	xor rdi, rdi
 	mov rax, SYS_EXIT
 	syscall
 
 oops:
-	mov qword [rsp], _start.ret
+	add qword [rsp], 1
 	ret
 ```
 {% endcode %}
@@ -200,7 +199,9 @@ $ nasm testing.asm -o testing.o -felf64
 $ ld testing.o -o testing
 ```
 
-Ao dar um _step over_ na chamada `call oops` um comportamento inesperado ocorre, o programa irá finalizar sem parar após o retorno da chamada.
+Ao dar um _step over_ na chamada `call oops` um comportamento inesperado ocorre, o programa irá finalizar sem parar após o retorno da chamada. Isso é demonstrado na imagem abaixo com o depurador GDB:
+
+![Sa&#xED;da do depurador GDB](../.gitbook/assets/image%20%2811%29.png)
 
 ### Informações de depuração do executável
 
