@@ -47,6 +47,8 @@
   * [Ambiente freestanding](programando-junto-com-c/ambiente-freestanding.md)
   * [Inline Assembly no GCC](programando-junto-com-c/inline-assembly-no-gcc.md)
   * [Instruções intrínsecas](programando-junto-com-c/instrucoes-intrinsecas.md)
+* [Depuração de código](depuracao-de-codigo/README.md)
+  * [Entendendo os depuradores](depuracao-de-codigo/entendendo-os-depuradores.md)
 
 ## Metadados
 

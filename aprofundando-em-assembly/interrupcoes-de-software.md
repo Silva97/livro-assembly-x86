@@ -42,7 +42,7 @@ Essa exceção é disparada quando há um problema na referência de memória ou
 Um sistema operacional configura uma exceção da mesma forma que configura uma interrupção, modificando a IDT para apontar para o código que ele quer que execute. Nesse caso o índice 13 precisaria ser modificado.
 
 {% hint style="info" %}
-No Linux basicamente o que o sistema faz é criar um _handler_ que trata a exceção e manda um sinal para o processo. Esse sinal o processo pode configurar como ele quer tratar, mas por padrão o processo escreve uma mensagem no terminal e finaliza.
+No Linux basicamente o que o sistema faz é criar um _handler_ que trata a exceção e manda um [sinal](../depuracao-de-codigo/entendendo-os-depuradores.md#sinais) para o processo. Esse sinal o processo pode configurar como ele quer tratar, mas por padrão o processo escreve uma mensagem no terminal e finaliza.
 {% endhint %}
 
 ### IDT em _Real Mode_
@@ -173,7 +173,7 @@ Repare que a cada execução de `int3` executou o código do nosso procedimento 
 
 ### Sinais
 
-Só para deixar mais claro o que falei sobre os sinais que são enviados para o processo quando uma _exception_ é disparada, aqui um código em C de exemplo:
+Só para deixar mais claro o que falei sobre [os sinais](../depuracao-de-codigo/entendendo-os-depuradores.md#sinais) que são enviados para o processo quando uma _exception_ é disparada, aqui um código em C de exemplo:
 
 ```c
 #include <stdio.h>
@@ -191,15 +191,22 @@ void segfault(int signum)
 int main(void)
 {
   char *desastre = NULL;
-  signal(SIGSEGV, segfault);
+  struct sigaction action = {
+      .sa_handler = segfault,
+  };
+
+  sigaction(SIGSEGV, &action, NULL);
 
   strcpy(desastre, "Eita!");
 
   puts("Tchau mundo!");
   return 0;
 }
-
 ```
 
 ![](../.gitbook/assets/image%20%284%29.png)
+
+{% hint style="info" %}
+Mais detalhes sobre os sinais serão descritos no tópico [Entendendo os depuradores](../depuracao-de-codigo/entendendo-os-depuradores.md).
+{% endhint %}
 

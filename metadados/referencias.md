@@ -16,6 +16,10 @@
 3. [Calling Conventions \| Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/calling-conventions)
 4. [x86 calling conventions \| Wikipedia](https://en.wikipedia.org/wiki/X86_calling_conventions)
 
+### Depuradores
+
+1. [GDB Internals - Breakpoint Handling](https://sourceware.org/gdb/wiki/Internals/Breakpoint%20Handling)
+
 ### Ferramentas
 
 1. [Using as \| Documentation for binutils 2.37](https://sourceware.org/binutils/docs/as/)
@@ -35,7 +39,7 @@
 
 1. [C11 Standard - ISO/IEC 9899:201x draft n1570](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf)
 2. [The GNU C Reference Manual](https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html)
-3. [Dicas - C e Assembly para arquitetura x86-64](https://www.mentebinaria.com.br/files/file/31-dicas-c-e-assembly-para-arquitetura-x86-64/)
+3. Frederico Lamberti Pissarra. [**Dicas - C e Assembly para arquitetura x86-64**](https://www.mentebinaria.com.br/files/file/31-dicas-c-e-assembly-para-arquitetura-x86-64/)\*\*\*\*
 
 ### Linux
 
@@ -43,6 +47,16 @@
 2. Linux Programmer's Manual
 3. [Lazy binding](http://www.qnx.com/developers/docs/qnxcar2/topic/com.qnx.doc.neutrino.prog/topic/devel_Lazy_binding.html)
 4. [The .init and .fini Sections](https://beefchunk.com/documentation/sys-programming/binary_formats/elf/elf_from_the_programmers_perspective/node3.html)
+5. [ptrace\(2\) — Linux manual page](https://man7.org/linux/man-pages/man2/ptrace.2.html)
+6. [ld.so\(8\) — Linux manual page](https://man7.org/linux/man-pages/man8/ld.so.8.html)
+7. Daniel P. Bovet, Marco Cesati. [**Understanding the Linux Kernel, 3rd Edition - 4.5 Exception Handling**](https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s05.html)\*\*\*\*
+
+### Sistemas Operacionais
+
+1. Andrew S. Tanenbaum. **Sistemas Operacionais Modernos**. 4° Edição. ISBN: 978-8543005676
+2. [Escalonamento de processos \| Wikipédia](https://pt.wikipedia.org/wiki/Escalonamento_de_processos)
+3. [Troca de contexto \| Wikipédia](https://pt.wikipedia.org/wiki/Troca_de_contexto)
+4. [Sinal \(ciência da computação\) \| Wikipédia](https://pt.wikipedia.org/wiki/Sinal_%28ci%C3%AAncia_da_computa%C3%A7%C3%A3o%29)
 
 ## Códigos consultados
 

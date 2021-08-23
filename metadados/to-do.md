@@ -9,15 +9,11 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
 * [x] A base
 * [x] Aprofundando em Assembly
 * [x] Programando junto com C
-  * [x] Sintaxe do GAS
-  * [x] Convenção de chamada da System V ABI
-  * [x] Convenções de chamada no Windows
-  * [x] Variáveis em C
-  * [x] Funções em C
-  * [x] Ambiente hosted
-  * [x] Ambiente freestanding
-  * [x] Inline Assembly no GCC
-  * [x] Instruções intrínsecas
+* [ ] Depuração de código
+  * [x] Entendendo os depuradores
+  * [ ] Depurando com o GDB
+  * [ ] Depurando com o Dosbox
+  * [ ] strace
 * [ ] Programando no Linux
   * [ ] Syscall x86 e x64
   * [ ] Executáveis ELF
