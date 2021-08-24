@@ -211,7 +211,7 @@ Muitos depuradores voltados para desenvolvedores leem informações de depuraç�
 
 No caso do GCC ele armazena essas informações dentro do próprio executável na tabela de símbolos. Já o compilador da Microsoft, usado no Visual Studio, atualmente gera um arquivo `.pdb` contendo todas as informações de depuração.
 
-Vale ressaltar aqui que o GCC \(e qualquer outro compilador\) **não** armazena o código-fonte do projeto dentro do executável, ele meramente armazenada o endereço do arquivo lá.
+Vale ressaltar aqui que o GCC \(e qualquer outro compilador\) **não** armazena o código-fonte do projeto dentro do executável. Ele meramente armazena o endereço do arquivo lá.
 
 É comum também que depuradores apresentem algum erro ao não encontrar o arquivo-fonte indicado no endereço armazenado nas informações de depuração. Isso acontece quando ele tenta apresentar uma linha de código naquele arquivo mas o mesmo não foi encontrado na sua máquina.
 
