@@ -27,6 +27,7 @@
 3. [NASM version 2.15.05 documentation](https://www.nasm.us/xdoc/2.15.05/html/nasmdoc0.html)
 4. [Using the GNU Compiler Collection \(GCC\) \| GNU Project](https://gcc.gnu.org/onlinedocs/gcc/)
 5. [GNU Compiler Collection \(GCC\) Internals](https://gcc.gnu.org/onlinedocs/gccint/)
+6. [Debugging with GDB](https://sourceware.org/gdb/current/onlinedocs/gdb/)
 
 ### Instruções intrínsecas
 

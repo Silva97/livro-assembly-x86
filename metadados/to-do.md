@@ -11,7 +11,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
 * [x] Programando junto com C
 * [ ] Depuração de código
   * [x] Entendendo os depuradores
-  * [ ] Depurando com o GDB
+  * [x] Depurando com o GDB
   * [ ] Depurando com o Dosbox
   * [ ] strace
 * [ ] Programando no Linux

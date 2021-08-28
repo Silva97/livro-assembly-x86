@@ -49,6 +49,7 @@
   * [Instruções intrínsecas](programando-junto-com-c/instrucoes-intrinsecas.md)
 * [Depuração de código](depuracao-de-codigo/README.md)
   * [Entendendo os depuradores](depuracao-de-codigo/entendendo-os-depuradores.md)
+  * [Depurando com o GDB](depuracao-de-codigo/depurando-com-o-gdb.md)
 
 ## Metadados
 
