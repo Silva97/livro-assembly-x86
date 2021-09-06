@@ -22,7 +22,7 @@ Apesar disso aprender Assembly nos dias atuais tem sim utilidade e irei listar a
 2. Exploração de binários Para quem quer fazer testes de segurança em binários, Assembly é indispensável.
 3. Otimização de código Sim, como eu já disse é mais eficiente não escrever o código diretamente em Assembly. Porém saber Assembly e usar esse conhecimento para estudar o código de saída de um compilador de uma determinada linguagem \(GCC por exemplo\) vai te fazer aprender muita coisa sobre o código resultante. Esse conhecimento vai te ajudar e muito a fazer códigos mais eficientes nesta linguagem. Isto é claro, é especialmente útil em linguagens que te permitem prever o código de saída \(volto a repetir C como exemplo\).
 4. Otimização de código² Também dá para fazer otimizações de código para processadores específicos manualmente. Podemos ver vários exemplos desta façanha no famigerado ffmpeg. [Veja aqui](https://github.com/FFmpeg/FFmpeg/blob/a0ac49e38ee1d1011c394d7be67d0f08b2281526/libavcodec/x86/ac3dsp.asm).
-5. Tarefas de "baixo nível" Algumas instruções específicas de determinados processadores são basicamente impossíveis de serem utilizadas em uma linguagem de alto nível. Uma tarefa básica em Assembly, como chamar uma interrupção de software, é impossível de ser feita em uma linguagem de alto nível como C.
+5. Tarefas de "baixo nível" Algumas instruções específicas de determinados processadores são basicamente impossíveis de serem utilizadas em uma linguagem de alto nível. Uma tarefa básica em Assembly, como chamar uma [interrupção de software](https://pt.wikipedia.org/wiki/Interrup%C3%A7%C3%A3o), é impossível de ser feita em uma linguagem de alto nível como C.
 6. C & Assembly Termino falando que há uma incrível vantagem de se saber Assembly quando se programa em C. Não só pelo [inline Assembly](https://gcc.gnu.org/onlinedocs/gcc/Using-Assembly-Language-with-C.html) mas também pela previsibilidade do código que eu já mencionei \(você vai entender o que é isso se continuar lendo o livro\).
 
 Como podemos ver o conhecimento da linguagem Assembly nos dias atuais é, na maioria dos casos, mais útil do que programar nela diretamente.
@@ -53,7 +53,7 @@ O assembler é um compilador que converte código em Assembly para o código de 
 
 Meu nome é Luiz Felipe. Pronto, agora você sabe tudo sobre mim.
 
-[GitHub](https://github.com/Silva97) \| [Facebook](https://www.facebook.com/B4.0E.B0.48.CD.10.B0.69.CD.10.C3) \| [Medium](https://freedev.medium.com/) \| [Perfil no Mente Binária](https://www.mentebinaria.com.br/profile/522-felipesilva/)
+[GitHub](https://github.com/Silva97) \| [Facebook](https://www.facebook.com/B4.0E.B0.48.CD.10.B0.69.CD.10.C3) \| [Twitter](https://twitter.com/Vilas_79) \| [Medium](https://freedev.medium.com/) \| [Perfil no Mente Binária](https://www.mentebinaria.com.br/profile/522-felipesilva/)
 
 ## Licença
 
