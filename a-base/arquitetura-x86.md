@@ -8,7 +8,7 @@ Antes de ver a linguagem Assembly em si é importante ter conhecimento sobre a a
 
 ### O que é a arquitetura x86?
 
-Essa arquitetura nasceu no 8086, que foi um microprocessador da Intel que fez grande sucesso.  
+Essa arquitetura nasceu no 8086, que foi um microprocessador da Intel que fez grande sucesso.\
 Daí em diante a Intel lançou outros processadores baseados na arquitetura do 8086 ganhando nomes como: 80186, 80286, 80386 etc. Daí surgiu a nomenclatura 80x86 onde o **x** representaria um número qualquer, e depois a nomenclatura foi abreviada para apenas x86.
 
 A arquitetura evoluiu com o tempo e foi ganhando adições de tecnologias, porém sempre mantendo compatibilidade com os processadores anteriores. O processador que você tem aí pode rodar código programado para o 8086 sem problema algum.
@@ -18,10 +18,10 @@ Mais para frente a AMD criou a arquitetura x86-64, que é um superconjunto da ar
 Ou seja, x86 é um nome genérico para se referir a uma família de arquiteturas de processadores. Por motivos de simplicidade eu vou me referir as arquiteturas apenas como x86, mas na prática estamos abordando três arquiteturas neste livro:
 
 | Nome oficial | Nome alternativo | Bit |
-| :--- | :--- | :--- |
-| 8086 | IA-16 | 16 |
-| IA-32 | i386 | 32 |
-| x86-64 | i686 | 64 |
+| ------------ | ---------------- | --- |
+| 8086         | IA-16            | 16  |
+| IA-32        | i386             | 32  |
+| x86-64       | i686             | 64  |
 
 AMD64 e Intel64 são os nomes das implementações da AMD e da Intel para a arquitetura x86-64, respectivamente. Podemos dizer aqui que são sinônimos já que as implementações são compatíveis. Um software compilado para x86 consegue tanto rodar em um processador Intel como também AMD. Só fazendo diferença é claro em detalhes de otimização que são específicos para determinados processadores. Bem como também algumas tecnologias exclusivas de cada uma das fabricantes.
 
@@ -33,7 +33,7 @@ Comumente um compilador não irá gerar código usando tecnologia exclusiva, afi
 
 A arquitetura x86 é little-endian, o que significa que a ordem dos bytes de valores numéricos segue do menos significativo ao mais significativo. Por exemplo o seguinte valor numérico em hexadecimal `0x1a2b3c4d` ficaria disposto na memória RAM na seguinte ordem:
 
-```text
+```
 4d 3c 2b 1a
 ```
 
@@ -41,13 +41,13 @@ A arquitetura x86 é little-endian, o que significa que a ordem dos bytes de val
 
 A arquitetura x86 é uma arquitetura [CISC](https://pt.wikipedia.org/wiki/CISC) que, resumindo, é uma arquitetura com um conjunto complexo de instruções. Falando de maneira leviana isso significa que há várias instruções e cada uma delas tem um nível de complexidade completamente variada. Boa parte das instruções são complexas na arquitetura x86. Uma instrução "complexa" é uma instrução que faz várias operações.
 
-Cada instrução do código de máquina tem um tamanho que pode variar de 1 até 15 bytes. E cada instrução consome um número de ciclos diferente \(devido a sua complexidade variada\).
+Cada instrução do código de máquina tem um tamanho que pode variar de 1 até 15 bytes. E cada instrução consome um número de ciclos diferente (devido a sua complexidade variada).
 
 ### Modelo
 
-A arquitetura x86 segue o modelo da arquitetura de [Von Neumann](https://pt.wikipedia.org/wiki/Arquitetura_de_von_Neumann) onde esse, mais uma vez resumindo, trabalha principalmente usando uma unidade central de processamento \(CPU\) e uma memória principal.
+A arquitetura x86 segue o modelo da arquitetura de [Von Neumann](https://pt.wikipedia.org/wiki/Arquitetura_de_von_Neumann) onde esse, mais uma vez resumindo, trabalha principalmente usando uma unidade central de processamento (CPU) e uma memória principal.
 
-![Diagrama da arquitetura de Von Neumann](../.gitbook/assets/cpu.png)
+![Diagrama da arquitetura de Von Neumann](../.gitbook/assets/CPU.png)
 
 As instruções podem trabalhar manipulando/lendo dados em registradores que são pequenas áreas de memória internas à CPU. E também pode manipular dados na memória principal que no caso é a memória RAM. Bem como também usar o sistema de entrada e saída de dados, feito pelas portas físicas.
 
@@ -72,4 +72,3 @@ Quem dera um processador fosse tão simples assim, já mencionei que o manual da
 {% hint style="info" %}
 Os processadores da AMD também implementam o SSE, já o 3DNow! é exclusivo dos processadores da AMD.
 {% endhint %}
-

@@ -8,10 +8,10 @@ Geralmente o "Hello World" é a primeira coisa que vemos quando estamos aprenden
 
 ### Hello World
 
-Desta vez vamos escrever um código em Assembly sem misturar com C, será um executável do Linux \(formato ELF64\) fazendo chamadas de sistema diretamente. Vamos vê-lo logo:
+Desta vez vamos escrever um código em Assembly sem misturar com C, será um executável do Linux (formato ELF64) fazendo chamadas de sistema diretamente. Vamos vê-lo logo:
 
 {% code title="hello.asm" %}
-```text
+```nasm
 bits 64
 
 section .rodata
@@ -36,30 +36,30 @@ _start:
 
 Para compilar esse código basta usar o NASM especificando o format **elf64** e desta vez iremos usar o _linker_ do pacote GCC diretamente. O nome do executável é **ld** e o uso básico é bem simples, basta especificar o nome do arquivo de saída com **-o**. Ficando assim:
 
-```text
+```
 $ nasm hello.asm -felf64
 $ ld hello.o -o hello
 $ ./hello
 ```
 
-Na linha 5 definimos uma constante usando o símbolo **$** para pegar o endereço da instrução atual e subtraímos pelo endereço do rótulo `msg`. Isso resulta no tamanho do texto porque `msg` aponta para o início da string e, como está logo em seguida, **$** seria o endereço do final da string.  
+Na linha 5 definimos uma constante usando o símbolo **$** para pegar o endereço da instrução atual e subtraímos pelo endereço do rótulo `msg`. Isso resulta no tamanho do texto porque `msg` aponta para o início da string e, como está logo em seguida, **$** seria o endereço do final da string.\
 `final - início = tamanho`
 
 ### write
 
-| Nome | RAX | RDI | RSI | RDX |
-| :--- | :--- | :--- | :--- | :--- |
-| write | 1 | file\_descriptor | endereço | tamanho \(em bytes\) |
+| Nome  | RAX | RDI             | RSI      | RDX                |
+| ----- | --- | --------------- | -------- | ------------------ |
+| write | 1   | file_descriptor | endereço | tamanho (em bytes) |
 
 Como deve ter reparado usamos mais uma _syscall_, que foi a _syscall_ `write`. Essa _syscall_ basicamente escreve dados em um arquivo. O primeiro argumento é um número que serve para identificar o arquivo para o qual queremos escrever os dados.
 
 No Linux a saída e entrada de um programa nada mais é que dados sendo escritos e lidos em arquivos. E isso é feito por três arquivos que estão por padrão abertos em um programa e tem sempre o mesmo _file descriptor_, são eles:
 
-| Nome | File descriptor | Descrição |
-| :--- | :--- | :--- |
-| stdin | 0 | Entrada de dados \(o que é digitado pelo usuário\) |
-| stdout | 1 | Saída padrão \(o que é impresso no terminal\) |
-| stderr | 2 | Saída de erro \(também impresso no terminal, porém destinado a mensagens de erro\) |
+| Nome   | File descriptor | Descrição                                                                        |
+| ------ | --------------- | -------------------------------------------------------------------------------- |
+| stdin  | 0               | Entrada de dados (o que é digitado pelo usuário)                                 |
+| stdout | 1               | Saída padrão (o que é impresso no terminal)                                      |
+| stderr | 2               | Saída de erro (também impresso no terminal, porém destinado a mensagens de erro) |
 
 {% hint style="info" %}
 Se quiser ver o código de implementação desta _syscall_ no Linux, pode [ver aqui](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/fs/read_write.c).
@@ -67,7 +67,7 @@ Se quiser ver o código de implementação desta _syscall_ no Linux, pode [ver a
 
 ### Entry point
 
-Reparou que nosso programa tem um símbolo `_start` e que magicamente esse é o código que o sistema operacional está executando primeiro? Isso acontece porque o _linker_ definiu o endereço daquele símbolo como o _entry point_ \(ponto de entrada\) do nosso programa.
+Reparou que nosso programa tem um símbolo `_start` e que magicamente esse é o código que o sistema operacional está executando primeiro? Isso acontece porque o _linker_ definiu o endereço daquele símbolo como o _entry point_ (ponto de entrada) do nosso programa.
 
 O _entry point_ nada mais é o que o próprio nome sugere, o endereço inicial de execução do programa. Eu sei o que você está pensando:
 
@@ -79,7 +79,7 @@ Na verdade qualquer símbolo pode ser definido como o _entry point_ para o execu
 
 Se você quiser usar um símbolo diferente é só especificar com a opção **-e**. Por exemplo, podemos reescrever nosso Hello World assim:
 
-```text
+```nasm
 bits 64
 
 section .rodata
@@ -103,11 +103,10 @@ _eu_que_mando_no_meu_exec:
 
 E compilar assim:
 
-```text
+```
 $ nasm hello.asm -felf64
 $ ld hello.o -o hello -e _eu_que_mando_no_meu_exec
 $ ./hello
 ```
 
 Fácil fazer um "Hello World", né? Ei, o que acha de fazer uns macros para melhorar o uso dessas _syscalls_ aí? Seria interessante também salvar os macros em um arquivo separado e incluir o arquivo com a diretiva `%include`.
-

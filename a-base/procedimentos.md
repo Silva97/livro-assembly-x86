@@ -6,7 +6,7 @@ description: Entendendo funções em Assembly
 
 O conceito de um procedimento nada mais é que um pedaço de código que em determinado momento é convocado para ser executado e, logo em seguida, o processador volta a executar as instruções em sequência. Isso nada mais é que uma combinação de dois desvios de fluxo de código, um para a execução do procedimento e outro no fim dele para voltar o fluxo de código para a instrução seguinte a convocação do procedimento. Veja o exemplo em pseudocódigo:
 
-```text
+```
 1. Define A para 3
 2. Chama o procedimento setarA
 3. Compara A e 5
@@ -19,7 +19,7 @@ setarA:
 
 Seguindo o fluxo de execução do código, a sequência de instruções ficaria assim:
 
-```text
+```
 1. Define A para 3
 2. Chama o procedimento setarA
 7. Define A para 5
@@ -32,10 +32,10 @@ Desse jeito se nota que a comparação do passo 3 vai dar positiva porque o valo
 
 Em Assembly x86 temos duas instruções principais para o uso de procedimentos:
 
-| Instrução | Operando | Ação |
-| :--- | :--- | :--- |
-| CALL | endereço | Chama um procedimento no endereço especificado |
-| RET | ??? | Retorna de um procedimento |
+| Instrução | Operando | Ação                                           |
+| --------- | -------- | ---------------------------------------------- |
+| CALL      | endereço | Chama um procedimento no endereço especificado |
+| RET       | ???      | Retorna de um procedimento                     |
 
 A esta altura você já deve ter reparado que nossa função `assembly` na nossa PoC nada mais é que um procedimento chamado por uma instrução CALL, por isso no final dela temos uma instrução RET.
 
@@ -43,7 +43,7 @@ Na prática o que uma instrução CALL faz é **empilhar** o endereço da instru
 
 {% tabs %}
 {% tab title="assembly.asm" %}
-```text
+```nasm
 bits 64
 
 global assembly
@@ -82,16 +82,15 @@ Na linha 6 damos um `call` no procedimento `setarA` na linha 10, este por sua ve
 
 Na nossa PoC a função `assembly` retorna uma variável do tipo `int` que na arquitetura x86 tem o tamanho de 4 bytes e é retornado no registrador EAX. A maioria dos valores serão retornados em alguma parte mapeada de RAX que coincida com o mesmo tamanho do tipo. Exemplos:
 
-| Tipo | Tamanho em x86-64 | Registrador |
-| :--- | :--- | :--- |
-| char | 1 byte | AL |
-| short int | 2 bytes | AX |
-| int | 4 bytes | EAX |
-| char \* | 8 bytes | RAX |
+| Tipo      | Tamanho em x86-64 | Registrador |
+| --------- | ----------------- | ----------- |
+| char      | 1 byte            | AL          |
+| short int | 2 bytes           | AX          |
+| int       | 4 bytes           | EAX         |
+| char \*   | 8 bytes           | RAX         |
 
 Por enquanto não vamos ver a convenção de chamada que a linguagem C usa, só estou adiantando isso para que possamos entender melhor como nossa função `assembly` funciona.
 
 {% hint style="warning" %}
 Em um código em C não tente adivinhar o tamanho em bytes de um tipo. Para cada arquitetura diferente que você compilar o código, o tipo pode ter um tamanho diferente. Sempre que precisar do tamanho de um tipo use o operador `sizeof`.
 {% endhint %}
-

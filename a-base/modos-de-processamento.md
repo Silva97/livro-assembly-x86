@@ -12,11 +12,11 @@ Ou seja, lá no 8086 seria como se só existisse o modo de 16 bit. Com a chegada
 
 Podemos dizer que existem três modos de processamento principais:
 
-| Modo de processamento | Largura do barramento interno |
-| :--- | :--- |
-| Real mode / Modo real | 16 bit |
-| Protected mode / Modo protegido | 32 bit |
-| 64-bit submode / Submodo de 64-bit | 64 bit |
+| Modo de processamento              | Largura do barramento interno |
+| ---------------------------------- | ----------------------------- |
+| Real mode / Modo real              | 16 bit                        |
+| Protected mode / Modo protegido    | 32 bit                        |
+| 64-bit submode / Submodo de 64-bit | 64 bit                        |
 
 ### Barramento interno
 
@@ -38,12 +38,12 @@ Pelo que nós vimos acima então na verdade um "sistema operacional de 64 bit" n
 
 Isso é possível porque existem mais modos de processamento do que os que eu já mencionei. Reparou que eu disse "submodo" de 64-bit? É porque na verdade o 64-bit não é um modo principal mas sim um submodo. A hierarquia de modos de processamento de um processador Intel64 ficaria da seguinte forma:
 
-* Real mode \(16 bit\)
-* Protected mode \(32 bit\)
-* SMM \(não vamos falar deste modo, mas ele existe\)
+* Real mode (16 bit)
+* Protected mode (32 bit)
+* SMM (não vamos falar deste modo, mas ele existe)
 * IA-32e
-  * 64-bit \(64 bit\)
-  * Compatibility mode \(32 bit\)
+  * 64-bit (64 bit)
+  * Compatibility mode (32 bit)
 
 O modo **IA-32e** é uma adição dos processadores x86-64. Repare que ele tem outro submodo chamado "_compatibility mode_", ou em português, "modo de compatibilidade".
 
@@ -51,14 +51,13 @@ O modo **IA-32e** é uma adição dos processadores x86-64. Repare que ele tem o
 Não confundir com o modo de compatibilidade do Windows, ali é uma coisa diferente que leva o mesmo nome.
 {% endhint %}
 
-O modo de compatibilidade serve para obter compatibilidade com a arquitetura IA-32. Um sistema operacional pode setar para que código de apenas determinado segmento na memória rode nesse modo, permitindo assim que ele execute código de 32 e 64 bit paralelamente \(supondo que o processador esteja em modo IA-32e\). Por isso que seu Debian de 64 bit consegue rodar softwares de 32 bit, assim como o seu Windows 10 de 64 bit também consegue.
+O modo de compatibilidade serve para obter compatibilidade com a arquitetura IA-32. Um sistema operacional pode setar para que código de apenas determinado segmento na memória rode nesse modo, permitindo assim que ele execute código de 32 e 64 bit paralelamente (supondo que o processador esteja em modo IA-32e). Por isso que seu Debian de 64 bit consegue rodar softwares de 32 bit, assim como o seu Windows 10 de 64 bit também consegue.
 
 ### Virtual-8086
 
-Lembra que o antigo Windows XP de 32 bit era capaz de rodar programas de 16 bit do MS-DOS?  
+Lembra que o antigo Windows XP de 32 bit era capaz de rodar programas de 16 bit do MS-DOS?\
 Isto era possível devido ao modo Virtual-8086 que, de maneira parecida com o _compatibility mode_, permite executar código de 16 bit enquanto o processador está em _protected mode_. Nos processadores atuais o Virtual-8086 não é um submodo de processamento do _protected mode_ mas sim um atributo que pode ser setado enquanto o processador está executando nesse modo.
 
 {% hint style="info" %}
 Repare que rodando em _compatibility mode_ não é possível usar o modo Virtual-8086. É por isso que o Windows XP de 32 bit conseguia rodar programas do MS-DOS mas o XP de 64 bit não.
 {% endhint %}
-

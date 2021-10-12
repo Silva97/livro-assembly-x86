@@ -14,8 +14,8 @@ Estou trabalhando o conteúdo do livro com base em dois princípios simples que 
 
 No livro eu tento o máximo possível abordar conteúdo que, com base no que já foi explorado antes, possa ser testado para ver os resultados. Bem como também tento apresentar os resultados para não deixar à margem da imaginação.
 
-Nosso cérebro tem o hábito de **fabricar informações**. Quando nós estudamos algo novo e nos falta informação sobre costumamos nós mesmos criarmos essas informações faltantes. Lacunas de conteúdo são preenchidas com informações hipotéticas e, muitas vezes, de uma maneira quase irreversível.  
-  
+Nosso cérebro tem o hábito de **fabricar informações**. Quando nós estudamos algo novo e nos falta informação sobre costumamos nós mesmos criarmos essas informações faltantes. Lacunas de conteúdo são preenchidas com informações hipotéticas e, muitas vezes, de uma maneira quase irreversível.\
+\
 Quando começamos a aprender algo costumamos ter muito viés ao conteúdo que consumimos primeiro. Se este viés for baseado em uma informação fabricada pela nossa mente ela vai nos induzir ao erro.
 
 {% hint style="info" %}
@@ -32,7 +32,7 @@ Repare que este tópico em si está explicando alguns porquês.
 
 ### Consumindo o conteúdo
 
-Na hora de consumir o conteúdo deste livro lembre-se do que mencionei acima. Principalmente do nosso péssimo hábito de fabricar informações, isso é muito comum e todo mundo já fez isso \(e provavelmente sempre continuará fazendo\).
+Na hora de consumir o conteúdo deste livro lembre-se do que mencionei acima. Principalmente do nosso péssimo hábito de fabricar informações, isso é muito comum e todo mundo já fez isso (e provavelmente sempre continuará fazendo).
 
 #### 1. Aceite o que você não sabe
 
@@ -44,8 +44,8 @@ Isso é o hábito de fabricar informações controlando sua mente, é assim que 
 
 #### 2. Não decore, aprenda
 
-Lembre-se de **sempre** se perguntar o porque das coisas. Se você sabe o que fazer mas não sabe o porque, então você **não aprendeu** mas sim decorou. Decorar é o pior inimigo do aprendizado. Quando você entende o porque das coisas você não precisa ficar decorando, a informação vai naturalmente para a sua memória de longo prazo. Detalhe que com "decorar" eu quero dizer a tentativa repetitiva de memorizar uma informação sem entendê-la, claro que lembrar das coisas é necessário para o aprendizado.  
-  
+Lembre-se de **sempre** se perguntar o porque das coisas. Se você sabe o que fazer mas não sabe o porque, então você **não aprendeu** mas sim decorou. Decorar é o pior inimigo do aprendizado. Quando você entende o porque das coisas você não precisa ficar decorando, a informação vai naturalmente para a sua memória de longo prazo. Detalhe que com "decorar" eu quero dizer a tentativa repetitiva de memorizar uma informação sem entendê-la, claro que lembrar das coisas é necessário para o aprendizado.\
+\
 Quer testar se você decorou ou aprendeu? É só você tentar explicar o porque tal coisa é de tal forma. Se não conseguir é porque não aprendeu.
 
 {% hint style="info" %}
@@ -58,7 +58,7 @@ Como eu já disse estou tentando ao máximo passar informação de forma que voc
 
 ### Não tenha pressa
 
-> A pressa é a inimiga da perfeição. ~ Joãozinho
+> A pressa é a inimiga da perfeição. \~ Joãozinho
 
 O mundo não vai acabar na semana que vem, ~~eu acho~~. Não tem porque você ter pressa de aprender tudo em uma semana ou mês. Como eu já disse, só avance para o próximo tópico depois que aprender o anterior. Fique uma semana no mesmo tópico se for necessário.
 
@@ -79,4 +79,3 @@ Como eu já disse não existe fonte absoluta de informação. A **única maneira
 Isso é muito importante **porque** assim você irá encontrar pontos de vista opostos ao seu, isso irá abranger seu conhecimento e lhe dar a oportunidade para reavaliar as informações, para que assim, tire mais uma vez suas próprias conclusões. Ter um só ponto de vista é horrível. Além de ter uma enorme chance de você estar errado a sua intolerância à discordância alheia vai estar lá no alto.
 
 Ou seja, discutir não é apenas benéfico para você mas também para as pessoas a sua volta. Porque ninguém merece aquele tipo de pessoa que, no menor sinal de discordância, já estufa o peito e bate na mesa para mostrar quem é que manda.
-

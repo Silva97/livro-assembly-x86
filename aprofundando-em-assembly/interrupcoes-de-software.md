@@ -33,9 +33,9 @@ Ou seja o número que identifica a interrupção nada mais é que o índice a se
 
 Provavelmente você já ouviu falar em _exception_.  A _exception_ nada mais é que uma interrupção e tem o seu _handler_ definido na IDT. Por exemplo quando você comete o erro clássico de tentar acessar uma região de memória inválida ou sem permissões adequadas em C, você compila o código e recebe a clássica mensagem _segmentation fault_.
 
-Nesse caso a exceção que foi disparada pelo processador se chama _General Protection_ e pode ser referida pelo mnemônico \#GP, seu índice na tabela é 13.
+Nesse caso a exceção que foi disparada pelo processador se chama _General Protection_ e pode ser referida pelo mnemônico #GP, seu índice na tabela é 13.
 
-![Intel Developer&apos;s Manuals - volume 1, cap&#xED;tulo 6](../.gitbook/assets/image%20%283%29.png)
+![Intel Developer's Manuals - volume 1, capítulo 6](../.gitbook/assets/image.png)
 
 Essa exceção é disparada quando há um problema na referência de memória ou qualquer proteção à memória que foi violada. Como por exemplo ao tentar escrever em um segmento de memória que não tem permissão para escrita.
 
@@ -58,7 +58,7 @@ A IDT está localizada no endereço 0 em _real mode_, por isso podemos configura
 Eis o código:
 
 {% code title="int.asm" %}
-```c
+```nasm
 bits 16
 org  0x100
 
@@ -114,7 +114,7 @@ $ nasm int.asm -o int.com
 $ dosbox int.com
 ```
 
-![](../.gitbook/assets/image.png)
+![](<../.gitbook/assets/image (1).png>)
 
 A interrupção simplesmente escreve os caracteres na parte superior esquerda da tela.
 
@@ -124,16 +124,16 @@ Note que a interrupção retorna usando a instrução `iret` ao invés de `ret`.
 Perceba que é unicamente um código de exemplo. Essa não é uma maneira segura de se configurar uma interrupção tendo em vista que seu _handler_ está na memória do .com que, após finalizar sua execução, a memória será sobrescrita por outro programa executado posteriormente.
 {% endhint %}
 
-Vamos dessa vez configurar uma exceção. A exceção que vamos configurar é a \#BP de índice 3. Se você já usou um depurador, ou pelo menos tem uma noção à respeito, sabe que "_breakpoint_" é um ponto no código onde o depurador faz uma parada e te permite analisar o programa enquanto ele fica em pausa.
+Vamos dessa vez configurar uma exceção. A exceção que vamos configurar é a #BP de índice 3. Se você já usou um depurador, ou pelo menos tem uma noção à respeito, sabe que "_breakpoint_" é um ponto no código onde o depurador faz uma parada e te permite analisar o programa enquanto ele fica em pausa.
 
 {% hint style="info" %}
 Os depuradores modificam a instrução original colocando a instrução que dispara a exceção de _breakpoint_. Depois tratam o sinal enviado para o processo, restauram a instrução original e continuam seu trabalho.
 {% endhint %}
 
-O _breakpoint_ nada mais é que uma exceção que é disparada por uma instrução. Podemos usar `int 0x03` \(**CD 03** em código de máquina\) para fazer isso porém essa instrução tem 2 bytes de tamanho e não é muito apropriada para um depurador usar. Por isso existe a instrução `int3` que dispara \#BP explicitamente e tem somente 1 byte de tamanho \(_opcode_ **0xCC**\).
+O _breakpoint_ nada mais é que uma exceção que é disparada por uma instrução. Podemos usar `int 0x03` (**CD 03** em código de máquina) para fazer isso porém essa instrução tem 2 bytes de tamanho e não é muito apropriada para um depurador usar. Por isso existe a instrução `int3` que dispara #BP explicitamente e tem somente 1 byte de tamanho (_opcode_ **0xCC**).
 
 {% code title="int.asm" %}
-```c
+```nasm
 bits 16
 org  0x100
 
@@ -167,7 +167,7 @@ break:
 ```
 {% endcode %}
 
-![](../.gitbook/assets/image%20%281%29.png)
+![](<../.gitbook/assets/image (2).png>)
 
 Repare que a cada execução de `int3` executou o código do nosso procedimento **break**. Esse por sua vez imprimiu o caractere 'X' na tela do Dosbox usando a interrupção 0x10 que será explicada no [próximo tópico](procedimentos-do-bios.md).
 
@@ -204,9 +204,8 @@ int main(void)
 }
 ```
 
-![](../.gitbook/assets/image%20%284%29.png)
+![](<../.gitbook/assets/image (4).png>)
 
 {% hint style="info" %}
 Mais detalhes sobre os sinais serão descritos no tópico [Entendendo os depuradores](../depuracao-de-codigo/entendendo-os-depuradores.md).
 {% endhint %}
-

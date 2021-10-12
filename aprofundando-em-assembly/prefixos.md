@@ -10,7 +10,7 @@ O código de máquina pode receber alguns bytes que antecedem o opcode que são 
 
 Esse prefixo, cujo o byte é **0x66**, serve para sobrescrever o atributo de _operand-size_. Ele basicamente alterna o atributo para o seu valor não-padrão. Se o _operand-size_ padrão é de 32 bits ao usar esse prefixo ele alterna para 16 bits, e vice-versa. Observe abaixo:
 
-![](../.gitbook/assets/captura-de-tela-de-2019-08-01-16-27-22.png)
+![](<../.gitbook/assets/Captura de tela de 2019-08-01 16-27-22.png>)
 
 No primeiro disassembly se a gente prestar atenção no código de máquina irá notar que a única diferença entre as duas instruções, além do tamanho do operando imediato, é a presença do byte **0x66** logo antes do opcode **0xB8**.
 
@@ -19,9 +19,9 @@ O NASM se encarrega de usar os prefixos adequados quando se mostram necessários
 É importante entender o que a instrução faz e o que cada atributo representa nela para poder fazer o uso correto destas diretivas.
 
 {% hint style="warning" %}
-Se você quiser forçar o uso de um prefixo em uma determinada instrução basta fazer o _dump_ do byte logo antes da mesma. Exemplo:  
-`db 0x66  
-mov eax, ebx`
+Se você quiser forçar o uso de um prefixo em uma determinada instrução basta fazer o _dump_ do byte logo antes da mesma. Exemplo:\
+`db 0x66`\
+`mov eax, ebx`
 
 Obs.: Isso é **gambiarra**. Só mostrei como curiosidade.
 {% endhint %}
@@ -32,7 +32,7 @@ Esse prefixo de byte **0x67** segue a mesma lógica do anterior, só que desta v
 
 Um exemplo interessante de uso é com a instrução `LOOP/LOOPcc`. Acontece que o que determina se essa instrução irá usar RCX, ECX ou CX é o _address-size_. Vamos supor o código de 16-bit:
 
-```text
+```nasm
 bits 16
 
 mov ecx, 99999
@@ -55,7 +55,7 @@ Esse não é um mas sim 6 prefixos diferentes usados para fazer a sobrescrita do
 
 No tópico de [registradores de segmento](registradores-de-segmento.md) nós já vimos uma forma de usar o prefixo de sobrescrita de segmento, porém também é possível usá-lo simplesmente adicionando o nome do registrador de segmento antes da instrução. Veja que as duas instruções abaixo são equivalentes:
 
-```text
+```nasm
 bits 32
 
 mov byte [es:ebx], 32
@@ -70,7 +70,7 @@ Você já deve ter notado que dá para brincar entre 32 e 16 bits, mas e os 64 b
 
 Veja este código:
 
-```text
+```nasm
 bits 32
 
 inc ecx
@@ -79,26 +79,26 @@ db 0xFF, 0xC1
 
 Agora veja o que o disasembler nos diz sobre isso aí:
 
-![](../.gitbook/assets/captura-de-tela-de-2019-08-01-17-09-44.png)
+![](<../.gitbook/assets/Captura de tela de 2019-08-01 17-09-44.png>)
 
 Pois é, os bytes que eu fiz o _dump_ manualmente resultam na mesma operação. Só que o NASM sempre usa a primeira versão porque é menor, só tem 1 byte de tamanho em contraste com os 2 bytes da outra.
 
 Essas duas instruções equivalentes basicamente são:
 
-```text
+```
 inc reg
 inc r/m
 ```
 
 Se eu escrevesse `inc dword [ebx]` aí sim o NASM usaria a segunda instrução porém para incrementar um operando em memória.
 
-Em 64-bit as instruções `inc reg` e `dec reg` simplesmente não existem. Elas foram assassinadas para dar lugar para um novo prefixo, o REX \(`inc r/m` e `dec r/m` são usadas em seu lugar\).
+Em 64-bit as instruções `inc reg` e `dec reg` simplesmente não existem. Elas foram assassinadas para dar lugar para um novo prefixo, o REX (`inc r/m` e `dec r/m` são usadas em seu lugar).
 
 O REX tem um campo de 4 bits que serve para trabalhar com operações em versão de 64 bits. Todas as alternâncias em relação a 32/64 bits é feita em um dos bits do prefixo REX, onde cada bit tem uma função diferente.
 
-Basicamente o REX, incluindo todas as variações de combinações de cada bit, são todos os bytes entre **0x40** e **0x4F** \(só em 64-bit, é claro\). Vejamos o exemplo:
+Basicamente o REX, incluindo todas as variações de combinações de cada bit, são todos os bytes entre **0x40** e **0x4F** (só em 64-bit, é claro). Vejamos o exemplo:
 
-![](../.gitbook/assets/captura-de-tela-de-2019-08-01-17-24-27.png)
+![](<../.gitbook/assets/Captura de tela de 2019-08-01 17-24-27.png>)
 
 Veja que para fazer o incremento de RCX o prefixo REX **0x48** foi utilizado. Em 32-bit esse byte foi interpretado como `dec eax`.
 
@@ -112,7 +112,7 @@ Também é possível sobrescrever _address-size_ para mudar o registrador usado 
 
 {% tabs %}
 {% tab title="assembly.asm" %}
-```text
+```nasm
 bits 64
 
 section .text
@@ -148,4 +148,3 @@ int main(void)
 {% hint style="info" %}
 REP e REPE são nomes diferentes para o mesmo prefixo. Sua lógica muda dependendo de em qual instrução foi utilizada, se em uma que faz comparação ou não.
 {% endhint %}
-

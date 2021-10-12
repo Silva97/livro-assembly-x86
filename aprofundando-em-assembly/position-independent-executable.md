@@ -10,7 +10,7 @@ O problema disso é que o código que escrevemos precisa sempre ser carregado no
 
 Sistemas operacionais modernos têm um recurso de segurança chamado [ASLR](https://pt.wikipedia.org/wiki/Address_space_layout_randomization) que dificulta a exploração de falhas de segurança no binário. Resumidamente ele carrega os endereços dos segmentos do executável em endereços aleatórios ao invés de sempre no mesmo endereço. Com o ASLR desligado os segmentos sempre são mapeados nos mesmos endereços.
 
-Porém um código que acessa endereços absolutos jamais funcionaria apropriadamente com o ASLR ligado. É aí que entra o conceito de _Position-independent executable_ \(PIE\) que nada mais é que um executável com código que somente acessa endereços relativos, ou seja, não importa em qual endereço \(posição\) você carregue o código do executável ele irá funcionar corretamente.
+Porém um código que acessa endereços absolutos jamais funcionaria apropriadamente com o ASLR ligado. É aí que entra o conceito de _Position-independent executable_ (PIE) que nada mais é que um executável com código que somente acessa endereços relativos, ou seja, não importa em qual endereço (posição) você carregue o código do executável ele irá funcionar corretamente.
 
 {% hint style="info" %}
 Na nossa PoC eu instruí para compilar o programa usando a _flag_ `-no-pie` no GCC para garantir que o _linker_ não iria produzir um executável PIE já que ainda não havíamos aprendido sobre o assunto. Mas depois de aprender a escrever código com endereçamento relativo em Assembly fique à vontade para remover essa _flag_ e começar a escrever programas independentes de posição.
@@ -22,7 +22,7 @@ Já vimos no tópico [Endereçamento](../a-base/enderecamento.md#enderecamento-e
 
 Podemos usar a palavra-chave `rel` no endereçamento para dizer para o NASM que queremos que ele acesse um endereço relativo à RIP. Conforme exemplo:
 
-```text
+```nasm
 mov rax, [rel my_var]
 ```
 
@@ -46,7 +46,7 @@ int main(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 default rel
 
@@ -65,7 +65,7 @@ assembly:
 
 Experimente compilar sem a _flag_ `-no-pie` para o GCC na hora de _linkar_:
 
-```text
+```
 $ nasm assembly.asm -o assembly.o -felf64
 $ gcc main.c -c -o main.o
 $ gcc *.o -o test
@@ -73,9 +73,9 @@ $ gcc *.o -o test
 
 Deveria funcionar normalmente. Mas experimente comentar a diretiva `default rel` na linha **2** e compilar novamente, você vai obter um erro parecido com esse:
 
-![](../.gitbook/assets/image%20%2810%29.png)
+![](<../.gitbook/assets/image (10).png>)
 
-Repare que o erro foi emitido pelo _linker_ \(`ld`\) e não pelo compilador em si. Acontece que como usamos um endereço absoluto o NASM colocou o endereço do símbolo `msg` na _relocation table_ para ser resolvido pelo _linker_, onde o _linker_ é quem definiria o endereço absoluto do mesmo.
+Repare que o erro foi emitido pelo _linker_ (`ld`) e não pelo compilador em si. Acontece que como usamos um endereço absoluto o NASM colocou o endereço do símbolo `msg` na _relocation table_ para ser resolvido pelo _linker_, onde o _linker_ é quem definiria o endereço absoluto do mesmo.
 
 Só que como removemos o `-no-pie` o _linker_ tentou produzir um PIE e por isso emitiu um erro avisando que aquela referência para um endereço absoluto não pode ser usada.
 
@@ -83,7 +83,7 @@ Só que como removemos o `-no-pie` o _linker_ tentou produzir um PIE e por isso 
 
 Como o endereço relativo ao _Instruction Pointer_ só existe em modo de 64-bit, nos outros modos de processamento não é nativamente possível obter um endereçamento relativo. O compilador GCC resolve esse problema criando um pequeno procedimento cujo o único intuito é obter o valor no topo da pilha e armazenar em um registrador. Conforme ilustração abaixo:
 
-```text
+```nasm
 funcao:
     call __x86.get_pc_thunk.bx
     add ebx, 12345  ; Soma EBX com o endereço relativo 12345
@@ -97,4 +97,3 @@ __x86.get_pc_thunk.bx:
 Ao chamar o procedimento `__x86.get_pc_thunk.bx` o endereço da instrução seguinte na memória é empilhado pela instrução [CALL](call-e-ret.md), portanto `mov ebx, [esp]` salva o endereço que EIP terá quando o procedimento retornar em EBX.
 
 Quando a instrução `add ebx, 12345` é executada o valor de `EBX` coincide com o endereço da própria instrução ADD.
-

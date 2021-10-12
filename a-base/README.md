@@ -6,7 +6,7 @@ description: >-
 
 # A base
 
-Para que fique mais prático para todos, independentemente se estiverem usando Linux/Windows/MacOS/BSD/etc, usaremos a linguagem C como "ambiente" para escrever código e podermos ver o resultado. Certifique-se de ter o [GCC](http://gcc.gnu.org/)/[Mingw-w64](http://mingw-w64.org/) e o [NASM](https://www.nasm.us/) instalados no seu sistema.
+Para que fique mais prático para todos, independentemente se estiverem usando Linux/Windows/MacOS/BSD/etc, usaremos a linguagem C como "ambiente" para escrever código e podermos ver o resultado. Certifique-se de ter o [GCC](http://gcc.gnu.org)/[Mingw-w64](http://mingw-w64.org) e o [NASM](https://www.nasm.us) instalados no seu sistema.
 
 ### Por que o GCC?
 
@@ -25,7 +25,7 @@ Mais para frente no livro pretendo ensinar a usar o GAS também. Mas na base vam
 
 ### Preparando o ambiente
 
-Primeiramente eu recomendaria o uso de alguma distribuição Linux de 64-bit ou qualquer sistema operacional Unix-Like \(\*BSD, MacOS etc\). Isso porque mais para frente irei ensinar conteúdo que é exclusivo para sistemas operacionais compatíveis com o [UNIX](https://pt.wikipedia.org/wiki/Unix). Porém caso use o Windows não tem problema desde que instale o mingw-w64 como mencionei. O mais importante é ter um GCC que pode gerar código para 64-bit e 32-bit.
+Primeiramente eu recomendaria o uso de alguma distribuição Linux de 64-bit ou qualquer sistema operacional Unix-Like (\*BSD, MacOS etc). Isso porque mais para frente irei ensinar conteúdo que é exclusivo para sistemas operacionais compatíveis com o [UNIX](https://pt.wikipedia.org/wiki/Unix). Porém caso use o Windows não tem problema desde que instale o mingw-w64 como mencionei. O mais importante é ter um GCC que pode gerar código para 64-bit e 32-bit.
 
 Vamos antes de mais nada preparar uma [PoC](https://pt.wikipedia.org/wiki/Prova_de_conceito) em C para chamar uma função escrita em Assembly. Este seria nosso arquivo **main.c**:
 
@@ -46,7 +46,7 @@ int main(void)
 A ideia aqui é simplesmente chamar a função `assembly()` que iremos usar para testar algumas instruções escritas diretamente em Assembly. Ainda não aprendemos nada de Assembly então apenas copie e cole o código abaixo. Este seria nosso arquivo **assembly.asm**:
 
 {% code title="assembly.asm" %}
-```text
+```
 bits 64
 
 global assembly
@@ -62,7 +62,7 @@ No nasm é necessário usar a opção **-f** para especificar o formato do arqui
 
 Por fim, para fazer a ligação dos dois arquivos objeto de saída podemos usar mais uma vez o GCC. Usar o ld diretamente exige incluir alguns arquivos objeto da libc, o que varia de sistema para sistema, portanto prefiro optar pelo GCC que irá por baixo dos panos rodar o ld incluindo os arquivos objetos apropriados. Para compilar e [linkar](https://pt.wikipedia.org/wiki/Ligador) os dois arquivos então fica da seguinte forma:
 
-```text
+```
 $ nasm assembly.asm -f elf64
 $ gcc -c main.c -o main.o
 $ gcc assembly.o main.o -o test -no-pie
@@ -71,7 +71,7 @@ $ ./test
 
 Usamos a opção **-o** no GCC para especificar o nome do arquivo de saída. E **-no-pie** para garantir que um [determinado recurso](https://en.wikipedia.org/wiki/Position-independent_executable) do GCC não seja habilitado. O comando final acima seria somente a execução do nosso executável `test` em um sistema Linux. A execução do programa produziria o seguinte resultado no print abaixo, caso tudo tenha ocorrido bem.
 
-![](../.gitbook/assets/captura-de-tela-de-2019-07-16-10-47-32.png)
+![](<../.gitbook/assets/Captura de tela de 2019-07-16 10-47-32.png>)
 
 {% hint style="info" %}
 Mantenha essa PoC guardada no seu computador para eventuais testes. Você não será capaz de entender como ela funciona agora, mas ela será útil para testar conceitos para poder vê-los na prática. Eventualmente tudo será explicado.
@@ -82,7 +82,7 @@ Mantenha essa PoC guardada no seu computador para eventuais testes. Você não s
 Caso você tenha o make instalado a minha recomendação é que organize os arquivos em uma pasta específica e use o **Makefile** abaixo.
 
 {% code title="Makefile" %}
-```text
+```
 all:
 	nasm *.asm -felf64
 	gcc -c *.c
@@ -95,4 +95,3 @@ Isso é meio que gambiarra mas o importante agora é ter um ambiente funcionando
 ### Se tudo deu errado...
 
 Se você não conseguiu preparar nossa PoC aí no seu computador, acesse [o fórum do Mente Binária](https://www.mentebinaria.com.br/forums/) para tirar sua dúvida.
-

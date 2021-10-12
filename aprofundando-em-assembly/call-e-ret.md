@@ -6,23 +6,23 @@ description: Entendendo detalhadamente as instruções CALL e RET.
 
 Quando se trata de chamadas de procedimentos existem dois conceitos relacionados ao endereço deste procedimento.
 
-O primeiro conceito é que existem chamadas "próximas" \(_near_\) e "distantes" \(_far_\). Enquanto no _near_ `call` nós apenas especificamos o _offset_ do endereço, no _far_ `call` nós também especificamos o segmento.
+O primeiro conceito é que existem chamadas "próximas" (_near_) e "distantes" (_far_). Enquanto no _near_ `call` nós apenas especificamos o _offset_ do endereço, no _far_ `call` nós também especificamos o segmento.
 
-O outro conceito é o de endereço "relativo" \(_relative_\) e "absoluto" \(_absolute_\), que também se aplicam para saltos \(_jumps_\). Onde um endereço relativo é basicamente um número **sinalizado** que será somado à RIP quando o desvio de fluxo ocorrer. Enquanto o endereço absoluto é um endereço exato que será escrito no registrador RIP.
+O outro conceito é o de endereço "relativo" (_relative_) e "absoluto" (_absolute_), que também se aplicam para saltos (_jumps_). Onde um endereço relativo é basicamente um número **sinalizado** que será somado à RIP quando o desvio de fluxo ocorrer. Enquanto o endereço absoluto é um endereço exato que será escrito no registrador RIP.
 
 ### Tamanho do offset
 
-O tamanho que o _offset_ do endereço deve ter acompanha a largura do barramento interno. Então se estamos em _real mode_ \(16 bit\), por padrão o _offset_ deve ser de 16-bit. Ou seja, basicamente o mesmo tamanho do _Instruction Pointer_.
+O tamanho que o _offset_ do endereço deve ter acompanha a largura do barramento interno. Então se estamos em _real mode_ (16 bit), por padrão o _offset_ deve ser de 16-bit. Ou seja, basicamente o mesmo tamanho do _Instruction Pointer_.
 
 ### Near relative call
 
-```text
+```
 call rel16/rel32
 ```
 
 Essa é a `call` que já usamos, não tem segredo. Ela basicamente recebe um número negativo ou positivo indicando o número de bytes que devem ser desviados. Veja da seguinte forma:
 
-```text
+```
 Instruction_Pointer = Instruction_Pointer + operand
 ```
 
@@ -36,7 +36,7 @@ Claro que esse cálculo não é feito por nós e sim pelo assembler, mas é impo
 
 Por exemplo poderíamos fazer uma chamada na própria instrução gerando um loop "infinito" usando a sintaxe:
 
-```text
+```nasm
 bits 64
 
 call $
@@ -44,19 +44,19 @@ call $
 
 Experimente ver com o ndisasm como essa instrução fica em código de máquina:
 
-![](../.gitbook/assets/image%20%286%29.png)
+![](<../.gitbook/assets/image (8).png>)
 
-O primeiro byte \(`0xE8`\) é o opcode da instrução, que é o byte do código de máquina que identifica a instrução que será executada. Os bytes posteriores são o operando imediato \(em _little-endian_\). Repare que o endereço relativo está como `0xFFFFFFFB` que equivale a `-5` em decimal.
+O primeiro byte (`0xE8`) é o opcode da instrução, que é o byte do código de máquina que identifica a instrução que será executada. Os bytes posteriores são o operando imediato (em _little-endian_). Repare que o endereço relativo está como `0xFFFFFFFB` que equivale a `-5` em decimal.
 
 ### Near absolute call
 
-```text
+```
 call r/m
 ```
 
 Diferente da chamada relativa que indica um número de bytes a serem somados com RIP, numa chamada absoluta você passa o endereço exato de onde você quer fazer a chamada. Você pode experimentar fazer uma chamada assim:
 
-```text
+```nasm
 mov  rax, rotulo
 call rax
 ```
@@ -67,7 +67,7 @@ Se você passar `rotulo` para a `call` diretamente você estará fazendo uma cha
 
 ### Far call
 
-```text
+```
 call seg16:off16   ; Em 16-bit
 call seg16:off32   ; Em 32-bit
 
@@ -76,9 +76,9 @@ call mem16:32  ; Em 32-bit
 call mem16:64  ; Em 64-bit
 ```
 
-As chamadas _far_ \(distante\) são todas absolutas e recebem no operando um valor seguindo o formato de especificar um _offset_ seguido do segmento de 16-bit. No NASM um valor imediato pode ser passado da seguinte forma:
+As chamadas _far_ (distante) são todas absolutas e recebem no operando um valor seguindo o formato de especificar um _offset_ seguido do segmento de 16-bit. No NASM um valor imediato pode ser passado da seguinte forma:
 
-```text
+```nasm
 call 0x1234:0xabcdef99
 ```
 
@@ -88,7 +88,7 @@ O segundo tipo de _far_ `call`, suportado em 64-bit, é o que recebe como operan
 
 Por padrão o NASM irá montar as instruções como _near_ e não _far_ mas você pode evitar essa ambiguidade explicitando com _keywords_ do NASM que são bem intuitivas. Veja:
 
-```text
+```nasm
 call [rbx]       ; Próximo e absoluto
 call near [rbx]  ; Próximo e absoluto
 call far [rbx]   ; Distante
@@ -96,13 +96,13 @@ call far [rbx]   ; Distante
 
 O _near_ espera o endereço do _offset_ na memória, não tem segredo. Mas o _far_ espera o _offset_ seguido do segmento. Em um sistema de 32-bit vamos supor que nosso procedimento está no segmento `0xaaaa` e no _offset_ `0xbbbb1111`. Em memória o valor precisa estar assim em _little-endian_:
 
-```text
+```
 11 11 bb bb aa aa
 ```
 
 No NASM essa variável poderia ser _dumpada_ da seguinte forma:
 
-```c
+```nasm
 bits 32
 
 my_addr: dd 0xbbbb1111   ; Deslocamento
@@ -122,7 +122,7 @@ Se você não entendeu isso aqui, não se preocupa com isso. Mais para frente no
 
 ### RET
 
-```text
+```
 ret
 retf
 retn
@@ -131,14 +131,14 @@ retf imm16
 retn imm16
 ```
 
-Como talvez você já tenha reparado intuitivamente a chamada _far_ também preserva o valor de CS na _stack_ e não apenas o valor de IP \(lembrando que IP já estaria apontando para a instrução seguinte na memória\).
+Como talvez você já tenha reparado intuitivamente a chamada _far_ também preserva o valor de CS na _stack_ e não apenas o valor de IP (lembrando que IP já estaria apontando para a instrução seguinte na memória).
 
 Por isso a instrução `ret` também precisa ser diferente dentro de um procedimento que será chamado com um _far call_. Ao invés de apenas ler o _offset_ na _stack_ ela precisa ler o segmento também, assim modificando CS e IP do mesmo jeito que o `call`.
 
-Repetindo que o NASM por padrão irá montar as instruções como _near_ então precisamos especificar para o NASM, em um procedimento que deve ser chamado como _far_, __que queremos usar um `ret` _far_.  
+Repetindo que o NASM por padrão irá montar as instruções como _near _então precisamos especificar para o NASM, em um procedimento que deve ser chamado como _far_,_ _que queremos usar um `ret` _far_.\
 Para isso podemos simplesmente adicionar um sufixo 'n' para especificar como _near_, que já é o padrão, ou o sufixo 'f' para especificar como _far_. Ficando:
 
-```text
+```nasm
 retf  ; Usado em procedimentos que devem ser chamados com far call
 ```
 
@@ -153,4 +153,3 @@ CS  = pop();
 RSP = RSP + 12;
 ```
 {% endcode %}
-

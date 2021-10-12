@@ -4,7 +4,7 @@ description: Aprendendo a usar o inline Assembly do compilador GCC.
 
 # Inline Assembly no GCC
 
-_Inline Assembly_ é uma extensão do compilador que permite inserir código Assembly diretamente no código de saída do compilador. Dessa forma é possível misturar C e Assembly sem a necessidade de usar um módulo separado só para o código em Assembly, além de permitir alguns recursos interessantes que não são possíveis sem o _inline_ Assembly.
+_Inline Assembly _é uma extensão do compilador que permite inserir código Assembly diretamente no código de saída do compilador. Dessa forma é possível misturar C e Assembly sem a necessidade de usar um módulo separado só para o código em Assembly, além de permitir alguns recursos interessantes que não são possíveis sem o _inline_ Assembly.
 
 {% hint style="info" %}
 O compilador Clang contém uma sintaxe de _inline_ Assembly compatível com a do GCC, logo o conteúdo ensinado aqui também é válido para o Clang.
@@ -14,12 +14,12 @@ O compilador Clang contém uma sintaxe de _inline_ Assembly compatível com a do
 
 A sintaxe do uso básico é: `asm [qualificadores] ( instruções-asm )`.
 
-Onde qualificadores é uma \(ou mais\) das seguintes palavra-chaves:
+Onde qualificadores é uma (ou mais) das seguintes palavra-chaves:
 
 * **volatile**: Isso desabilita as otimizações de código no _inline_ Assembly, mas esse já é o padrão quando se usa o _inline_ ASM básico.
 * **inline**: Isso é uma "dica" para o compilador considerar que o tamanho do código Assembly é o menor possível. Serve meramente para o compilador decidir se vai ou não expandir uma [função como _inline_](funcoes-em-c.md#inline), e usando esse qualificador você sugere que o código é pequeno o suficiente para isso.
 
-As instruções Assembly ficam dentro dos parênteses como uma _string_ literal e são despejadas no código de saída sem qualquer alteração por parte do compilador. Geralmente se usa `\n\t` para separar cada instrução pois isso vai ser refletido literalmente na saída de código. O `\n` é para iniciar uma nova linha e o `\t` \(TAB\) é para manter a indentação do código de maneira idêntica ao código gerado pelo compilador.
+As instruções Assembly ficam dentro dos parênteses como uma _string_ literal e são despejadas no código de saída sem qualquer alteração por parte do compilador. Geralmente se usa `\n\t` para separar cada instrução pois isso vai ser refletido literalmente na saída de código. O `\n` é para iniciar uma nova linha e o `\t` (TAB) é para manter a indentação do código de maneira idêntica ao código gerado pelo compilador.
 
 Exemplo:
 
@@ -39,7 +39,7 @@ int main(void)
 
 Isso produz a seguinte saída ao [visualizar o código de saída](./#vendo-o-codigo-de-saida-do-gcc):
 
-```text
+```
 main:
 	endbr64
 	pushq	%rbp
@@ -56,7 +56,7 @@ main:
 	ret
 ```
 
-Entre as diretivas `#APP` e `#NO_APP` fica o código despejado do _inline_ Assembly. A diretiva `# 5 "main.c" 1` é apenas um atalho para a diretiva `#line` onde ela serve para avisar para o assembler de qual linha \(5\) e arquivo \("main.c"\) veio aquele código. Assim se ocorrer algum erro, na mensagem de erro do assembler será exibido essas informações.
+Entre as diretivas `#APP` e `#NO_APP` fica o código despejado do _inline_ Assembly. A diretiva `# 5 "main.c" 1` é apenas um atalho para a diretiva `#line` onde ela serve para avisar para o assembler de qual linha (5) e arquivo ("main.c") veio aquele código. Assim se ocorrer algum erro, na mensagem de erro do assembler será exibido essas informações.
 
 Repare que o _inline_ Assembly apenas despeja literalmente o conteúdo da _string_ literal. Logo você pode adicionar o que quiser aí incluindo diretivas, comentários ou até mesmo instruções inválidas que o compilador não irá reclamar.
 
@@ -112,11 +112,11 @@ Cada operando de saída é separado por vírgula e contém a seguinte sintaxe:
 [nome] "restrições" (variável)
 ```
 
-Onde `nome` é um símbolo opcional que você pode criar para se referir ao operando no código Assembly. Também é possível se referir ao operando usando `%n`, onde **n** seria o índice do operando \(contando a partir de zero\). E usar `%[nome]` caso defina um nome.
+Onde `nome` é um símbolo opcional que você pode criar para se referir ao operando no código Assembly. Também é possível se referir ao operando usando `%n`, onde **n** seria o índice do operando (contando a partir de zero). E usar `%[nome]` caso defina um nome.
 
 Como o `%` é usado para se referir à operandos, no _inline_ Assembly estendido se usa dois `%` para se referir à um registrador. Já que `%%` é um escape para escrever o próprio `%` na saída, da mesma forma que se faz na função **printf**.
 
-[As restrições](inline-assembly-no-gcc.md#restricoes) é uma _string_ literal contendo letras e símbolos indicando como esse operando deve ser armazenado \(**r** para registrador e **m** para memória, por exemplo\). No caso dos operandos de saída o primeiro caractere na _string_ deve ser um `=` ou `+`. Onde o `=` indica que a variável terá seu valor modificado, enquanto `+` indica que terá seu valor modificado e lido.
+[As restrições](inline-assembly-no-gcc.md#restricoes) é uma _string_ literal contendo letras e símbolos indicando como esse operando deve ser armazenado (**r** para registrador e **m** para memória, por exemplo). No caso dos operandos de saída o primeiro caractere na _string_ deve ser um `=` ou `+`. Onde o `=` indica que a variável terá seu valor modificado, enquanto `+` indica que terá seu valor modificado e lido.
 
 Operandos de saída com `+` são contabilizados como dois, tendo em vista que o `+` é basicamente um atalho para repetir o mesmo operando também como uma entrada.
 
@@ -141,7 +141,7 @@ int main(void)
 
 A otimização de código pode remover a inicialização `x = 5` já que não informamos que o valor dessa variável é lido dentro no _inline_ Assembly. O correto seria usar `+` nesse caso.
 
-Um exemplo \(dessa vez correto\) usando um nome definido para o operando:
+Um exemplo (dessa vez correto) usando um nome definido para o operando:
 
 ```c
 #include <stdio.h>
@@ -164,59 +164,25 @@ Caso utilize um operando que você não tem **certeza** que será armazenado em 
 
 ### operandos-de-entrada
 
-Os operandos de entrada seguem a mesma sintaxe dos operandos de saída porém sem o `=` ou `+` nas restrições. Não se deve tentar modificar operandos de entrada \(embora tecnicamente seja possível\) para evitar erros, lembre-se que o compilador irá otimizar o código assumindo que aquele operando não será modificado.
+Os operandos de entrada seguem a mesma sintaxe dos operandos de saída porém sem o `=` ou `+` nas restrições. Não se deve tentar modificar operandos de entrada (embora tecnicamente seja possível) para evitar erros, lembre-se que o compilador irá otimizar o código assumindo que aquele operando não será modificado.
 
 Também é possível passar expressões literais como operando de entrada ao invés de somente nomes de variáveis. A expressão será avaliada e seu valor passado como operando sendo armazenado de acordo com as restrições.
 
 ### clobbers
 
-_Clobbers_ \(que eu não sei como traduzir\) é basicamente uma lista, separada por vírgula, de efeitos colaterais do código Assembly. Nele você **deve** listar o que o seu código ASM modifica além dos operandos de saída. Cada valor de _clobber_ é uma _string_ literal contendo o nome de um registrador que é modificado pelo seu código. Também há dois nomes especiais de _clobbers_:
+_Clobbers_ (que eu não sei como traduzir) é basicamente uma lista, separada por vírgula, de efeitos colaterais do código Assembly. Nele você **deve** listar o que o seu código ASM modifica além dos operandos de saída. Cada valor de _clobber_ é uma _string_ literal contendo o nome de um registrador que é modificado pelo seu código. Também há dois nomes especiais de _clobbers_:
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Clobber</th>
-      <th style="text-align:left">Descri&#xE7;&#xE3;o</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">cc</td>
-      <td style="text-align:left">Indica que o c&#xF3;digo ASM modifica as <em>flags</em> do processador (registrador
-        <a
-        href="../aprofundando-em-assembly/flags-do-processador.md">EFLAGS</a>).</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">memory</td>
-      <td style="text-align:left">
-        <p>Indica que o c&#xF3;digo ASM faz leitura ou escrita da/na mem&#xF3;ria
-          em outro lugar que n&#xE3;o seja um dos operandos de entrada ou sa&#xED;da.
-          Por exemplo em uma mem&#xF3;ria apontada por um ponteiro de um operando.</p>
-        <p></p>
-        <p>Esse <em>clobber</em> evita que o compilador assuma que os valores das vari&#xE1;veis
-          na mem&#xF3;ria permanecem os mesmos ap&#xF3;s a execu&#xE7;&#xE3;o do
-          c&#xF3;digo ASM. E tamb&#xE9;m garante que o compilador escreva o valor
-          de todas as vari&#xE1;veis na mem&#xF3;ria antes de executar o <em>inline </em>ASM.</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">rax</td>
-      <td style="text-align:left">Indica que o registrador RAX ser&#xE1; modificado.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">rbx</td>
-      <td style="text-align:left">Indica que o registrador RBX ser&#xE1; modificado.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">etc.</td>
-      <td style="text-align:left">...</td>
-    </tr>
-  </tbody>
-</table>
+| Clobber | Descrição                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| cc      | Indica que o código ASM modifica as _flags_ do processador (registrador [EFLAGS](../aprofundando-em-assembly/flags-do-processador.md)).                                                                                                                                                                                                                                                                                                                                                            |
+| memory  | <p>Indica que o código ASM faz leitura ou escrita da/na memória em outro lugar que não seja um dos operandos de entrada ou saída. Por exemplo em uma memória apontada por um ponteiro de um operando.</p><p></p><p>Esse <em>clobber</em> evita que o compilador assuma que os valores das variáveis na memória permanecem os mesmos após a execução do código ASM. E também garante que o compilador escreva o valor de todas as variáveis na memória antes de executar o <em>inline </em>ASM.</p> |
+| rax     | Indica que o registrador RAX será modificado.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| rbx     | Indica que o registrador RBX será modificado.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| etc.    | ...                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
-Qualquer nome de registrador é válido para ser usado como _clobber_ exceto o _Stack Pointer_ \(RSP\). É esperado que no final da execução do _inline_ ASM o valor de RSP seja o mesmo de antes da execução do código. Se não for o código muito provavelmente irá ter problemas no restante da execução.
+Qualquer nome de registrador é válido para ser usado como _clobber_ exceto o _Stack Pointer_ (RSP). É esperado que no final da execução do _inline_ ASM o valor de RSP seja o mesmo de antes da execução do código. Se não for o código muito provavelmente irá ter problemas no restante da execução.
 
-Quando você adiciona um registrador a lista de _clobbers_ ele não será utilizado para armazenar operandos de entrada ou saída, assim garantindo que o registrador pode ser utilizado livremente no _inline_ ASM sem causar qualquer erro. Isso também garante que o compilador não irá assumir que o valor do registrador permanece o mesmo após a execução do _inline_ ASM.
+Quando você adiciona um registrador a lista de _clobbers_ ele não será utilizado para armazenar operandos de entrada ou saída, assim garantindo que o registrador pode ser utilizado livremente no _inline _ASM sem causar qualquer erro. Isso também garante que o compilador não irá assumir que o valor do registrador permanece o mesmo após a execução do _inline_ ASM.
 
 Exemplo:
 
@@ -276,46 +242,46 @@ Mas felizmente também é possível usar o nome do rótulo no _inline_ Assembly,
 
 ## Restrições
 
-As restrições \(_constraints_\) são uma lista de caracteres que determinam onde um operando deve ser armazenado. É possível indicar múltiplas alternativas para o compilador simplesmente adicionando mais de uma letra indicando tipos de armazenamento diferentes.
+As restrições (_constraints_) são uma lista de caracteres que determinam onde um operando deve ser armazenado. É possível indicar múltiplas alternativas para o compilador simplesmente adicionando mais de uma letra indicando tipos de armazenamento diferentes.
 
 Abaixo a lista de algumas restrições disponíveis no GCC.
 
 ### Restrições comuns
 
-| Restrição | Descrição |
-| :--- | :--- |
-| `m` | Operando na memória. |
-| `r` | Operando em um [registrador de propósito geral](../a-base/registradores-gerais.md). |
-| `i` | Um valor inteiro imediato. |
-| `F` | Um valor _floating-point_ imediato. |
-| `g` | Um operando na memória, registrador de propósito geral ou inteiro imediato. Mesmo efeito que usar `"rim"` como restrição. |
-| `p` | Um operando que é um endereço de memória válido. |
-| `X` | Qualquer operando é permitido. Basicamente deixa a decisão nas mãos do compilador. |
+| Restrição | Descrição                                                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `m`       | Operando na memória.                                                                                                      |
+| `r`       | Operando em um [registrador de propósito geral](../a-base/registradores-gerais.md).                                       |
+| `i`       | Um valor inteiro imediato.                                                                                                |
+| `F`       | Um valor _floating-point_ imediato.                                                                                       |
+| `g`       | Um operando na memória, registrador de propósito geral ou inteiro imediato. Mesmo efeito que usar `"rim"` como restrição. |
+| `p`       | Um operando que é um endereço de memória válido.                                                                          |
+| `X`       | Qualquer operando é permitido. Basicamente deixa a decisão nas mãos do compilador.                                        |
 
 ### Restrições para família x86
 
-| Restrição | Descrição |
-| :--- | :--- |
-| `R` | Registradores legado. Qualquer um dos oito registradores de propósito geral disponíveis em IA-32. |
-| `q` | Qualquer registrador que seja possível ler o byte menos significativo. Como RAX \(AL\) ou R8 \(R8B\) por exemplo. |
-| `Q` | Qualquer registrador que seja possível ler o segundo byte menos significativo, como RAX \(AH\) por exemplo. |
-| `a` | O registrador "A" \(RAX, EAX, AX ou AL\). |
-| `b` | O registrador "B" \(RBX, EBX, BX ou BL\). |
-| `c` | O registrador "C" \(RCX, ECX, CX ou CL\). |
-| `d` | O registrador "D" \(RDX, EDX, DX ou DL\). |
-| `S` | RSI, ESI, SI ou SIL. |
-| `D` | RDI, EDI, DI ou DIL. |
-| `A` | O conjunto AX:DX. |
-| `f` | Qualquer [registrador do x87](../aprofundando-em-assembly/usando-instrucoes-da-fpu.md#registradores). |
-| `t` | ST0 |
-| `u` | ST1 |
-| `y` | Qualquer registrador MMX. |
-| `x` | Qualquer [registrador SSE](../aprofundando-em-assembly/entendendo-sse/#registradores-xmm). |
-| `Yz` | XMM0 |
-| `I` | Um inteiro constante entre 0 e 31, usado para _shift_ com valores de 32-bit. |
-| `J` | Um inteiro constante entre 0 e 63, usado para _shift_ com valores de 64-bit. |
-| `K` | Inteiro sinalizado de 8-bit. |
-| `N` | Inteiro não-sinalizado de 8-bit. |
+| Restrição | Descrição                                                                                                     |
+| --------- | ------------------------------------------------------------------------------------------------------------- |
+| `R`       | Registradores legado. Qualquer um dos oito registradores de propósito geral disponíveis em IA-32.             |
+| `q`       | Qualquer registrador que seja possível ler o byte menos significativo. Como RAX (AL) ou R8 (R8B) por exemplo. |
+| `Q`       | Qualquer registrador que seja possível ler o segundo byte menos significativo, como RAX (AH) por exemplo.     |
+| `a`       | O registrador "A" (RAX, EAX, AX ou AL).                                                                       |
+| `b`       | O registrador "B" (RBX, EBX, BX ou BL).                                                                       |
+| `c`       | O registrador "C" (RCX, ECX, CX ou CL).                                                                       |
+| `d`       | O registrador "D" (RDX, EDX, DX ou DL).                                                                       |
+| `S`       | RSI, ESI, SI ou SIL.                                                                                          |
+| `D`       | RDI, EDI, DI ou DIL.                                                                                          |
+| `A`       | O conjunto AX:DX.                                                                                             |
+| `f`       | Qualquer [registrador do x87](../aprofundando-em-assembly/usando-instrucoes-da-fpu.md#registradores).         |
+| `t`       | ST0                                                                                                           |
+| `u`       | ST1                                                                                                           |
+| `y`       | Qualquer registrador MMX.                                                                                     |
+| `x`       | Qualquer [registrador SSE](../aprofundando-em-assembly/entendendo-sse/#registradores-xmm).                    |
+| `Yz`      | XMM0                                                                                                          |
+| `I`       | Um inteiro constante entre 0 e 31, usado para _shift_ com valores de 32-bit.                                  |
+| `J`       | Um inteiro constante entre 0 e 63, usado para _shift_ com valores de 64-bit.                                  |
+| `K`       | Inteiro sinalizado de 8-bit.                                                                                  |
+| `N`       | Inteiro não-sinalizado de 8-bit.                                                                              |
 
 ## Dicas
 
@@ -355,7 +321,7 @@ int main(void)
 
 Caso prefira usar sintaxe Intel é possível fazer isso meramente compilando o código com `-masm=intel`. Isso porque o _inline_ Assembly simplesmente despeja as instruções no arquivo de saída, portanto o código irá usar a sintaxe que o _assembler_ utilizar.
 
-Outra dica é usar a diretiva `.intel_syntax noprefix` no início, e depois `.att_syntax` no final para religar a sintaxe AT&T para o restante do código. Exemplo:
+Outra dica é usar a diretiva `.intel_syntax noprefix` no início, e depois `.att_syntax` no final para religar a sintaxe AT\&T para o restante do código. Exemplo:
 
 ```c
 int add(int a, int b)
@@ -390,4 +356,3 @@ static int x asm("my_var") = 5;
 ```
 
 A variável no código fonte é referida como `x` mas o símbolo gerado para a variável seria definido como `my_var`.
-

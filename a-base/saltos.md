@@ -6,7 +6,7 @@ description: Desviando o fluxo de execução do código
 
 Provavelmente você já sabe o que é um desvio de fluxo de código em uma linguagem de alto nível. Algo como uma instrução `if` que condicionalmente executa um determinado bloco de código, ou um `for` que executa várias vezes o mesmo bloco de código. Tudo isso é possível devido ao desvio do fluxo de código. Vamos a um pseudo-exemplo de um `if`:
 
-```text
+```
 1. Compare o valor de X com Y
 2. Se o valor de X for maior, pule para 4.
 3. Adicione 2 ao valor de X
@@ -19,11 +19,11 @@ Ou seja o passo 3 só será executado sob uma determinada condição. Isso é um
 
 ### Salto não condicional
 
-Antes de vermos um desvio de fluxo condicional vamos entender como é o próprio desvio de fluxo em si.  
-Na verdade existem muito mais registradores do que os que eu já citei. E um deles é o registrador IP, sigla para _Instruction Pointer_ \(ponteiro de instrução\). Esse registrador também acompanha o tamanho do barramento interno, assim como os registradores gerais:
+Antes de vermos um desvio de fluxo condicional vamos entender como é o próprio desvio de fluxo em si.\
+Na verdade existem muito mais registradores do que os que eu já citei. E um deles é o registrador IP, sigla para _Instruction Pointer_ (ponteiro de instrução). Esse registrador também acompanha o tamanho do barramento interno, assim como os registradores gerais:
 
-| IP | EIP | RIP |
-| :--- | :--- | :--- |
+| IP      | EIP     | RIP     |
+| ------- | ------- | ------- |
 | 16 bits | 32 bits | 64 bits |
 
 Assim como o nome sugere o _Instruction Pointer_ serve como um ponteiro para a próxima instrução a ser executada pelo processador. Desse jeito é possível mudar o fluxo do código simplesmente alterando o valor de IP, porém não é possível fazer isso diretamente com uma instrução como a `mov`.
@@ -32,7 +32,7 @@ Na arquitetura x86 existem as instruções de _jump_, salto em inglês, que alte
 
 O uso da instrução JMP é feito da seguinte forma:
 
-```text
+```nasm
 jmp endereço
 ```
 
@@ -40,7 +40,7 @@ Onde o operando você pode passar um rótulo que o assembler irá converter para
 
 {% tabs %}
 {% tab title="assembly.asm" %}
-```text
+```nasm
 bits 64
 
 global assembly
@@ -80,8 +80,8 @@ Repare que na linha 10 estamos usando um rótulo local que foi explicado no tóp
 
 O registrador FLAGS também é estendido junto ao tamanho do barramento interno. Então temos:
 
-| FLAGS | EFLAGS | RFLAGS |
-| :--- | :--- | :--- |
+| FLAGS   | EFLAGS  | RFLAGS  |
+| ------- | ------- | ------- |
 | 16 bits | 32 bits | 64 bits |
 
 Esse registrador, diferente dos registradores gerais, não pode ser acessado diretamente por uma instrução. O valor de cada **bit** do registrador é testado por determinadas instruções e são ligados e desligados por outras instruções. É testando o valor dos **bits** do registrador FLAGS que as instruções condicionais funcionam.
@@ -92,19 +92,19 @@ Os _jumps_ condicionais, normalmente referidos como Jcc, são instruções que c
 
 Eis a lista dos saltos condicionais mais comuns:
 
-| Instrução | Nome estendido | Condição |
-| :--- | :--- | :--- |
-| JE | **J**ump if **E**qual | Pula se for igual |
-| JNE | **J**ump if **N**ot **E**qual | Pula se **não** for igual |
-| JL | **J**ump if **L**ess than | Pula se for menor que |
-| JG | **J**ump if **G**reater than | Pula se for maior que |
-| JLE | **J**ump if **L**ess or **E**qual | Pula se for menor ou igual |
-| JGE | **J**ump if **G**reater or **E**qual | Pula se for maior ou igual |
+| Instrução | Nome estendido                       | Condição                   |
+| --------- | ------------------------------------ | -------------------------- |
+| JE        | **J**ump if **E**qual                | Pula se for igual          |
+| JNE       | **J**ump if **N**ot **E**qual        | Pula se **não** for igual  |
+| JL        | **J**ump if **L**ess than            | Pula se for menor que      |
+| JG        | **J**ump if **G**reater than         | Pula se for maior que      |
+| JLE       | **J**ump if **L**ess or **E**qual    | Pula se for menor ou igual |
+| JGE       | **J**ump if **G**reater or **E**qual | Pula se for maior ou igual |
 
 {% hint style="info" %}
 O nome Jcc para se referir aos saltos condicionais vem do prefixo 'J' seguido de 'cc' para indicar uma condição, que é o formato da nomenclatura das instruções.
 
-Exemplo: JLE -- 'J' prefixo, 'LE' condição \(_Less or Equal_\)
+Exemplo: JLE -- 'J' prefixo, 'LE' condição (_Less or Equal_)
 
 Essa mesma nomenclatura também é usada para as outras instruções condicionais, como por exemplo CMOVcc.
 {% endhint %}
@@ -113,7 +113,7 @@ A maneira mais comum usada para setar as _flags_ para um salto condicional é a 
 
 {% tabs %}
 {% tab title="assembly.asm" %}
-```text
+```nasm
 bits 64
 
 global assembly
@@ -163,4 +163,3 @@ Repare que a condição para o código ser executado é exatamente o oposto da c
 {% hint style="info" %}
 Experimente modificar os valores de RBX e RCX, e também teste usando outros Jcc.
 {% endhint %}
-

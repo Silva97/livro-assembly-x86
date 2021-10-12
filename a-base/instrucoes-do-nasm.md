@@ -18,7 +18,7 @@ Por padrão o NASM joga todo o conteúdo do arquivo fonte na seção `.text` e p
 
 {% tabs %}
 {% tab title="assembly.asm" %}
-```text
+```nasm
 bits 64
 
 section .text
@@ -45,13 +45,13 @@ int main(void)
 {% endtab %}
 {% endtabs %}
 
-A partir da diretiva na linha 3 todo o código é organizado no arquivo objeto dentro da seção `.text`, que é destinada ao código executável do programa e por padrão tem o atributo de execução \(_exec_\) habilitado pelo NASM.
+A partir da diretiva na linha 3 todo o código é organizado no arquivo objeto dentro da seção `.text`, que é destinada ao código executável do programa e por padrão tem o atributo de execução (_exec_) habilitado pelo NASM.
 
 ### Símbolos
 
 Como já vimos na nossa PoC os símbolos internos podem ser exportados para serem acessados a partir de outros arquivos objetos usando a diretiva `global`. Podemos exportar mais de um símbolo de uma vez separando cada nome de rótulo por vírgula, exemplo:
 
-```text
+```
 global assembly, anotherFunction, gVariable
 ```
 
@@ -61,7 +61,7 @@ Mas as vezes também teremos a necessidade de acessar um símbolo externo, isto 
 
 Já vimos que no arquivo objeto **main.o** havia na _symbol table_ a declaração do uso do símbolo `assembly` que estava em um arquivo externo. A diretiva `extern` serve para inserir essa informação na tabela de símbolos do arquivo objeto de saída. A diretiva `extern` segue a mesma sintaxe de `global`:
 
-```text
+```
 extern symbol1, symbol2, symbol3
 ```
 
@@ -88,7 +88,7 @@ int number(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 extern number
 
@@ -106,7 +106,7 @@ assembly:
 Declaramos na linha 11 do arquivo **main.c** a função `number` e no arquivo **assembly.asm** usamos a diretiva `extern` na linha 2 para declarar o acesso ao símbolo `number`, que chamamos na linha 8.
 
 {% hint style="info" %}
-Para o NASM não faz diferença alguma aonde você coloca as diretivas **extern** e **global** porém por questões de legibilidade do código eu recomendo que use **extern** logo no começo do arquivo fonte e **global** logo antes da declaração do rótulo.
+Para o NASM não faz diferença alguma aonde você coloca as diretivas **extern **e **global** porém por questões de legibilidade do código eu recomendo que use **extern **logo no começo do arquivo fonte e **global **logo antes da declaração do rótulo.
 
 Isso irá facilitar a leitura do seu código já que ao ver o rótulo imediatamente se sabe que ele foi exportado e ao abrir o arquivo fonte, imediatamente nas primeiras linhas, já se sabe quais símbolos externos estão sendo acessados.
 {% endhint %}
@@ -120,15 +120,15 @@ Em um código em C variáveis globais ficam na seção `.data` ou `.bss`. A seç
 Para despejar dados no arquivo binário existe a pseudo-instrução `db` e semelhantes. Cada uma despejando um tamanho diferente de dados mas todas tendo a mesma sintaxe de separar cada valor numérico por vírgula. Veja a tabela:
 
 | Pseudo-instrução | Tamanho dos dados | Bytes |
-| :--- | :--- | :--- |
-| db | byte | 1 |
-| dw | word | 2 |
-| dd | double word | 4 |
-| dq | quad word | 8 |
-| dt | ten word | 10 |
-| do |  | 16 |
-| dy |  | 32 |
-| dz |  | 64 |
+| ---------------- | ----------------- | ----- |
+| db               | byte              | 1     |
+| dw               | word              | 2     |
+| dd               | double word       | 4     |
+| dq               | quad word         | 8     |
+| dt               | ten word          | 10    |
+| do               |                   | 16    |
+| dy               |                   | 32    |
+| dz               |                   | 64    |
 
 {% hint style="warning" %}
 As quatro últimas `dt, do, dy e dz` não suportam que seja passado uma _string_ como valor.
@@ -138,7 +138,7 @@ Podemos por exemplo guardar uma variável global na seção `.data` e acessar el
 
 {% tabs %}
 {% tab title="assembly.asm" %}
-```text
+```nasm
 bits 64
 
 global myVar
@@ -182,13 +182,13 @@ A seção `.bss` é usada para armazenar variáveis não-inicializadas, isto é,
 
 Existem pseudo-instruções do NASM que permitem alocar espaço na seção sem de fato despejar nada ali. É a `resb` e suas semelhantes que seguem a mesma premissa de `db`. Os tamanhos disponíveis de dados são os mesmos de `db` por isso não vou repetir a tabela aqui. Só ressaltando que a última letra da pseudo-instrução indica o tamanho do dado. A sintaxe da pseudo-instrução é:
 
-```text
+```
 resb número_de_dados
 ```
 
 Onde como operando ela recebe o número de dados que serão alocados, onde o tamanho de cada dado depende de qual variante da instrução foi utilizada. Por exemplo:
 
-```text
+```
 resd 6  ; Aloca o espaço de 6 double-words, ao todo 24 bytes.
 ```
 
@@ -196,7 +196,7 @@ A ideia de usar essa pseudo-instrução é poder declarar um rótulo/símbolo qu
 
 {% tabs %}
 {% tab title="assembly.asm" %}
-```text
+```nasm
 bits 64
 
 global myVar
@@ -231,15 +231,15 @@ int main(void)
 
 ### Constantes
 
-Uma constante nada mais é que um apelido para representar um valor no código afim de facilitar a modificação daquele valor posteriormente ou então evitar um [_magic number_](https://pt.wikipedia.org/wiki/N%C3%BAmero_m%C3%A1gico_%28programa%C3%A7%C3%A3o_de_sistemas%29#N.C3.BAmeros_m.C3.A1gicos_em_programa.C3.A7.C3.A3o). Podemos declarar uma constante usando a pseudo-instrução `equ`:
+Uma constante nada mais é que um apelido para representar um valor no código afim de facilitar a modificação daquele valor posteriormente ou então evitar um [_magic number_](https://pt.wikipedia.org/wiki/N%C3%BAmero_m%C3%A1gico_\(programa%C3%A7%C3%A3o_de_sistemas\)#N.C3.BAmeros_m.C3.A1gicos_em_programa.C3.A7.C3.A3o). Podemos declarar uma constante usando a pseudo-instrução `equ`:
 
-```text
+```
 NOME_DA_CONSTANTE equ expressão
 ```
 
 Por convenção é interessante usar nomes de constantes totalmente em letras maiúsculas para facilitar a sua identificação no código fonte em contraste com o nome de um rótulo. Seja lá aonde a constante for usada no código fonte ela irá expandir para o seu valor definido. Exemplo:
 
-```text
+```nasm
 EXAMPLE equ 34
 mov eax, EXAMPLE
 ```
@@ -250,7 +250,7 @@ A instrução na linha 2 alteraria o valor de EAX para 34.
 
 Constantes em memória nada mais são do que valores despejados na seção `.rodata`. Essa seção é muito parecida com `.data` com a diferença de não ter permissão de escrita. Exemplo:
 
-```text
+```nasm
 section .rodata
   const_value: dd 777
 ```
@@ -261,7 +261,7 @@ O NASM aceita que você escreva expressões matemáticas seguindo a mesma sintax
 
 Podemos usar expressão matemática em qualquer pseudo-instrução ou instrução que aceita um valor numérico como operando. Exemplos:
 
-```text
+```nasm
 CONST equ (5 + 2*5) / 3       ; Correto!
 mov eax, 4 << 2               ; Correto!
 mov eax, [(2341 >> 6) % 10]   ; Correto!
@@ -272,26 +272,26 @@ mov eax, ebx + 2   ; ERRADO!
 
 O NASM também permite o uso de dois símbolos especiais nas expressões que expandem para endereços relacionados a posição da instrução atual:
 
-| Símbolo | Valor |
-| :--- | :--- |
-| $ | Endereço da instrução atual |
-| $$ | Endereço do início da seção atual |
+| Símbolo | Valor                             |
+| ------- | --------------------------------- |
+| $       | Endereço da instrução atual       |
+| \$$     | Endereço do início da seção atual |
 
 Onde o uso do `$` serve como um atalho para se referir ao endereço da linha de código atual, algo equivalente a declarar um rótulo como abaixo:
 
-```text
+```nasm
 here: jmp here
 ```
 
 Usando o cifrão fica:
 
-```text
+```nasm
 jmp $
 ```
 
 Enquanto o uso de `$$` seria equivalente a declarar um rótulo no início da seção, como em:
 
-```text
+```nasm
 section .text
 text_start:
   nop
@@ -301,12 +301,11 @@ text_start:
 
 E esse seria o equivalente com `$$`:
 
-```text
+```nasm
 section .text
   nop
   call exemplo
   jmp $$
 ```
 
-No caso de você usar o NASM para um formato de arquivo binário puro \(_raw binary_\), onde não existem seções, o `$$` é equivalente ao endereço do início do binário.
-
+No caso de você usar o NASM para um formato de arquivo binário puro (_raw binary_), onde não existem seções, o `$$` é equivalente ao endereço do início do binário.
