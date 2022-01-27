@@ -14,7 +14,7 @@ Estou trabalhando o conteúdo do livro com base em dois princípios simples que 
 
 No livro eu tento o máximo possível abordar conteúdo que, com base no que já foi explorado antes, possa ser testado para ver os resultados. Bem como também tento apresentar os resultados para não deixar à margem da imaginação.
 
-Nosso cérebro tem o hábito de **fabricar informações**. Quando nós estudamos algo novo e nos falta informação sobre costumamos nós mesmos criarmos essas informações faltantes. Lacunas de conteúdo são preenchidas com informações hipotéticas e, muitas vezes, de uma maneira quase irreversível.\
+Nosso cérebro tem o hábito de **fabricar informações**. Quando estudamos algo novo e nos falta informação sobre, costumamos nós mesmos criarmos essas informações faltantes. Lacunas de conteúdo são preenchidas com informações hipotéticas e, muitas vezes, de uma maneira quase irreversível.\
 \
 Quando começamos a aprender algo costumamos ter muito viés ao conteúdo que consumimos primeiro. Se este viés for baseado em uma informação fabricada pela nossa mente ela vai nos induzir ao erro.
 
@@ -36,7 +36,7 @@ Na hora de consumir o conteúdo deste livro lembre-se do que mencionei acima. Pr
 
 #### 1. Aceite o que você não sabe
 
-O que eu não explicar e você não souber tente evitar o hábito de fabricar informações se baseando em hipóteses infundadas, aceite que **você não sabe** e pesquise à respeito ou continue lendo o livro, talvez eu só tenha deixado a resposta para depois devido a achar que seria muita informação de uma só vez. O mais importante é fixar na mente que **você não sabe**. 
+O que eu não explicar e você não souber tente evitar o hábito de fabricar informações se baseando em hipóteses infundadas, aceite que **você não sabe** e pesquise à respeito ou continue lendo o livro, talvez eu só tenha deixado a resposta para depois devido a achar que seria muita informação de uma só vez. O mais importante é fixar na mente que **você não sabe**.&#x20;
 
 Um treinamento bacana para diminuir esse péssimo hábito é simplesmente responder "não sei" para perguntas que você não sabe a resposta. Parece bobo, mas quantas vezes não lhe perguntaram algo que você não sabia e, ao invés de dizer "não sei", você inventou uma resposta na hora?
 

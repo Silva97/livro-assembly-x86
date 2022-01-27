@@ -4,7 +4,7 @@ description: Livro gratuito sobre Assembly x86 e x86-64
 
 # Introdução
 
-Este livro é mais um projeto do [Mente Binária](https://mentebinaria.com.br) cujo o intuito é ensinar os fundamentos do Assembly x86 e x86-64. Nele será abordado desde o zero até conceitos mais avançados afim de dar um entendimento profundo e uma base sólida de conhecimento.
+Este livro é mais um projeto do [Mente Binária](https://mentebinaria.com.br) cujo o intuito é ensinar os fundamentos do Assembly x86 e x86-64. Nele será abordado desde o zero até conceitos mais avançados a fim de dar um entendimento profundo e uma base sólida de conhecimento.
 
 O Mente Binária também tem um livro sobre [Fundamentos de Engenharia Reversa](https://mentebinaria.gitbook.io/engenharia-reversa/) e diversos [treinamentos gratuitos](https://www.mentebinaria.com.br/treinamentos/).
 
@@ -31,13 +31,13 @@ Apesar disso aprender Assembly nos dias atuais tem sim utilidade e irei listar a
 6. C & Assembly\
    Termino falando que há uma incrível vantagem de se saber Assembly quando se programa em C. Não só pelo [inline Assembly](https://gcc.gnu.org/onlinedocs/gcc/Using-Assembly-Language-with-C.html) mas também pela previsibilidade do código que eu já mencionei (você vai entender o que é isso se continuar lendo o livro).
 
-Como podemos ver o conhecimento da linguagem Assembly nos dias atuais é, na maioria dos casos, mais útil do que programar nela diretamente.
+Como podemos ver, o conhecimento da linguagem Assembly nos dias atuais é, na maioria dos casos, mais útil do que programar nela diretamente.
 
 ## O que é Assembly?
 
-De forma resumida Assembly é uma notação em formato de texto das instruções do código de máquina de uma determinada arquitetura. A "arquitetura" ao qual me refiro aqui é o ISA (_Instruction Set Architecture_) onde ela cria um modelo abstrato de um computador e tem diversas instruções que são computadas pelo processador, essas instruções são o que é conhecido como código de máquina.
+De forma resumida Assembly é uma notação em formato de texto das instruções do código de máquina de uma determinada arquitetura. A "arquitetura" ao qual me refiro aqui é a ISA (_Instruction Set Architecture_) onde ela cria um modelo abstrato de um computador e tem diversas instruções que são computadas pelo processador, essas instruções são o que é conhecido como código de máquina.
 
-Falando de um ponto de vista humano entender instruções em código de máquina é uma tarefa árdua. Por isso os manuais do ISA costumam simplificar o entendimento da instrução se referindo a ela com uma notação em texto, onde essa notação é conhecida como mnemônico e tem o fim de facilitar o entendimento e a memorização da instrução do processador.
+Falando de um ponto de vista humano, entender instruções em código de máquina é uma tarefa árdua. Por isso os manuais da ISA costumam simplificar o entendimento da instrução se referindo a ela com uma notação em texto, onde essa notação é conhecida como mnemônico e tem o fim de facilitar o entendimento e a memorização da instrução do processador.
 
 E é justamente dessa notação em texto dos manuais que surgiu o que a gente conhece hoje como "linguagem Assembly". Onde na verdade não existe uma linguagem Assembly (ou ASM para abreviar) mas sim cada ISA tem uma linguagem ASM diferente.
 
