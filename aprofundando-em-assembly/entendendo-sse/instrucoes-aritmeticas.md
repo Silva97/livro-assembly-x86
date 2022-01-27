@@ -6,7 +6,7 @@ description: Instruções de operação aritmética do SSE.
 
 ### ADDP(S|D) | Add Packed (Single|Double)-precision floating-point values
 
-```
+```nasm
 ADDPS xmm(n), xmm(n)
 ADDPS xmm(n), float(4)
 
@@ -36,7 +36,7 @@ int main(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 default rel
 
@@ -102,7 +102,7 @@ int main(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 
 section .text
@@ -187,7 +187,7 @@ RCPPS xmm(n), xmm(n)
 RCPPS xmm(n), float(4)
 ```
 
-Calcula o valor aproximado do [inverso multiplicativo](https://pt.wikipedia.org/wiki/Inverso_multiplicativo) dos _floats_ no operando fonte (a direita) e armazena os valores no operando destino.
+Calcula o valor aproximado do [inverso multiplicativo](https://pt.wikipedia.org/wiki/Inverso\_multiplicativo) dos _floats_ no operando fonte (a direita) e armazena os valores no operando destino.
 
 ### RCPSS | Compute Reciprocal of Scalar Single-precision floating-point value
 
@@ -222,7 +222,7 @@ SQRTSD xmm(n), xmm(n)
 SQRTSD xmm(n), double(1)
 ```
 
-Calcula a raiz quadrada do número escalar no operando fonte e armazena o resultado no _float/double _menos significativo do operando destino. Exemplo:
+Calcula a raiz quadrada do número escalar no operando fonte e armazena o resultado no _float/double_ menos significativo do operando destino. Exemplo:
 
 {% tabs %}
 {% tab title="main.c" %}
@@ -240,7 +240,7 @@ int main(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 
 section .text
@@ -260,7 +260,7 @@ RSQRTPS xmm(n), xmm(n)
 RSQRTPS xmm(n), float(4)
 ```
 
-Calcula o [inverso multiplicativo](https://pt.wikipedia.org/wiki/Inverso_multiplicativo) das raízes quadradas dos _floats_ no operando fonte, armazenando os resultados no operando destino. Essa instrução é equivalente ao uso de SQRTPS seguido de RCPPS.
+Calcula o [inverso multiplicativo](https://pt.wikipedia.org/wiki/Inverso\_multiplicativo) das raízes quadradas dos _floats_ no operando fonte, armazenando os resultados no operando destino. Essa instrução é equivalente ao uso de SQRTPS seguido de RCPPS.
 
 ### RSQRTSS | Compute Reciprocal of square root of Scalar Single-precision floating-point value
 
@@ -295,7 +295,7 @@ MAXSD xmm(n), xmm(n)
 MAXSD xmm(n), double(1)
 ```
 
-Compara os dois valores escalares e armazena o maior deles no _float/double _menos significativo do operando destino.
+Compara os dois valores escalares e armazena o maior deles no _float/double_ menos significativo do operando destino.
 
 ### MINP(S|D) | return minimum of Packed (Single|Double)-precision floating-point values
 

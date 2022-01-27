@@ -6,7 +6,7 @@ description: Listando algumas instruções de movimentação de dados do SSE.
 
 ### MOVAP(S|D)/MOVUP(S|D) | Move Aligned/Unaligned Packed (Single|Double)-precision floating-point
 
-```
+```nasm
 MOVAPS xmm(n), xmm(n)
 MOVAPS xmm(n), float(4)
 MOVAPS float(4), xmm(n)
@@ -52,7 +52,7 @@ int main(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 default rel
 
@@ -101,7 +101,7 @@ int main(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 default rel
 
@@ -121,7 +121,7 @@ assembly:
 
 ### MOVS(S|D) | Move Scalar (Single|Double)-precision floating-point
 
-```
+```nasm
 MOVSS xmm(n), xmm(n)
 MOVSS xmm(n), float(1)
 MOVSS float(1), xmm(n)
@@ -132,11 +132,11 @@ MOVSD xmm(n), double(1)
 MOVSD double(1), xmm(n)
 ```
 
-Move um único _float/double_ entre registradores XMM, onde o valor estaria contido na _double word _(4 bytes) ou _quadword_ (8 bytes) menos significativo do registrador. E também é possível mover de/para memória principal.
+Move um único _float/double_ entre registradores XMM, onde o valor estaria contido na _double word_ (4 bytes) ou _quadword_ (8 bytes) menos significativo do registrador. E também é possível mover de/para memória principal.
 
 ### MOVLP(S|D) | Move Low Packed (Single|Double)-precision floating-point
 
-```
+```nasm
 MOVLPS xmm(n), float(2)
 MOVLPS float(2), xmm(n)
 
@@ -151,7 +151,7 @@ Já MOVLPD faz a mesma operação porém com um _double_ contido no _quadword_ m
 
 ### MOVHP(S|D) | Move High Packed (Single|Double)-precision floating-point
 
-```
+```nasm
 MOVHPS xmm(n), float(2)
 MOVHPS float(2), xmm(n)
 
@@ -164,7 +164,7 @@ Semelhante a instrução acima porém armazena/ler o valor do registrador XMM no
 
 ### MOVLHPS | Move Packed Single-precision floating-point Low to High
 
-```
+```nasm
 MOVLHPS xmm(n), xmm(n)
 ```
 
@@ -172,7 +172,7 @@ Move o _quadword_ (8 bytes) menos significativo do registrador fonte (a direita)
 
 ### MOVHLPS | Move Packed Single-precision floating-point High to Low
 
-```
+```nasm
 MOVHLPS xmm(n), xmm(n)
 ```
 

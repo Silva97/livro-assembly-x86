@@ -93,7 +93,7 @@ Quando um processo dispara uma [exceção](../aprofundando-em-assembly/interrupc
 
 ## Depuradores
 
-Agora que já entendemos um pouco sobre processos vai ficar mais fácil entender como depuradores funcionam. Afinal de contas depuradores depuram processos. :slight_smile: 
+Agora que já entendemos um pouco sobre processos vai ficar mais fácil entender como depuradores funcionam. Afinal de contas depuradores depuram processos. :slight\_smile:&#x20;
 
 Depuradores têm a capacidade de controlar a execução das _threads_ de um processo, tratar os sinais enviados para o processo, acessar sua memória e ver/editar dados relacionados ao contexto de cada _thread_ (como os registradores, por exemplo). Todo esse poder é dado para os usuários do depurador por meio de alguns recursos que serão descritos abaixo.
 
@@ -159,10 +159,10 @@ Isso é implementado na arquitetura x86-64 usando a _trap flag_ (TF) no registra
 
 Existe também o conceito de _step over_ que é quando o depurador executa apenas "uma instrução" porém passando todas as instruções da rotina chamada pelo CALL. O que ele faz na prática é definir um _breakpoint_ temporário para a instrução seguinte ao CALL, como na ilustração:
 
-```c
-    mov rdi, 5     # Última instrução executada
---> call anything  # CALL que iremos "passar por cima"
-    test rax, rax  # Instrução onde o breakpoint será definido
+```nasm
+    mov rdi, 5     ; Última instrução executada
+--> call anything  ; CALL que iremos "passar por cima"
+    test rax, rax  ; Instrução onde o breakpoint será definido
 ```
 
 Se o depurador estiver parado no CALL e executamos um _step over_, o depurador coloca o _breakpoint_ temporário na instrução TEST e então irá executar o processo. Quando o _breakpoint_ na instrução TEST for alcançado ele será removido e o controle será dado para o usuário.
@@ -170,7 +170,7 @@ Se o depurador estiver parado no CALL e executamos um _step over_, o depurador c
 Repare no "defeito" desse mecanismo. O _step over_ só funciona apropriadamente se a instrução seguinte ao CALL realmente for executada, senão o processo continuará a execução normalmente. Experimente  rodar o seguinte código em um depurador:
 
 {% code title="testing.asm" %}
-```
+```nasm
 bits 64
 default rel
 
@@ -194,7 +194,7 @@ oops:
 
 Compile com:
 
-```
+```shell-session
 $ nasm testing.asm -o testing.o -felf64
 $ ld testing.o -o testing
 ```

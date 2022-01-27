@@ -4,7 +4,7 @@ description: Aprendendo sobre as instruções intrínsecas na arquitetura x86-64
 
 # Instruções intrínsecas
 
-As instruções intrínsecas é um recurso originalmente fornecido pelo compilador Intel C/C++ mas que também é implementado pelo GCC. Se tratam basicamente de tipos especiais e funções que são expandidas _inline_ para alguma instrução do processador, ou seja, é basicamente uma alternativa mais prática e legível do que usar _inline _Assembly para tudo.
+As instruções intrínsecas é um recurso originalmente fornecido pelo compilador Intel C/C++ mas que também é implementado pelo GCC. Se tratam basicamente de tipos especiais e funções que são expandidas _inline_ para alguma instrução do processador, ou seja, é basicamente uma alternativa mais prática e legível do que usar _inline_ Assembly para tudo.
 
 Usando instruções intrínsecas é possível obter o mesmo resultado de usar _inline_ Assembly com a diferença de ter a sintaxe amigável de uma chamada de função.
 
@@ -335,7 +335,7 @@ int main(void)
 
 Você **deve** compilar passando a _flag_ `-mrdrnd` para o GCC para indicar que o processador suporta a tecnologia. Caso contrário você obterá um erro como este:
 
-> error: inlining failed in call to always_inline ‘\_rdrand32\_step’: **target specific option mismatch**
+> error: inlining failed in call to always\_inline ‘\_rdrand32\_step’: **target specific option mismatch**
 
 As instruções intrínsecas abaixo são utilizadas da mesma maneira que **rdrand** porém o valor aleatório não é gerado por hardware.
 

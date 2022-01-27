@@ -123,7 +123,7 @@ PSADBW xmm(n), ubyte(16)
 
 Calcula a diferença absoluta dos bytes dos dois operandos e armazena a soma de todas as diferenças.
 
-A diferença dos 8 bytes menos significativos é somada e armazenada na _word_ menos significativa do operando destino.  Já a diferença dos 8 bytes mais significativos é somada e armazenada na quinta _word _(índice **4**, bits \[79:64]) do operando destino. Todas as outras _words_ do registrador XMM são zeradas.
+A diferença dos 8 bytes menos significativos é somada e armazenada na _word_ menos significativa do operando destino.  Já a diferença dos 8 bytes mais significativos é somada e armazenada na quinta _word_ (índice **4**, bits \[79:64]) do operando destino. Todas as outras _words_ do registrador XMM são zeradas.
 
 ### MOVDQA | Move aligned double quadword
 
@@ -207,7 +207,7 @@ int main(void)
 {% endtab %}
 
 {% tab title="assembly.asm" %}
-```
+```nasm
 bits 64
 default rel
 
@@ -236,7 +236,7 @@ RDI é o primeiro ponteiro recebido como argumento e RSI o segundo.
 PSLLDQ xmm(n), imm8
 ```
 
-Faz uma operação de [_logical shift_](https://en.wikipedia.org/wiki/Logical_shift)_ left_ com os dois _quadwords_ do registrador XMM. O número de vezes que o _shift_ deve ser feito é especificado pelo operando imediato de 8 bits. Os bits menos significativos são zerados.
+Faz uma operação de [_logical shift_](https://en.wikipedia.org/wiki/Logical\_shift) _left_ com os dois _quadwords_ do registrador XMM. O número de vezes que o _shift_ deve ser feito é especificado pelo operando imediato de 8 bits. Os bits menos significativos são zerados.
 
 ### PSRLDQ | Shift double quadword right logical
 

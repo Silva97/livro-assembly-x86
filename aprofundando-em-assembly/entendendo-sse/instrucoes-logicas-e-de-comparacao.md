@@ -52,7 +52,7 @@ XORPD xmm(n), xmm(n)
 XORPD xmm(n), double(2)
 ```
 
-Faz uma operação OU Exclusivo bit a bit (_bitwise eXclusive OR_) em cada um dos valores _float/double _contidos no operando fonte e armazena o resultado no operando destino.
+Faz uma operação OU Exclusivo bit a bit (_bitwise eXclusive OR_) em cada um dos valores _float/double_ contidos no operando fonte e armazena o resultado no operando destino.
 
 ## Instruções de comparação SSE
 
@@ -71,7 +71,7 @@ As instruções de comparação do SSE recebem um terceiro operando imediato de 
 
 Felizmente para facilitar nossa vida os assemblers, incluindo o NASM, adicionam pseudo-instruções que removem o operando imediato e, ao invés disso, usa os mnemônicos apresentados na tabela como _conditional code_ para a instrução. Como é demonstrado no exemplo abaixo:
 
-```
+```nasm
 ; As duas instruções abaixo são equivalentes.
 
 CMPPS xmm1, xmm2, 0
@@ -127,7 +127,7 @@ As quatro instruções comparam os dois operandos **escalares** e definem as _st
 
 Quando uma operação aritmética com números _floats_ resulta em NaN existem dois tipos diferentes:
 
-* _quiet_ NaN** **(QNaN): O valor é apenas definido para NaN sem qualquer indicação de problema.
+* _quiet_ NaN **** (QNaN): O valor é apenas definido para NaN sem qualquer indicação de problema.
 * _signaling_ NaN (SNaN): O valor é definido para NaN e uma exceção _floating-point invalid-operation_ (`#I`) é disparada caso você execute alguma operação com o valor.
 
 A diferença entre COMISS/COMISD e UCOMISS/UCOMISD é que COMISS/COMISD irá disparar a exceção `#I` se o primeiro operando for QNaN ou SNaN. Já UCOMISS/UCOMISD apenas dispara a exceção se o primeiro operando for SNaN.

@@ -6,19 +6,19 @@ description: Aprendendo a usar o depurador GDB do projeto GNU.
 
 O GDB é um depurador de linha de comando que faz parte do projeto GNU. O [Mingw-w64](https://mingw-w64.org/doku.php) já instala o GDB junto com o GCC, e no Linux ele pode ser instalado pelo pacote `gdb`:
 
-```
+```shell-session
 $ sudo apt install gdb
 ```
 
 O GDB pode ser usado para depurar código tanto visualizando o Assembly como também o código-fonte. Para isso é necessário compilar o binário adicionando informações de depuração, com o GCC basta adicionar a opção `-g3` ao compilar. Exemplo:
 
-```
+```shell-session
 $ gcc -g3 test.c -o test
 ```
 
 E pode rodar o GDB passando o caminho do binário assim:
 
-```
+```shell-session
 $ gdb ./test
 ```
 
@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 
 E será compilado da seguinte forma:
 
-```
+```shell-session
 $ gcc -g3 test.c -o test
 ```
 
@@ -446,7 +446,7 @@ O número de linhas exibido é por padrão 10, mas esse valor pode ser alterado 
 backtrace [COUNT]
 ```
 
-O comando `backtrace` (ou `bt`) exibe o _stack backtrace_ atual. O argumento COUNT é o número máximo de _stack frames_ que serão exibidos. Se for um número negativo exibe os primeiros_ stack frames_.
+O comando `backtrace` (ou `bt`) exibe o _stack backtrace_ atual. O argumento COUNT é o número máximo de _stack frames_ que serão exibidos. Se for um número negativo exibe os primeiros _stack frames_.
 
 Exemplo:
 
@@ -486,7 +486,7 @@ O comando `frame apply` executa o mesmo comando em um ou mais _stack frames_. Es
 
 COUNT é o número de _frames_ onde o comando será executado. Por exemplo `frame apply 2 p x` executaria o comando `print` nos últimos 2 _frames_ (o atual e o anterior).
 
- O `frame apply all` executa o comando em todos os _frames_. Já o `frame apply level` executa o comando em um _frame_ específico. exemplo:
+&#x20;O `frame apply all` executa o comando em todos os _frames_. Já o `frame apply level` executa o comando em um _frame_ específico. exemplo:
 
 ```
 (gdb) frame apply level 1 info locals
@@ -610,7 +610,7 @@ Também é possível rodar `help COMMAND` para obter ajuda para um comando espec
 
 É possível usar o GDB com uma interface textual permitindo que seja mais agradável acompanhar a execução enquanto observa o código-fonte. Para isso basta iniciar o GDB com a _flag_ `-tui`, como em:
 
-```
+```shell-session
 $ gdb -tui ./test
 ```
 
