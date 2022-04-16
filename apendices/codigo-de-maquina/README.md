@@ -22,7 +22,7 @@ Então ao pensar em código de máquina não pense nisso `10110100 00001110` mas
 
 ### Ferramentas
 
-Comecei a desenvolver uma ferramenta exclusivamente para ser usada como auxílio para esse capítulo. Eu a chamei de **x86-visualizer** e seu intuito é você escrever uma instrução em Assembly e ela lhe exibir o código de máquina divido em seus campos, assim facilitando o entendimento.
+Comecei a desenvolver uma ferramenta exclusivamente para ser usada como auxílio para esse capítulo. Eu a chamei de **x86-visualizer** e seu intuito é você escrever uma instrução em Assembly e ela lhe exibir o código de máquina dividido em seus campos, assim facilitando o entendimento.
 
 A ferramenta não está concluída então poucas instruções irão funcionar, todavia sugiro seu uso durante a leitura do capítulo afim de facilitar o entendimento da codificação das instruções.
 

@@ -16,7 +16,7 @@ Observe as figuras tiradas dos manuais da Intel:
 
 Em modo de 16-bit e 32-bit há 8 registradores de propósito geral, mas em 64-bit há 16 registradores de propósito geral. Como eu mencionei antes os campos que especificam os registradores por códigos contém somente 3 bits de tamanho, daí só é possível especificar 8 registradores distintos.
 
-Mas alguns bits do prefixo REX são usados para estender os tamanhos desses campos em 1 bit, assim permitindo especificar até 16 registradores distintos ou 16 modos de endereçamento distintos. Cada bit do prefixo REX é identificado por uma letra e é comumente referido como no formato `REX.B` que seria o bit `B` (o menos significativo, bit 0) do prefixo.
+Mas alguns bits do prefixo REX são usados para estender os tamanhos desses campos em 1 bit, assim permitindo especificar até 16 registradores distintos ou 16 modos de endereçamento distintos. Cada bit do prefixo REX é identificado por uma letra e é comumente referido como no formato `REX.B` que seria o bit `B` (o menos significativo) do prefixo.
 
 #### **REX.B (bit 0)**
 

@@ -26,9 +26,11 @@ Onde `67 66 8B 03` e `66 67 8B 03` dariam na mesma, o processador executaria as 
 
 Em modo de 16-bit e modo de 32-bit, desde o processador i386, é possível usar tanto [endereçamento](../../a-base/enderecamento.md) de 16-bit como de 32-bit. No exemplo anterior a instrução `mov eax, [ebx]` foi compilada no modo de 16-bit, porém usando endereçamento e operando de 32-bit.
 
-O atributo **address-size** determina o modo de endereçamento da instrução. Em modo 16-bit o atributo **address-size** por padrão é de 16-bit. E em modo de 32-bit o atributo é por padrão de 32-bit.
+O atributo **address-size** determina o modo de endereçamento da instrução. Em modo 16-bit o atributo **address-size** por padrão é de 16-bit. E em modo de 32-bit o atributo é por padrão de 32-bit. Já em modo de 64-bit o endereçamento padrão é 64-bit.
 
-O prefixo conhecido como **address-size override**, cujo o byte é `67`, serve para usar o modo de endereçamento não-padrão. Ou seja, ao usar o prefixo se estiver em modo de 16-bit o endereçamento será de 32-bit. E se estiver em modo de 32-bit o endereçamento será de 16-bit. Por isso o prefixo é adicionado em 16-bit para instruções que usam endereçamento de 32-bit. O mesmo também é feito na situação oposta:
+O prefixo conhecido como **address-size override**, cujo o byte é `67`, serve para usar o modo de endereçamento não-padrão. Ou seja, ao usar o prefixo se estiver em modo de 16-bit o endereçamento será de 32-bit. E se estiver em modo de 32-bit o endereçamento será de 16-bit. Já se estiver em modo de 64-bit o endereçamento será de 32-bit.
+
+Por isso o prefixo é adicionado em 16-bit para instruções que usam endereçamento de 32-bit. O mesmo também é feito na situação oposta:
 
 ![Print do x86-visualizer.](../../.gitbook/assets/Captura\_de\_tela\_de\_2022-04-03\_15-12-37.png)
 
@@ -38,12 +40,12 @@ Assim como é possível alternar entre endereçamento de 16-bit e 32-bit nos mod
 
 Assim como também foi demonstrado no primeiro exemplo a instrução de 16-bit fez uma operação com um valor de 32-bit (o registrador EAX teve seu valor alterado para os 4 bytes presentes no endereço `[EBX]`).
 
-E para isso foi usado o prefixo **operand-size override**, o byte `66`. E na mesma lógica do `address-size override` ele alterna o tamanho do operando para o seu tamanho não-padrão. Onde em modos de 32-bit e 64-bit o tamanho padrão de operando é de 32-bit, e em 16-
+E para isso foi usado o prefixo **operand-size override**, o byte `66`. E na mesma lógica do `address-size override` ele alterna o tamanho do operando para o seu tamanho não-padrão. Onde em modos de 32-bit e 64-bit o tamanho padrão de operando é de 32-bit, e em modo de 16-bit o tamanho padrão é de 16-bit.
 
 {% hint style="info" %}
 Vale citar um erro que eu vi um senhor cometer uma vez: Ele acreditava que em modo de 32-bit era possível usar registradores de 64-bit e endereçamento de 64-bit. Bem, isso está **errado** como você pode notar pela explicação acima.\
 \
-Em modo de 16-bit é possível usar registradores e endereçamento de 32-bit alterando os atributos **address-size** e **operand-size**. Mas o mesmo não se aplica para 64-bit porque o uso de operandos de 64-bit e endereçamento de 64-bit é feito por meio do prefixo REX, que **só existe em modo de 64-bit**.
+Em modo de 16-bit é possível usar registradores e endereçamento de 32-bit alterando os atributos **address-size** e **operand-size**. Mas o mesmo não se aplica para 64-bit porque o uso de operandos de 64-bit é feito por meio do prefixo REX, que **só existe em modo de 64-bit**. E em modo de 32-bit só é possível alternar entre endereçamento de 32-bit e 16-bit usando o prefixo `67`.
 {% endhint %}
 
 ### Atributo segment
@@ -78,7 +80,7 @@ Exemplo:
 
 ### Prefixos REP/REPE e REPNE
 
-As instruções de movimentação de dados (`movsb`, `movsw`, `movsd` e `movsq`), bem como outras como `scasb`, `lodsb`, `in`, `out` etc. podem ser executadas em _loop_ usando o prefixo REPE ou REPNE.
+As instruções de movimentação de dados (`movsb`, `movsw`, `movsd` e `movsq`) bem como outras como `scasb`, `lodsb`, `in`, `out` etc. podem ser executadas em _loop_ usando o prefixo REPE ou REPNE.
 
 No caso das instruções `MOVS*` é possível usar o prefixo REPE, que nesse caso também pode ser chamado só de `REP` mas os dois mnemônicos produzem o mesmo byte (`F3`).
 

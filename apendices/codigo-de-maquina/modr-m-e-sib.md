@@ -11,7 +11,7 @@ Em Assembly existem dois "tipos" de instruções que recebem dois operandos:
 1. As que tem um operando registrador e imediato. Exemplo: `mov eax, 123`&#x20;
 2. As que tem um operando na memória ou dois operandos registradores. Exemplos: `mov [ebx], 123` e `mov eax, ebx`.
 
-O primeiro tipo não precisa do byte ModR/M, pois o registrador destino é especificado nos 3 últimos bits do byte do opcode. Por exemplo o opcode `B8` da instrução `mov eax, 123` é o seguinte em binário: `10111000` Onde o número zero (`000`) é o código para identificar o registrador EAX.
+O primeiro tipo não precisa do byte ModR/M, pois o registrador destino é especificado nos 3 últimos bits do byte do [opcode](opcode.md). Por exemplo o opcode `B8` da instrução `mov eax, 123` é o seguinte em binário: `10111000` Onde o número zero (`000`) é o código para identificar o registrador EAX.
 
 A tabela abaixo mostra o código de cada um dos registradores de propósito geral:
 
