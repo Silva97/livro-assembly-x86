@@ -106,7 +106,7 @@ assembly:
 Declaramos na linha 11 do arquivo **main.c** a função `number` e no arquivo **assembly.asm** usamos a diretiva `extern` na linha 2 para declarar o acesso ao símbolo `number`, que chamamos na linha 8.
 
 {% hint style="info" %}
-Para o NASM não faz diferença alguma aonde você coloca as diretivas **extern **e **global** porém por questões de legibilidade do código eu recomendo que use **extern **logo no começo do arquivo fonte e **global **logo antes da declaração do rótulo.
+Para o NASM não faz diferença alguma aonde você coloca as diretivas **extern** e **global** porém por questões de legibilidade do código eu recomendo que use **extern** logo no começo do arquivo fonte e **global** logo antes da declaração do rótulo.
 
 Isso irá facilitar a leitura do seu código já que ao ver o rótulo imediatamente se sabe que ele foi exportado e ao abrir o arquivo fonte, imediatamente nas primeiras linhas, já se sabe quais símbolos externos estão sendo acessados.
 {% endhint %}
@@ -231,7 +231,7 @@ int main(void)
 
 ### Constantes
 
-Uma constante nada mais é que um apelido para representar um valor no código afim de facilitar a modificação daquele valor posteriormente ou então evitar um [_magic number_](https://pt.wikipedia.org/wiki/N%C3%BAmero_m%C3%A1gico_\(programa%C3%A7%C3%A3o_de_sistemas\)#N.C3.BAmeros_m.C3.A1gicos_em_programa.C3.A7.C3.A3o). Podemos declarar uma constante usando a pseudo-instrução `equ`:
+Uma constante nada mais é que um apelido para representar um valor no código afim de facilitar a modificação daquele valor posteriormente ou então evitar um [_magic number_](https://pt.wikipedia.org/wiki/N%C3%BAmero\_m%C3%A1gico\_\(programa%C3%A7%C3%A3o\_de\_sistemas\)#N.C3.BAmeros\_m.C3.A1gicos\_em\_programa.C3.A7.C3.A3o). Podemos declarar uma constante usando a pseudo-instrução `equ`:
 
 ```
 NOME_DA_CONSTANTE equ expressão

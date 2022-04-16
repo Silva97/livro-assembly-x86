@@ -49,7 +49,7 @@ Na linha `6` empilhamos o valor de RAX na pilha, alteramos o valor na linha `8` 
 
 A instrução `pop` recebe como operando um registrador ou endereçamento de memória onde ele deve armazenar o valor desempilhado.
 
-A instrução `push` recebe como operando o valor a ser empilhado. O tamanho de cada valor na pilha também acompanha o barramento interno (64 bits em 64-bit, 32 bits em _protected mode _e 16 bits em _real mode_). Pode-se passar como operando um valor na memória, registrador ou valor imediato.
+A instrução `push` recebe como operando o valor a ser empilhado. O tamanho de cada valor na pilha também acompanha o barramento interno (64 bits em 64-bit, 32 bits em _protected mode_ e 16 bits em _real mode_). Pode-se passar como operando um valor na memória, registrador ou valor imediato.
 
 A pilha "cresce" para baixo. O que significa que toda vez que um valor é inserido nela o valor de ESP é subtraído pelo tamanho em bytes do valor. E na mesma lógica um `pop` incrementa o valor de ESP. Logo as instruções seriam equivalentes aos dois pseudocódigos abaixo (considerando um código de 32-bit):
 

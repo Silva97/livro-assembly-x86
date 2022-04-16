@@ -210,7 +210,7 @@ and r/m, reg
 and r/m, imm
 ```
 
-Faz uma operação _E _bit a bit nos operandos e armazena o resultado no operando destino.
+Faz uma operação _E_ bit a bit nos operandos e armazena o resultado no operando destino.
 
 {% code title="pseudo.c" %}
 ```c
@@ -227,7 +227,7 @@ or r/m, reg
 or r/m, imm
 ```
 
-Faz uma operação _OU _bit a bit nos operandos e armazena o resultado no operando destino.
+Faz uma operação _OU_ bit a bit nos operandos e armazena o resultado no operando destino.
 
 {% code title="pseudo.c" %}
 ```c

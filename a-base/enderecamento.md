@@ -90,7 +90,7 @@ mov [r10 + r15d], rax    ; ERRADO!
 mov [rsp*2],      rax    ; ERRADO!
 ```
 
-Na sintaxe do NASM para usar um endereçamento relativo ao RIP deve-se usar a _keyword** **_**rel** para determinar que se trata de um endereço relativo. Também é possível usar a diretiva **default rel** para setar o endereçamento como relativo por padrão. Exemplo:
+Na sintaxe do NASM para usar um endereçamento relativo ao RIP deve-se usar a _keyword ****_** rel** para determinar que se trata de um endereço relativo. Também é possível usar a diretiva **default rel** para setar o endereçamento como relativo por padrão. Exemplo:
 
 ```nasm
 mov [rel my_label], rax

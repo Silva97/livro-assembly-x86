@@ -4,7 +4,7 @@ description: Aprendendo sobre a convenção de chamada do C usada no Linux.
 
 # Convenção de chamada da System V ABI
 
-Sistemas [UNIX-Like](https://pt.wikipedia.org/wiki/Sistema_operacional_tipo_Unix), incluindo o Linux, seguem a padronização da System V ABI (ou SysV ABI). Onde ABI é sigla para _**A**pplication **B**inary** I**nterface _(Interface binária de aplicação) que é basicamente uma padronização que dita como código binário deve ser escrito e executado no sistema operacional. Uma das coisas que a SysV ABI padroniza é a convenção de chamada utilizada em cada arquitetura de processador.
+Sistemas [UNIX-Like](https://pt.wikipedia.org/wiki/Sistema\_operacional\_tipo\_Unix), incluindo o Linux, seguem a padronização da System V ABI (ou SysV ABI). Onde ABI é sigla para _**A**pplication **B**inary **I**nterface_ (Interface binária de aplicação) que é basicamente uma padronização que dita como código binário deve ser escrito e executado no sistema operacional. Uma das coisas que a SysV ABI padroniza é a convenção de chamada utilizada em cada arquitetura de processador.
 
 Neste tópico vamos aprender sobre a convenção de chamada da SysV ABI e o tamanho dos tipos de dados usados na linguagem C.
 
@@ -37,7 +37,7 @@ assembly:
 ```
 {% endcode %}
 
-O espaço de 128 bytes antes do endereço apontado por RSP é uma região chamada de _**redzone**_ que por convenção pode ser usada por funções folha (_leaf_), que são funções que não chamam outras funções. Ou então pode ser usada em qualquer função onde o valor não precise ser preservado após chamar outra função. 
+O espaço de 128 bytes antes do endereço apontado por RSP é uma região chamada de _**redzone**_ que por convenção pode ser usada por funções folha (_leaf_), que são funções que não chamam outras funções. Ou então pode ser usada em qualquer função onde o valor não precise ser preservado após chamar outra função.&#x20;
 
 O endereço entre `-128(%rsp)` e `-1(%rsp)` pode ser usado livremente sem a necessidade de alocar um _stack frame_.
 
@@ -139,7 +139,7 @@ example:
 
 Também existe a instrução `leave` que pode ser usada no epílogo. Ela basicamente faz a operação de `mov %rbp, %rsp` e `pop %rbp` em uma única instrução (também pode ser usada em 32 e 16 bits atuando com EBP/ESP e BP/SP respectivamente).
 
-Mas como já foi demonstrado em um exemplo mais acima isso não é obrigatório e podemos apenas incrementar e subtrair ESP/RSP no prólogo e no epílogo. Código otimizado gerado pelo GCC costuma apenas fazer isso, já código com a otimização desligada costuma gerar o prólogo e epílogo "clássico". 
+Mas como já foi demonstrado em um exemplo mais acima isso não é obrigatório e podemos apenas incrementar e subtrair ESP/RSP no prólogo e no epílogo. Código otimizado gerado pelo GCC costuma apenas fazer isso, já código com a otimização desligada costuma gerar o prólogo e epílogo "clássico".&#x20;
 
 ## Tamanho dos tipos da linguagem C
 

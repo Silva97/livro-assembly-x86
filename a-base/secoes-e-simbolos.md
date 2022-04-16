@@ -59,7 +59,7 @@ Quando definimos um rótulo em Assembly podemos "exportá-lo" como um símbolo p
 
 ### Linker
 
-O _linker_ é o software encarregado de processar os arquivos objetos para que eles possam "conversar" entre si. Por exemplo, um símbolo definido no arquivo objeto **assembly.o** para que possa ser acessado no arquivo **main.o** o_ linker_ precisa intermediar, porque os arquivos não vão trocar informação por mágica.
+O _linker_ é o software encarregado de processar os arquivos objetos para que eles possam "conversar" entre si. Por exemplo, um símbolo definido no arquivo objeto **assembly.o** para que possa ser acessado no arquivo **main.o** o _linker_ precisa intermediar, porque os arquivos não vão trocar informação por mágica.
 
 Na nossa PoC o arquivo objeto **main.o** avisa para o _linker_ que ele está acessando um símbolo externo (que está em outro arquivo objeto) chamado `assembly`. O _linker_ então se encarrega de procurar por esse símbolo, e ele acaba o achando no **assembly.o**. Ao achar o _linker_ calcula o endereço para aquele símbolo e seja lá aonde ele foi utilizado em **main.o** o _linker_ irá colocar o endereço correto.
 

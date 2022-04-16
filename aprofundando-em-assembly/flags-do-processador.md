@@ -22,14 +22,14 @@ Porém um detalhe que é interessante saber é que existem duas instruções que
 
 Enquanto `TEST` faz uma operação _bitwise AND_ (E bit a bit) também sem modificar os operandos. Ou seja, o mesmo que a instrução `AND`. Veja a tabela abaixo com todas as _status flags_:
 
-| Bit | Nome                 | Sigla | Descrição                                                                                                                                                                                     |
-| --- | -------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0   | Carry Flag           | CF    | Setado se uma condição de _Carry_ ou _Borrow_ acontecer no bit mais significativo do resultado. Basicamente indica o _overflow_ de um valor não-sinalizado.                                   |
-| 2   | Parity Flag          | PF    | ​Setado se o byte menos significativo do resultado conter um número par de bits ligados (1).                                                                                                  |
-| 4   | Auxiliary Carry Flag | AF    | Setado se uma condição de _Carry_ ou _Borrow_ acontecer no bit 3 do resultado.                                                                                                                |
-| 6   | Zero Flag            | ZF    | Setado se o resultado for zero.                                                                                                                                                               |
-| 7   | Sign Flag            | SF    | Setado para o mesmo valor do bit mais significativo do resultado ([MSB](https://pt.wikipedia.org/wiki/Bit_mais_significativo)). Onde 0 indica um valor positivo e 1 indica um valor negativo. |
-| 11  | Overflow Flag        | OF    | Setado se o resultado não tiver o sinal esperado da operação aritmética. Basicamente indica o _overflow_ de um número sinalizado.                                                             |
+| Bit | Nome                 | Sigla | Descrição                                                                                                                                                                                       |
+| --- | -------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0   | Carry Flag           | CF    | Setado se uma condição de _Carry_ ou _Borrow_ acontecer no bit mais significativo do resultado. Basicamente indica o _overflow_ de um valor não-sinalizado.                                     |
+| 2   | Parity Flag          | PF    | ​Setado se o byte menos significativo do resultado conter um número par de bits ligados (1).                                                                                                    |
+| 4   | Auxiliary Carry Flag | AF    | Setado se uma condição de _Carry_ ou _Borrow_ acontecer no bit 3 do resultado.                                                                                                                  |
+| 6   | Zero Flag            | ZF    | Setado se o resultado for zero.                                                                                                                                                                 |
+| 7   | Sign Flag            | SF    | Setado para o mesmo valor do bit mais significativo do resultado ([MSB](https://pt.wikipedia.org/wiki/Bit\_mais\_significativo)). Onde 0 indica um valor positivo e 1 indica um valor negativo. |
+| 11  | Overflow Flag        | OF    | Setado se o resultado não tiver o sinal esperado da operação aritmética. Basicamente indica o _overflow_ de um número sinalizado.                                                               |
 
 {% hint style="info" %}
 _Carry_, ou carrinho/transporte, é o que a gente conhece no Brasil como "vai um"  em uma operação aritmética de adição. _Borrow_ é o mesmo princípio porém em aritmética de subtração, em linguagem coloquial chamado de "pegar emprestado".
@@ -62,7 +62,7 @@ Caso sete o valor dessa _flag_ é importante que a zere novamente em seguida. C�
 
 ### System Flags
 
-As _system flags _podem ser lidas por qualquer programa porém somente o sistema operacional pode modificar seus valores (exceto ID). Abaixo irei falar somente das _flags_ que nos interessam saber por agora.
+As _system flags_ podem ser lidas por qualquer programa porém somente o sistema operacional pode modificar seus valores (exceto ID). Abaixo irei falar somente das _flags_ que nos interessam saber por agora.
 
 | Bit   | Nome                      | Sigla | Descrição                                                                                                                                                                                                   |
 | ----- | ------------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -71,7 +71,7 @@ As _system flags _podem ser lidas por qualquer programa porém somente o sistema
 | 12-13 | I/O Privilege Level field | IOPL  | Indica o nível de acesso para a comunicação direta com o _hardware_ (operações de I/O) do programa atual.                                                                                                   |
 | 14    | Nested Task flag          | NT    | Se setada indica que a tarefa atual está vinculada com uma tarefa anterior. Essa _flag_ controla o comportamento da instrução `IRET`.                                                                       |
 | 16    | Resume Flag               | RF    | Se setada as _exceptions_ disparadas pelo processador são temporariamente desabilitadas na instrução seguinte. Geralmente usada por depuradores.                                                            |
-| 17    | Virtual-8086 Mode flag    | VM    | Em _protected mode _se essa _flag_ for setada o processador entra em modo Virtual-8086.                                                                                                                     |
+| 17    | Virtual-8086 Mode flag    | VM    | Em _protected mode_ se essa _flag_ for setada o processador entra em modo Virtual-8086.                                                                                                                     |
 | 21    | Identification flag       | ID    | Se um processo conseguir setar ou zerar essa _flag_, isto indica que o processador suporta a instrução `CPUID`.                                                                                             |
 
 {% hint style="info" %}

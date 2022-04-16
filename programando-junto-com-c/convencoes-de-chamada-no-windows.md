@@ -62,7 +62,7 @@ Apenas os registradores EAX, ECX e EDX são considerados voláteis, ou seja, reg
 
 ### Passagem de parâmetros
 
-Todos os parâmetros são passados na pilha e devem ser empilhados na ordem **inversa**. A função **chamadora **(_caller_) é a responsável por remover os argumentos da pilha após a função retornar.
+Todos os parâmetros são passados na pilha e devem ser empilhados na ordem **inversa**. A função **chamadora** (_caller_) é a responsável por remover os argumentos da pilha após a função retornar.
 
 Exemplo:
 
@@ -84,7 +84,7 @@ add $12, %esp
 
 ## Convenção de chamada stdcall
 
-A convenção de chamada `__stdcall` é a utilizada para chamar funções da [WinAPI](https://pt.wikipedia.org/wiki/API_do_Windows).
+A convenção de chamada `__stdcall` é a utilizada para chamar funções da [WinAPI](https://pt.wikipedia.org/wiki/API\_do\_Windows).
 
 ### Registradores
 

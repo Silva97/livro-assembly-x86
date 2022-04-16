@@ -11,7 +11,7 @@ Na linguagem C existem palavra-chaves que são chamadas de _storage-class specif
 
 * extern
 * static
-* \_Thread_local
+* \_Thread\_local
 * auto (esse é o padrão)
 * register
 {% endhint %}
@@ -50,7 +50,7 @@ Os símbolos declarados com a diretiva `.comm` que não foram inicializados em q
 
 ### Variável static global
 
-As variáveis globais com _storage-class _`static` funcionam da mesma maneira que as variáveis globais comum, com a diferença que seu símbolo não é exportado para que possa ser acessado em outro arquivo objeto. Como no exemplo:
+As variáveis globais com _storage-class_ `static` funcionam da mesma maneira que as variáveis globais comum, com a diferença que seu símbolo não é exportado para que possa ser acessado em outro arquivo objeto. Como no exemplo:
 
 ```c
 static int data_var = 1;
@@ -127,9 +127,9 @@ data_var.1913:
 
 Repare como `data_var.1913` não teve seu símbolo exportado e `bss_var.1914` foi declarado como local.
 
-## Variáveis \_Thread_local
+## Variáveis \_Thread\_local
 
-O _storage-class_ `_Thread_local` foi adicionado no C11. Assim como o nome sugere ele serve para alocar variáveis em uma região de memória que é local para cada [_thread_](https://pt.wikipedia.org/wiki/Thread_\(computa%C3%A7%C3%A3o\)) do processo. Vamos analisar o exemplo:
+O _storage-class_ `_Thread_local` foi adicionado no C11. Assim como o nome sugere ele serve para alocar variáveis em uma região de memória que é local para cada [_thread_](https://pt.wikipedia.org/wiki/Thread\_\(computa%C3%A7%C3%A3o\)) do processo. Vamos analisar o exemplo:
 
 {% tabs %}
 {% tab title="test.c" %}

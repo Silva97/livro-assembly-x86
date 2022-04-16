@@ -135,7 +135,7 @@ Como talvez você já tenha reparado intuitivamente a chamada _far_ também pres
 
 Por isso a instrução `ret` também precisa ser diferente dentro de um procedimento que será chamado com um _far call_. Ao invés de apenas ler o _offset_ na _stack_ ela precisa ler o segmento também, assim modificando CS e IP do mesmo jeito que o `call`.
 
-Repetindo que o NASM por padrão irá montar as instruções como _near _então precisamos especificar para o NASM, em um procedimento que deve ser chamado como _far_,_ _que queremos usar um `ret` _far_.\
+Repetindo que o NASM por padrão irá montar as instruções como _near_ então precisamos especificar para o NASM, em um procedimento que deve ser chamado como _far_, __ que queremos usar um `ret` _far_.\
 Para isso podemos simplesmente adicionar um sufixo 'n' para especificar como _near_, que já é o padrão, ou o sufixo 'f' para especificar como _far_. Ficando:
 
 ```nasm

@@ -113,7 +113,7 @@ fstp mem80fp
 fstp st(i)
 ```
 
-Pega o valor _float_** **de **st0** e copia para o operando destino. A versão com o sufixo **P** também faz o _pop_ do valor da _stack_, sendo possível dar _store_ em um _float_ de 80 bits somente com essa instrução.
+Pega o valor _float_ **** de **st0** e copia para o operando destino. A versão com o sufixo **P** também faz o _pop_ do valor da _stack_, sendo possível dar _store_ em um _float_ de 80 bits somente com essa instrução.
 
 ### FIST, FISTP | Integer Store (and Pop)
 
@@ -284,7 +284,7 @@ Cansei de repetir, já sabe né? Operação de multiplicação.
 
 ### FSUBR, FSUBRP, FISUBR | (Integer) Subtract Reverse (and Pop)
 
-Faz a mesma coisa que a família **FSUB **só que com os operandos ao contrário. Conforme ilustração:
+Faz a mesma coisa que a família **FSUB** só que com os operandos ao contrário. Conforme ilustração:
 
 ```c
 a = a - b // fsub etc.

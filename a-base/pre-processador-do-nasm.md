@@ -241,7 +241,7 @@ Usando diretivas condicionais as vezes queremos acusar um erro ou emitir um aler
 
 Essa diretiva tem o uso parecido com a diretiva `#include` da linguagem C e ela faz exatamente a mesma coisa: Copia o conteúdo do arquivo passado como argumento para o exato local aonde ela foi utilizada no arquivo fonte. Seria como você manualmente abrir o arquivo, copiar todo o conteúdo dele e depois colar no código fonte.
 
-Assim como fazemos em um_ header file_ incluído por `#include` na linguagem C é importante usar as diretivas condicionais para evitar a inclusão duplicada de um mesmo arquivo. Por exemplo:
+Assim como fazemos em um _header file_ incluído por `#include` na linguagem C é importante usar as diretivas condicionais para evitar a inclusão duplicada de um mesmo arquivo. Por exemplo:
 
 {% code title="arquivo.asm" %}
 ```nasm

@@ -9,7 +9,7 @@ description: >-
 BIOS — _Basic Input/Output System_ — é o firmware da placa-mãe responsável pela inicialização do hardware. Ele quem começa o processo de _boot_ do sistema além de anteriormente fazer um teste rápido (POST — _Power-On Self Test_) para verificar se o hardware está funcionando apropriadamente.
 
 {% hint style="info" %}
-BIOS é um sistema legado de _boot_, sistemas mais modernos usam [UEFI](https://pt.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface) para o processo de _boot_ do sistema.
+BIOS é um sistema legado de _boot_, sistemas mais modernos usam [UEFI](https://pt.wikipedia.org/wiki/Unified\_Extensible\_Firmware\_Interface) para o processo de _boot_ do sistema.
 {% endhint %}
 
 Mas além de fazer essa tarefa de inicialização do PC ele também define algumas interrupções que podem ser usadas pelo software em _real mode_ para tarefas básicas. E é daí que vem seu nome, já que essas tarefas são operações básicas de entrada e saída de dados para o hardware.
@@ -165,7 +165,7 @@ Você pode combinar 0x0D e 0x0A para fazer uma quebra de linha.
 
 ## INT 0x16
 
-Os procedimentos definidos nessa interrupção são todos relacionados à entrada do teclado. Toda vez que o usuário pressiona uma tecla ela é lida e armazenada no _buffer _do teclado. Se você tentar ler do _buffer_ sem haver dados lá, então o sistema irá ficar esperando o usuário inserir uma entrada.
+Os procedimentos definidos nessa interrupção são todos relacionados à entrada do teclado. Toda vez que o usuário pressiona uma tecla ela é lida e armazenada no _buffer_ do teclado. Se você tentar ler do _buffer_ sem haver dados lá, então o sistema irá ficar esperando o usuário inserir uma entrada.
 
 ### AH 0x00
 
@@ -292,5 +292,5 @@ strlen:
 {% hint style="info" %}
 Para uma lista completa de todas as interrupções definidas pelo BIOS, sugiro a leitura:
 
-[http://vitaly_filatov.tripod.com/ng/asm/asm\_001.html](http://vitaly_filatov.tripod.com/ng/asm/asm\_001.html)
+[http://vitaly\_filatov.tripod.com/ng/asm/asm\_001.html](http://vitaly\_filatov.tripod.com/ng/asm/asm\_001.html)
 {% endhint %}

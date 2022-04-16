@@ -37,7 +37,7 @@ O processo que o MS-DOS fazia para executar esse tipo de executável era tão si
 
 * Recebe um comando na linha de comando.
 * Coloca o tamanho em bytes dos argumentos passados pela linha de comando no _offset_ 0x80 do segmento do executável.
-* Coloca os argumentos da linha de comando no _offset _0x81 como texto puro, sem qualquer formatação.
+* Coloca os argumentos da linha de comando no _offset_ 0x81 como texto puro, sem qualquer formatação.
 * Carrega todo o **.COM** no _offset_ 0x100
 * Define os registradores DS, SS e ES para o segmento onde o executável foi carregado.
 * Faz um `call` no endereço onde o executável foi carregado.

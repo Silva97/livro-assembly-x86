@@ -70,11 +70,11 @@ Na convenção de chamada da SysV ABI os argumentos para esse tipo de função s
 int do_something(int x, ...);
 ```
 
-Funções com [argumentos variáveis](https://en.wikipedia.org/wiki/Variadic_function) também seguem a mesma regra de chamada do que foi mencionado acima.
+Funções com [argumentos variáveis](https://en.wikipedia.org/wiki/Variadic\_function) também seguem a mesma regra de chamada do que foi mencionado acima.
 
 ## Funções static
 
-Funções _static _são visíveis apenas no mesmo módulo em que elas foram declaradas, ou seja, seu símbolo não é exportado. Exemplo:
+Funções _static_ são visíveis apenas no mesmo módulo em que elas foram declaradas, ou seja, seu símbolo não é exportado. Exemplo:
 
 ```c
 static int add(int a, int b)
@@ -183,9 +183,9 @@ Alguns atributos recebem parâmetros onde estes devem ser adicionados dentro de 
 
 Abaixo alguns atributos que podem ser usados na arquitetura x86 e acho interessante citar aqui:
 
-### ms_abi, sysv_abi, cdecl, stdcall, fastcall, thiscall
+### ms\_abi, sysv\_abi, cdecl, stdcall, fastcall, thiscall
 
-Esses atributos fazem com que o compilador gere o código da função usando a convenção de chamada [ms_abi](convencoes-de-chamada-no-windows.md#convencao-de-chamada-x64), [sysv_abi](convencao-de-chamada-da-system-v-abi.md), [cdecl](convencoes-de-chamada-no-windows.md#convencao-de-chamada-cdecl), [stdcall](convencoes-de-chamada-no-windows.md#convencao-de-chamada-stdcall), fastcall ou thiscall respectivamente. Também é útil usá-los em protótipos de funções onde a função utiliza uma convenção de chamada diferente da padrão.
+Esses atributos fazem com que o compilador gere o código da função usando a convenção de chamada [ms\_abi](convencoes-de-chamada-no-windows.md#convencao-de-chamada-x64), [sysv\_abi](convencao-de-chamada-da-system-v-abi.md), [cdecl](convencoes-de-chamada-no-windows.md#convencao-de-chamada-cdecl), [stdcall](convencoes-de-chamada-no-windows.md#convencao-de-chamada-stdcall), fastcall ou thiscall respectivamente. Também é útil usá-los em protótipos de funções onde a função utiliza uma convenção de chamada diferente da padrão.
 
 {% hint style="info" %}
 Os atributos `cdecl`, `stdcall`, `fastcall` e `thiscall` são ignorados em 64-bit.

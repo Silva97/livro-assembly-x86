@@ -51,8 +51,18 @@
   * [Entendendo os depuradores](depuracao-de-codigo/entendendo-os-depuradores.md)
   * [Depurando com o GDB](depuracao-de-codigo/depurando-com-o-gdb.md)
 
+## Apêndices
+
+* [Código de máquina](apendices/codigo-de-maquina/README.md)
+  * [Formato das instruções](apendices/codigo-de-maquina/formato-das-instrucoes.md)
+  * [Atributos e prefixos](apendices/codigo-de-maquina/atributos-e-prefixos.md)
+  * [Immediate](apendices/codigo-de-maquina/immediate.md)
+  * [Displacement](apendices/codigo-de-maquina/displacement.md)
+  * [ModR/M e SIB](apendices/codigo-de-maquina/modr-m-e-sib.md)
+  * [Opcode](apendices/codigo-de-maquina/opcode.md)
+  * [Prefixo REX](apendices/codigo-de-maquina/prefixo-rex.md)
+
 ## Metadados
 
 * [TO DO](metadados/to-do.md)
 * [Referências](metadados/referencias.md)
-

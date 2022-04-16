@@ -16,7 +16,7 @@ Na arquitetura x86 existem literalmente milhares de instruções SIMD. Esteja ci
 
 ## Registradores XMM
 
-A tecnologia SSE adiciona novos registradores independentes de 128 bits de tamanho cada. Em todos os modos de processamento são adicionados oito novos registradores **XMM0** até **XMM7**, e em 64-bit também há mais oito registradores **XMM8 **até **XMM15** que podem ser acessados usando o [prefixo REX](../prefixos.md#rex). Isso dá um total de 16 registradores em 64-bit e 8 registradores nos outros modos de processamento.
+A tecnologia SSE adiciona novos registradores independentes de 128 bits de tamanho cada. Em todos os modos de processamento são adicionados oito novos registradores **XMM0** até **XMM7**, e em 64-bit também há mais oito registradores **XMM8** até **XMM15** que podem ser acessados usando o [prefixo REX](../prefixos.md#rex). Isso dá um total de 16 registradores em 64-bit e 8 registradores nos outros modos de processamento.
 
 Esses registradores podem armazenar vários dados diferentes de mesmo tipo/tamanho, conforme demonstra tabela abaixo:
 
@@ -46,14 +46,14 @@ Para facilitar o entendimento irei usar o termo _float_ para se referir aos núm
 | Nomenclatura | Descrição                                                                                                                              |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
 | xmm(n)       | Indica qualquer um dos registradores XMM.                                                                                              |
-| float(n)     | Indica N números_ floats _em sequência na memória RAM. Exemplo: **float(4)** seriam 4 números _float_ totalizando 128 bits de tamanho. |
+| float(n)     | Indica N números _floats_ em sequência na memória RAM. Exemplo: **float(4)** seriam 4 números _float_ totalizando 128 bits de tamanho. |
 | double(n)    | Indica N números _double_ na memória RAM. Exemplo: **double(2)** que totaliza 128 bits.                                                |
 | ubyte(n)     | Indica N bytes não-sinalizados na memória RAM. Exemplo: **ubyte(16)** que totaliza 128 bits.                                           |
 | byte(n)      | Indica N bytes sinalizados na memória RAM.                                                                                             |
 | uword(n)     | Indica N _words_ (2 bytes) não-sinalizados na memória RAM. Exemplo: **uword(8)** que totaliza 128 bits.                                |
 | word(n)      | Indica N _words_ sinalizadas na memória RAM.                                                                                           |
 | dword(n)     | Indica N _double words_ (4 bytes) na memória RAM.                                                                                      |
-| qword(n)     | Indica N _quadwords _(8 bytes) na memória RAM.                                                                                         |
+| qword(n)     | Indica N _quadwords_ (8 bytes) na memória RAM.                                                                                         |
 | reg32/64     | [Registrador de propósito geral](../../a-base/registradores-gerais.md) de 32 ou 64 bits.                                               |
 | imm8         | Operando imediato de 8 bits de tamanho.                                                                                                |
 
