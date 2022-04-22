@@ -13,22 +13,9 @@ Em Assembly existem dois "tipos" de instruções que recebem dois operandos:
 
 O primeiro tipo não precisa do byte ModR/M, pois o registrador destino é especificado nos 3 últimos bits do byte do [opcode](opcode.md). Por exemplo o opcode `B8` da instrução `mov eax, 123` é o seguinte em binário: `10111000` Onde o número zero (`000`) é o código para identificar o registrador EAX.
 
-A tabela abaixo mostra o código de cada um dos registradores de propósito geral:
-
-```
-| Registrador | Código |
-|-------------|--------|
-| AL/AX/EAX   | 0      |
-| CL/CX/ECX   | 1      |
-| DL/DX/EDX   | 2      |
-| BL/BX/EBX   | 3      |
-| AH/SP/ESP   | 4      |
-| CH/BP/EBP   | 5      |
-| DH/SI/ESI   | 6      |
-| BH/DI/EDI   | 7      |
-```
-
-Repare como AL, AX e EAX por exemplo contém o mesmo código. Qual registrador será usado depende do tamanho do operando.
+{% content-ref url="codificacao-dos-registradores.md" %}
+[codificacao-dos-registradores.md](codificacao-dos-registradores.md)
+{% endcontent-ref %}
 
 Um jeito mais simples de especificar esse campo no opcode sem precisar lidar com binário é simplesmente somar o opcode "base" (correspondente ao uso de AL/AX/EAX) mais o código do registrador. Por exemplo se a instrução `B8` (`B8 + 0`) corresponde a `mov eax, 123`, então o opcode `BB` (`B8 + 3`) é `mov ebx, 123`. E se eu quiser fazer `mov bx, 123` basta adicionar o prefixo `66` à instrução.
 

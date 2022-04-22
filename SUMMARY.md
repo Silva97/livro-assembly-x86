@@ -61,6 +61,7 @@
   * [ModR/M e SIB](apendices/codigo-de-maquina/modr-m-e-sib.md)
   * [Opcode](apendices/codigo-de-maquina/opcode.md)
   * [Prefixo REX](apendices/codigo-de-maquina/prefixo-rex.md)
+  * [Codificação dos registradores](apendices/codigo-de-maquina/codificacao-dos-registradores.md)
 
 ## Metadados
 

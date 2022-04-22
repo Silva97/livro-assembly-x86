@@ -102,11 +102,11 @@ Nas instruções `CMPS*` e `SCAS*` o prefixo `REPE` (ou `REPZ`) repete a instru�
 
 ### Prefixo LOCK
 
-Esse é um prefixo simples de entender. Ele é usado para fazer operações de escrita atômicas em um determinado endereço de memória. Ou seja o prefixo garante que outros núcleos do processador não escrevam naquele endereço ao mesmo tempo, exigindo que essa operação finalize antes de outra que escreva no mesmo endereço seja executada.
+O prefixo LOCK (byte `F0`) é usado para fazer operações de escrita atômica em um determinado endereço de memória. Ou seja o prefixo garante que outros núcleos do processador não escrevam naquele endereço ao mesmo tempo, exigindo que essa operação finalize antes de outra que escreva no mesmo endereço seja executada.
 
 Esse prefixo só pode ser usado nas seguintes instruções: `ADD`, `ADC`, `AND`, `BTC`, `BTR`, `BTS`, `CMPXCHG`, `CMPXCH8B`, `CMPXCHG16B`, `DEC`, `INC`, `NEG`, `NOT`, `OR`, `SBB`, `SUB`, `XOR`, `XADD` e `XCHG`. Isso, obviamente, quando o operando destino (o que está sendo escrito) é um operando na memória.
 
-Na sintaxe do NASM o prefixo pode ser usado simplesmente com a palavra-chave `lock` antes da instrução. Como em:nas
+Na sintaxe do NASM o prefixo pode ser usado simplesmente com a palavra-chave `lock` antes da instrução. Como em:
 
 ```nasm
 lock add [ebx], 4
