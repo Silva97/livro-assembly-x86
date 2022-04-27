@@ -10,8 +10,6 @@ Observe as figuras tiradas dos manuais da Intel:
 
 ![](../../.gitbook/assets/Captura\_de\_tela\_de\_2022-04-04\_21-31-47.png)
 
-![](../../.gitbook/assets/Captura\_de\_tela\_de\_2022-04-04\_21-34-57.png)
-
 
 
 Em modo de 16-bit e 32-bit há 8 registradores de propósito geral, mas em 64-bit há 16 registradores de propósito geral. Como eu mencionei antes os campos que especificam os registradores por códigos contém somente 3 bits de tamanho, daí só é possível especificar 8 registradores distintos.
