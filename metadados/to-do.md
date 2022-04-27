@@ -9,6 +9,7 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
 * [x] A base
 * [x] Aprofundando em Assembly
 * [x] Programando junto com C
+* [x] Código de máquina
 * [ ] Depuração de código
   * [x] Entendendo os depuradores
   * [x] Depurando com o GDB
@@ -35,12 +36,6 @@ Este livro é um trabalho em andamento e ainda há muita coisa para ser escrita.
   * [ ] Sistema de contexto
   * [ ] Mais diretivas
   * [ ] Opções da linha de comando
-* [ ] Código de máquina
-  * [ ] Prefixos
-  * [ ] Opcode
-  * [ ] ModR/M
-  * [ ] SIB
-  * [ ] Displacement e Immediate
 * [ ] Referência de instruções x86-64
 
 {% hint style="info" %}
