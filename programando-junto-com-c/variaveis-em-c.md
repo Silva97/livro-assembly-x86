@@ -4,10 +4,10 @@ description: Entendendo como variáveis em C são representadas em Assembly.
 
 # Variáveis em C
 
-Como já vimos em [A base](https://mentebinaria.gitbook.io/assembly/), variáveis nada mais são do que um pedaço de memória que pode ser manipulado pelo programa. Em C existem diversas nuances em como variáveis são alocadas e mantidas pelo compilador e aqui vamos entender essas diferenças.
+Como já vimos no capítulo [A base](../a-base/), variáveis nada mais são do que um espaço de memória que pode ser manipulado pelo programa. Em C existem diversas nuances em como variáveis são alocadas e mantidas pelo compilador e aqui vamos entender essas diferenças.
 
 {% hint style="info" %}
-Na linguagem C existem palavra-chaves que são chamadas de _storage-class specifiers_, onde elas determinam o _storage-class_ de uma variável. Na prática isso determina como a variável deve ser armazenada no arquivo objeto. No C11 existem os seguintes _storage-class specifiers_:
+Na linguagem C existem palavra-chaves que são chamadas de _storage-class specifiers_, onde elas determinam o _storage-class_ de uma variável. Na prática isso determina como a variável deve ser armazenada no programa. No C11 existem os seguintes _storage-class specifiers_:
 
 * extern
 * static
@@ -42,9 +42,9 @@ data_var:
 
 A variável `data_var` foi alocada na seção `.data` e teve seu símbolo exportado com a diretiva `.globl data_var`, que é equivalente a diretiva `global` do NASM.
 
-Já a variável `bss_var` foi declarada com a diretiva `.comm symbol, size, aligment` que serve para declarar _commom symbols_ (símbolos comuns). Onde ela recebe como argumento o nome do símbolo seguido de seu tamanho (em bytes) e opcionalmente um valor de alinhamento. Em arquivos objetos ELF o terceiro argumento de alinhamento é um alinhamento em bytes, nesse exemplo a variável será alocada em um endereço alinhado por 4 bytes.
+Já a variável `bss_var` foi declarada com a diretiva `.comm symbol, size, aligment` que serve para declarar _commom symbols_ (símbolos comuns). Onde ela recebe como argumento o nome do símbolo seguido de seu tamanho (em bytes) e opcionalmente um valor de alinhamento. Em arquivos objetos ELF o argumento de alinhamento é um alinhamento em bytes, nesse exemplo a variável será alocada em um endereço alinhado por 4 bytes.
 
-Já em arquivos objetos PE (do Windows) o alinhamento é um valor em potência de dois, logo para alinhar em 4 bytes deveríamos passar 2 como argumento ( $$2² = 4$$ ). Se a gente passasse 4 como argumento então seria um alinhamento de $$2^4$$ que daria um alinhamento de 16 bytes.
+Já em arquivos objetos PE (do Windows) o alinhamento é um valor em potência de dois, logo para alinhar em 4 bytes deveríamos passar 2 como argumento ( $$2² = 4$$ ). Se a gente passar 4 como argumento então seria um alinhamento de $$2^4$$ que daria um alinhamento de 16 bytes.
 
 Os símbolos declarados com a diretiva `.comm` que não foram inicializados em qualquer arquivo objeto são alocados na seção `.bss`. Logo nesse caso o uso da diretiva seria equivalente ao uso de `res*` do NASM, com a diferença que no NASM precisamos usar explicitamente na seção onde o espaço será alocado.
 
@@ -90,7 +90,7 @@ Você vai reparar que na função `main` o símbolo `extern_var` foi lido porém
 
 ## Variáveis locais
 
-Variáveis locais em C são comumente alocadas no _stackframe_ da função, porém em alguns casos o compilador também pode reservar um registrador para armazenar o valor da variável.
+Variáveis locais em C são comumente alocadas no _stack frame_ da função, porém em alguns casos o compilador também pode reservar um registrador para armazenar o valor da variável.
 
 Em C existe o _storage-class_ `register` que serve como um "pedido" para o compilador alocar aquela variável de forma que o acesso a mesma seja o mais rápido possível, que geralmente é em um registrador (daí o nome da palavra-chave). Mas isso não garante que a variável será realmente alocada em um registrador. Na prática o único efeito colateral garantido é que você não poderá obter o endereço na memória daquela variável com o operador de endereço (`&`), e muitas vezes o compilador já vai alocar a variável em um registrador mesmo sem o uso da palavra-chave.
 
@@ -203,28 +203,32 @@ No Linux, em x86-64, a região de memória local para cada _thread_ (_thread-loc
 
 Repare que as seções são diferentes, `.tdata` (equivalente a `.data` só que _thread-local_) e `.tbss` (equivalente a `.bss`) são utilizadas para armazenar as variáveis.
 
-O sufixo `@tpoff` (_thread pointer offset_) usado nos símbolos indica que o _offset_ do símbolo deve ser calculado levando em consideração a TLS como endereço de origem. Normalmente o _offset_ é calculado com o segmento de dados "normal" como origem.
+O sufixo `@tpoff` (_thread pointer offset_) usado nos símbolos indica que o _offset_ do símbolo deve ser calculado levando em consideração a TLS como endereço de origem. Por padrão o _offset_ é calculado com o segmento de dados "normal" como origem.
 
 ## Lidando com os tipos da linguagem C
 
-Agora já entendemos onde e como as variáveis são alocadas em C, só falta entender "o que" está sendo armazenado.
+Agora que já entendemos onde e como as variáveis são alocadas em C, só falta entender "o que" está sendo armazenado.
 
 ### Arrays e strings
 
 O tipo _array_ em C é meramente uma sequência de variáveis do mesmo tipo na memória. Por exemplo podemos inicializar um `int arr[4]` na sintaxe do GAS da seguinte forma:
 
 ```c
-arr: .long 1, 2, 3, 4
+arr:
+    .long 1, 2, 3, 4
 ```
 
 Onde os valores `1`, `2`, `3` e `4` são despejados em sequência.
 
-Em C não existe um tipo _string_ porém por convenção as _strings_ são uma _array_ de `char` onde o último `char` contém o valor zero (chamado de terminador nulo). Esse último caractere `'\0'` é usado para denotar o final da _string_ e funções da libc que lidam com _strings_ esperam por isso. Exemplos:
+Em C não existe um tipo _string_ porém por convenção as _strings_ são uma _array_ de `char`, onde o último `char` contém o valor zero (chamado de terminador nulo). Esse último caractere `'\0'` é usado para denotar o final da _string_ e funções da libc que lidam com _strings_ esperam por isso. Exemplos:
 
 ```c
-string1: .ascii "Hello World", 0
-string2: .ascii "Hello World\0"
-string3: .asciz "Hello World"
+string1:
+    .ascii "Hello World", 0
+string2:
+    .ascii "Hello World\0"
+string3:
+    .asciz "Hello World"
 ```
 
 As três _strings_ acima são equivalentes na sintaxe do GAS.
@@ -308,7 +312,7 @@ Repare a diretiva `.zero 3` que foi usada para despejar 3 bytes zero no final da
 
 ### Unions
 
-As _unions_ são bem simples, são alocadas para o tamanho do maior tipo declarado para a _union_. Por exemplo:
+As _unions_ são bem simples, são alocadas com o tamanho do maior tipo declarado para a _union_. Por exemplo:
 
 ```c
 typedef union
