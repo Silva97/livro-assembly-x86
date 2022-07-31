@@ -35,7 +35,7 @@ Provavelmente você já ouviu falar em _exception_. A _exception_ nada mais é q
 
 Nesse caso a exceção que foi disparada pelo processador se chama _General Protection_ e pode ser referida pelo mnemônico #GP, seu índice na tabela é 13.
 
-![Intel Developer's Manuals - volume 1, capítulo 6](../.gitbook/assets/image.png)
+![Intel Developer's Manuals - volume 1, capítulo 6](<../.gitbook/assets/image (6).png>)
 
 Essa exceção é disparada quando há um problema na referência de memória ou qualquer proteção à memória que foi violada. Como por exemplo ao tentar escrever em um segmento de memória que não tem permissão para escrita.
 
@@ -114,7 +114,7 @@ $ nasm int.asm -o int.com
 $ dosbox int.com
 ```
 
-![](<../.gitbook/assets/image (1).png>)
+![](<../.gitbook/assets/image (13).png>)
 
 A interrupção simplesmente escreve os caracteres na parte superior esquerda da tela.
 
@@ -167,7 +167,7 @@ break:
 ```
 {% endcode %}
 
-![](<../.gitbook/assets/image (2).png>)
+![](<../.gitbook/assets/image (10).png>)
 
 Repare que a cada disparo de `int3` executou o código do nosso procedimento **break**. Esse por sua vez imprimiu o caractere 'X' na tela do Dosbox usando a interrupção `0x10` que será explicada no [próximo tópico](procedimentos-do-bios.md).
 

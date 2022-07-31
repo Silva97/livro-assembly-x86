@@ -28,11 +28,11 @@ Todas as ferramentas que utilizaremos são **gratuitas**, de **código aberto** 
 
 Eis a lista de ferramentas:
 
-* [nasm](https://www.nasm.us) -- Assembler que usaremos para nossos códigos em Assembly
-* [gcc](https://gcc.gnu.org) -- Compilador de C que usaremos e ensinarei o Inline Assembly
-* [mingw-w64](https://mingw-w64.org) -- É o porte do GCC para o Windows, caso use Windows instale esse especificamente e não o MinGW do projeto original.
-* [dosbox](https://www.dosbox.com) -- Emulador do MS-DOS e arquitetura x86
-* [qemu](https://www.qemu.org) -- Emulador de várias arquiteturas diferentes, usaremos a i386
+* [nasm](https://www.nasm.us/) -- Assembler que usaremos para nossos códigos em Assembly
+* [gcc](https://gcc.gnu.org/) -- Compilador de C que usaremos e ensinarei o Inline Assembly
+* [mingw-w64](https://mingw-w64.org/) -- É o porte do GCC para o Windows, caso use Windows instale esse especificamente e não o MinGW do projeto original.
+* [dosbox](https://www.dosbox.com/) -- Emulador do MS-DOS e arquitetura x86
+* [qemu](https://www.qemu.org/) -- Emulador de várias arquiteturas diferentes, usaremos a i386
 * É recomendável que tenha o [make](http://gnuwin32.sourceforge.net/packages/make.htm), porém é opcional.
 
 Qualquer dúvida sugiro que acesse o [fórum do Mente Binária](https://www.mentebinaria.com.br/forums/) a fim de tirar dúvidas e ter acesso a outros conteúdos.

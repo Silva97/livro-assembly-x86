@@ -44,7 +44,7 @@ call $
 
 Experimente ver com o ndisasm como essa instrução fica em código de máquina:
 
-![](<../.gitbook/assets/image (8).png>)
+![](<../.gitbook/assets/image (15).png>)
 
 O primeiro byte (`0xE8`) é o opcode da instrução, que é o byte do código de máquina que identifica a instrução que será executada. Os bytes posteriores são o operando imediato (em _little-endian_). Repare que o endereço relativo está como `0xFFFFFFFB` que equivale a `-5` em decimal.
 

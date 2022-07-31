@@ -146,4 +146,4 @@ function syscall() {
 
 Exemplo de uso:
 
-![](<../.gitbook/assets/image (6).png>)
+![](<../.gitbook/assets/image (16).png>)

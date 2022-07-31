@@ -204,7 +204,7 @@ $ ld testing.o -o testing
 
 Ao dar um _step over_ na chamada `call oops` um comportamento inesperado ocorre, o programa irá finalizar sem parar após o retorno da chamada. Isso é demonstrado na imagem abaixo com o depurador GDB:
 
-![Saída do depurador GDB](<../.gitbook/assets/image (11).png>)
+![Saída do depurador GDB](<../.gitbook/assets/image (8).png>)
 
 ### Informações de depuração do executável
 

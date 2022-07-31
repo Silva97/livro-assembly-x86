@@ -8,7 +8,7 @@ Como vimos no tópico [Endereçamento](../a-base/enderecamento.md) o processador
 
 O problema disso é que o código que escrevemos precisa sempre ser carregado no mesmo endereço senão os endereços nas instruções estarão errados. Esse problema foi abordado no [tópico sobre MS-DOS](programando-no-ms-dos.md), onde a diretiva `org 0x100` precisa ser usada para que o NASM calcule o _offset_ correto dos símbolos senão os endereços estarão errados e o programa não funcionará corretamente.
 
-Sistemas operacionais modernos têm um recurso de segurança chamado [ASLR](https://pt.wikipedia.org/wiki/Address_space_layout_randomization) que dificulta a exploração de falhas de segurança no binário. Resumidamente ele carrega os endereços dos segmentos do executável em endereços aleatórios ao invés de sempre no mesmo endereço. Com o ASLR desligado os segmentos sempre são mapeados nos mesmos endereços.
+Sistemas operacionais modernos têm um recurso de segurança chamado [ASLR](https://pt.wikipedia.org/wiki/Address\_space\_layout\_randomization) que dificulta a exploração de falhas de segurança no binário. Resumidamente ele carrega os endereços dos segmentos do executável em endereços aleatórios ao invés de sempre no mesmo endereço. Com o ASLR desligado os segmentos sempre são mapeados nos mesmos endereços.
 
 Porém um código que acessa endereços absolutos jamais funcionaria apropriadamente com o ASLR ligado. É aí que entra o conceito de _Position-independent executable_ (PIE) que nada mais é que um executável com código que somente acessa endereços relativos, ou seja, não importa em qual endereço (posição) você carregue o código do executável ele irá funcionar corretamente.
 
@@ -73,7 +73,7 @@ $ gcc *.o -o test
 
 Deveria funcionar normalmente. Mas experimente comentar a diretiva `default rel` na linha **2** e compilar novamente, você vai obter um erro parecido com esse:
 
-![](<../.gitbook/assets/image (10).png>)
+![](<../.gitbook/assets/image (9).png>)
 
 Repare que o erro foi emitido pelo _linker_ (`ld`) e não pelo compilador em si. Acontece que como usamos um endereço absoluto o NASM colocou o endereço do símbolo `msg` na _relocation table_ para ser resolvido pelo _linker_, onde o _linker_ é quem definiria o endereço absoluto do mesmo.
 

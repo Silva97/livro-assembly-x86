@@ -4,7 +4,7 @@ description: Livro gratuito sobre Assembly x86 e x86-64
 
 # Introdução
 
-Este livro é mais um projeto do [Mente Binária](https://mentebinaria.com.br) cujo o intuito é ensinar os fundamentos do Assembly x86 e x86-64. Nele será abordado desde o zero até conceitos mais avançados a fim de dar um entendimento profundo e uma base sólida de conhecimento.
+Este livro é mais um projeto do [Mente Binária](https://mentebinaria.com.br/) cujo o intuito é ensinar os fundamentos do Assembly x86 e x86-64. Nele será abordado desde o zero até conceitos mais avançados a fim de dar um entendimento profundo e uma base sólida de conhecimento.
 
 O Mente Binária também tem um livro sobre [Fundamentos de Engenharia Reversa](https://mentebinaria.gitbook.io/engenharia-reversa/) e diversos [treinamentos gratuitos](https://www.mentebinaria.com.br/treinamentos/).
 
@@ -59,7 +59,7 @@ O assembler é um compilador que converte código em Assembly para o código de 
 
 Meu nome é Luiz Felipe. Pronto, agora você sabe tudo sobre mim.
 
-[GitHub](https://github.com/Silva97) | [Facebook](https://www.facebook.com/B4.0E.B0.48.CD.10.B0.69.CD.10.C3) | [Twitter](https://twitter.com/Vilas\_79) | [Medium](https://freedev.medium.com) | [Perfil no Mente Binária](https://www.mentebinaria.com.br/profile/522-felipesilva/)
+[GitHub](https://github.com/Silva97) | [Facebook](https://www.facebook.com/B4.0E.B0.48.CD.10.B0.69.CD.10.C3) | [Twitter](https://twitter.com/Vilas\_79) | [Medium](https://freedev.medium.com/) | [Perfil no Mente Binária](https://www.mentebinaria.com.br/profile/522-felipesilva/)
 
 ## Licença
 

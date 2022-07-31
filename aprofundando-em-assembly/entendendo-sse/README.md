@@ -20,7 +20,7 @@ A tecnologia SSE adiciona novos registradores independentes de 128 bits de taman
 
 Esses registradores podem armazenar vários dados diferentes de mesmo tipo/tamanho, conforme demonstra tabela abaixo:
 
-![Intel Developer's Manuals | 4.6.2 128-Bit Packed SIMD Data Types](<../../.gitbook/assets/image (9).png>)
+![Intel Developer's Manuals | 4.6.2 128-Bit Packed SIMD Data Types](<../../.gitbook/assets/image (3).png>)
 
 Esses são os tipos empacotados (_packed_), onde em um único registrador há vários valores de um mesmo tipo. Existem instruções SIMD específicas que executam operações _packed_ onde elas trabalham com os vários dados armazenados no registrador ao mesmo tempo. Em contraste existem também as operações escalares (_scalar_) que operam com um único dado (_unpacked_) no registrador, onde esse dado estaria armazenado na parte menos significativa do registrador.
 

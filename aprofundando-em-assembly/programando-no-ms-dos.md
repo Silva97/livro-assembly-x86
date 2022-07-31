@@ -4,7 +4,7 @@ description: Conhecendo o ambiente do MS-DOS.
 
 # Programando no MS-DOS
 
-O clássico MS-DOS, antigo sistema operacional de 16 bits da Microsoft, foi muito utilizado e até hoje existem projetos relacionados a esse sistema. Existe por exemplo o [FreeDOS](https://www.freedos.org) que é um sistema operacional de código aberto e que é compatível com o MS-DOS.
+O clássico MS-DOS, antigo sistema operacional de 16 bits da Microsoft, foi muito utilizado e até hoje existem projetos relacionados a esse sistema. Existe por exemplo o [FreeDOS](https://www.freedos.org/) que é um sistema operacional de código aberto e que é compatível com o MS-DOS.
 
 A famosa "telinha preta" do Windows, o prompt de comando, muitas vezes é erroneamente chamado de MS-DOS devido aos dois usarem o mesmo shellscript chamado de Batch. Isso fazia com que comandos rodados no MS-DOS fossem quase totalmente compatíveis na linha de comando do Windows.
 

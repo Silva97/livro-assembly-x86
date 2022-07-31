@@ -247,7 +247,7 @@ Quando há a gravação é possível executar o programa em ordem reversa usando
 
 Esses comandos fazem a mesma coisa que os comandos normais, porém executando o programa ao reverso. Cada instrução revertida tem suas modificações na memória ou registradores desfeitas. Conforme demonstra a imagem abaixo.
 
-![GDB usando execução reversa.](<../.gitbook/assets/image (13).png>)
+![GDB usando execução reversa.](<../.gitbook/assets/image (5).png>)
 
 Outros subcomandos de `record` são:
 
@@ -315,7 +315,7 @@ Existe também o operador binário `@` que pode ser usado para tratar o valor no
 
 Onde o tipo de cada elemento da _array_ é definido de acordo com o tipo do objeto que está sendo referenciado. Na imagem abaixo é demonstrado o uso desse operador para visualizar todo o conteúdo da _array_ **argv**.
 
-![Saída do GDB ao usar Artificial Array](<../.gitbook/assets/image (14).png>)
+![Saída do GDB ao usar Artificial Array](../.gitbook/assets/image.png)
 
 ### printf
 
@@ -346,7 +346,7 @@ Esse comando insere um _breakpoint_ no código onde, toda vez que ele é alcanç
 
 No nosso código de exemplo, isso inseria o _dynamic printf_ na linha 7 que está dentro da função **add**. Conforme a imagem abaixo demonstra:
 
-![Demonstração de uso do dprintf no GDB](<../.gitbook/assets/image (15).png>)
+![Demonstração de uso do dprintf no GDB](<../.gitbook/assets/image (14).png>)
 
 ### x
 
@@ -614,7 +614,7 @@ Também é possível rodar `help COMMAND` para obter ajuda para um comando espec
 $ gdb -tui ./test
 ```
 
-![GDB Text User Interface](<../.gitbook/assets/image (16).png>)
+![GDB Text User Interface](<../.gitbook/assets/image (11).png>)
 
 ### Atalhos de teclado
 

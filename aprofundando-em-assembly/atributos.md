@@ -9,7 +9,7 @@ Você já deve ter reparado que as instruções têm mais informações do que n
 Todas essas informações implícitas da instrução são especificadas a partir de atributos que tem determinados valores padrões que podem ser modificados. Os três atributos mais importantes para a gente entender é o _operand-size_, a_ddress-size_ e _segment_.
 
 {% hint style="info" %}
-O opcode é um byte do código de máquina que especifica a operação a ser executada pelo processador. Em algumas instruções mais alguns bits de outro byte da instrução em código de máquina é utilizado para especificar operações diferentes, que é o campo REG do byte ModR/M. Como o já citado _far_ `call` por exemplo.
+O [opcode](../apendices/codigo-de-maquina/opcode.md) é um byte do código de máquina que especifica a operação a ser executada pelo processador. Em algumas instruções mais alguns bits de outro byte da instrução em código de máquina é utilizado para especificar operações diferentes, que é o campo REG do byte [ModR/M](../apendices/codigo-de-maquina/modr-m-e-sib.md). Como o já citado _far_ `call` por exemplo.
 {% endhint %}
 
 ### Operand-size
@@ -81,10 +81,10 @@ Agora no segundo caso quando dizemos que são instruções de 16-bit a instruç�
 B8 44 33
 ```
 
-Os bytes `22 11` ficam sobrando e acabam sendo desmontados como se fossem uma instrução diferente. Na prática o processador também executaria o código da mesma que o ndisasm o desmontou, um dos motivos do porque código de modos de processamento diferentes não são compatíveis entre si.
+Os bytes `22 11` ficam sobrando e acabam sendo desmontados como se fossem uma instrução diferente. Na prática o processador também executaria o código da mesma maneira que o ndisasm o desmontou, um dos motivos do porque código de modos de processamento diferentes não são compatíveis entre si.
 
 {% hint style="info" %}
-Em 64-bit o _operand-size_ também tem 32 bits por padrão.
+Em 64-bit o _operand-size_ também tem 32 bits de tamanho por padrão.
 {% endhint %}
 
 ### Address-size
@@ -115,12 +115,11 @@ Desta vez a diferença entre 32-bit e 64-bit foi unicamente relacionado ao taman
 
 ![](<../.gitbook/assets/Captura de tela de 2019-07-31 15-51-06.png>)
 
-Existem duas diferenças: O registrador mudou para ESP e um byte **41** ficou sobrando antes da instrução.\
-Dando um pouco de _spoiler_ do próximo tópico do livro, o byte que sobrou ali é o prefixo REX que não existe em 32-bit e por isso foi interpretado como outra instrução.
+Existem duas diferenças: o registrador mudou para ESP e um byte **41** ficou sobrando antes da instrução. Dando um pouco de _spoiler_ do próximo tópico do livro, o byte que sobrou ali é o prefixo REX que não existe em 32-bit e por isso foi interpretado como outra instrução.
 
 ### Segment
 
-Como explicado no tópico que fala sobre registradores de segmentos, algumas instruções fazem o endereçamento em determinados segmentos. O atributo de segmento padrão é definido de acordo com qual registrador é usado como base no [endereçamento](../a-base/enderecamento.md).
+Como explicado no tópico que fala sobre [registradores de segmentos](registradores-de-segmento.md) algumas instruções fazem o endereçamento em determinados segmentos. O atributo de segmento padrão é definido de acordo com qual registrador é usado como base no [endereçamento](../a-base/enderecamento.md).
 
 | Registrador base           | Segmento |
 | -------------------------- | -------- |

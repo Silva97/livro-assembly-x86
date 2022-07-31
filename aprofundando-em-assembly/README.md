@@ -11,7 +11,7 @@ A ideia desta parte do livro é focar menos nas características do sistema oper
 
 ### Ferramentas
 
-Certifique-se de ter o [Dosbox](https://www.dosbox.com) instalado no seu sistema ou qualquer outro emulador do MS-DOS que você saiba utilizar. Sistemas compatíveis com o MS-DOS, como o [FreeDOS](http://freedos.org) por exemplo, também podem ser utilizados.
+Certifique-se de ter o [Dosbox](https://www.dosbox.com/) instalado no seu sistema ou qualquer outro emulador do MS-DOS que você saiba utilizar. Sistemas compatíveis com o MS-DOS, como o [FreeDOS](http://freedos.org/) por exemplo, também podem ser utilizados.
 
 Também é importante que o seu GCC possa compilar código para 64 e 32-bit. Em um Linux x86-64 ao instalar o GCC você já pode compilar código de 64-bit. Para compilar para 32-bit basta instalar o pacote **gcc-multilib**. No Debian você pode fazer:
 
