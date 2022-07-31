@@ -6,7 +6,7 @@ description: Entendendo os conceitos principais sobre um depurador e como eles f
 
 Depuradores (_debuggers_) são ferramentas que atuam se conectando (_attaching_) em processos para controlar e monitorar a execução dos mesmos. Isso é possível por meio de recursos que o próprio sistema operacional provém, no caso do Linux por meio da _syscall_ **ptrace**.
 
-O processo que se conecta é chamado de _tracer_, e o processo conectado é chamado de _tracee_. Essa conexão é chamada de _attach_ e é feita em uma _thread_ individual do processo. Quando o depurador faz _attach_ em um processo ele, na verdade, está fazendo _attach_ na _thread_ principal do processo.
+O processo que se conecta é chamado de _tracer_ e o processo conectado é chamado de _tracee_. Essa conexão é chamada de _attach_ e é feita em uma _thread_ individual do processo. Quando o depurador faz _attach_ em um processo ele na verdade está fazendo _attach_ na _thread_ principal do processo.
 
 ## Processos
 
@@ -22,7 +22,7 @@ O depurador tem acesso a memória de um processo e pode controlar a execução d
 
 Do ponto de vista de cada _thread_ de um processo ela tem exclusividade na execução de código no processador e no acesso a seus recursos. Inclusive em Assembly usamos registradores do processador diretamente sem nos preocuparmos com outras _threads_ (do mesmo processo ou de outros) usando os mesmos registradores "ao mesmo tempo".
 
-Cada núcleo (_core_) do processador tem um conjunto individual de registradores, mas é comum em um sistema operacional moderno diversas tarefas estarem concorrendo para executar em um mesmo núcleo.
+Cada núcleo (_core_) do processador têm um conjunto individual de registradores, mas é comum em um sistema operacional moderno diversas tarefas estarem concorrendo para executar em um mesmo núcleo.
 
 Uma parte do sistema operacional chamada de _scheduler_ é responsável por gerenciar quando e qual tarefa será executada em um determinado núcleo do processador. Isso é chamado de escalonamento de processos (_scheduling_) e quando o _scheduler_ suspende a execução de uma tarefa para executar outra isso é chamado de **troca de contexto** ou **troca de tarefa** (_context switch_ ou _task switch_).
 
@@ -38,7 +38,7 @@ Cada "parte" independente é chamada de processador lógico (_logical processor_
 
 ### Sinais
 
-Os sinais é um mecanismo de comunicação entre processos (_Inter-Process Communication_ - IPC). Existem determinados sinais em cada sistema operacional e quando um sinal é enviado para um processo esse processo é temporariamente suspenso e um tratador (_handler_) do sinal é executado.
+Os sinais é um mecanismo de comunicação entre processos (_Inter-Process Communication_ - IPC). Existem determinados sinais em cada sistema operacional e quando um sinal é enviado para um processo ele é temporariamente suspenso e um tratador (_handler_) do sinal é executado.
 
 A maioria dos sinais podem ter o tratador personalizado pelo programador mas alguns têm um tratador padrão e não podem ser alterados. É o caso por exemplo no Linux do sinal SIGKILL, que é o sinal enviado para um processo quando você tenta forçar a finalização dele (com o comando `kill -9` por exemplo). O tratador desse sinal é exclusivamente controlado pelo sistema operacional e o processo não é capaz de personalizar ele.
 
@@ -54,7 +54,7 @@ Exemplo de personalização do tratador de um sinal:
 void termination(int signum)
 {
   puts("Goodbye!");
-  exit(EXIT_SUCCESS);
+  _Exit(EXIT_SUCCESS);
 }
 
 int main(void)
@@ -68,10 +68,13 @@ int main(void)
 
   printf("My PID: %d\nPlease, send-me SIGTERM... ", pid);
   while (1)
+  {
     getchar();
+  }
 
   return 0;
 }
+
 ```
 {% endcode %}
 
@@ -83,7 +86,7 @@ $ kill 155541
 # Onde 155541 seria o PID do processo.
 ```
 
-O sinal SIGTERM seria o jeito "educado" de finalizar um processo. Porém como pode ser observado é possível que o processo personalize o tratador desse sinal, que por padrão finaliza o programa. Nesse código de exemplo se removermos a chamada para a função **exit** o processo não irá mais finalizar ao receber SIGTERM. É por isso que existe o sinal mais "invasivo" SIGKILL que foi feito para ser usado quando o processo não está mais respondendo.
+O sinal SIGTERM seria o jeito "educado" de finalizar um processo. Porém como pode ser observado é possível que o processo personalize o tratador desse sinal, que por padrão finaliza o programa. Nesse código de exemplo se removermos a chamada para a função `_Exit()` o processo não irá mais finalizar ao receber SIGTERM. É por isso que existe o sinal mais "invasivo" SIGKILL que foi feito para ser usado quando o processo não está mais respondendo.
 
 Um processo que está sendo depurado (o _tracee_) para toda vez que recebe um sinal e o depurador toma o controle da execução. Exceto no caso de SIGKILL que funciona normalmente sem a intervenção do depurador.
 
@@ -151,9 +154,9 @@ Os _debug registers_ não podem ser lidos/modificados sem privilégios de kernel
 
 Esse mesmo recurso (com até mais recursos ainda) poderia ser implementado pelo depurador com um _software breakpoint_. Por exemplo caso o depurador queira que um _breakpoint_ seja disparado ao ler/escrever em um determinado endereço o depurador pode simplesmente modificar as permissões de acesso daquele endereço e, quando o processo fosse acessar os dados naquele endereço, uma exceção #GP seria disparada e o depurador poderia retomar o controle da execução.
 
-### Execução passo-a-passo
+### Execução passo a passo
 
-Depuradores não são apenas capazes de executar o software e esperar por um _breakpoint_ para retomar o controle. Eles podem também executar apenas uma instrução da _thread_ por vez e permanecer controlando a execução. Isso é chamado de execução passo-a-passo (_step-by-step_), onde o "passo" é uma única instrução. O usuário do depurador pode clicar em um botão ou executar um comando e apenas uma instrução do processo será executada, e o usuário pode ver o resultado da instrução e optar pelo que fazer em seguida.
+Depuradores não são apenas capazes de executar o software e esperar por um _breakpoint_ para retomar o controle. Eles podem também executar apenas uma instrução da _thread_ por vez e permanecer controlando a execução. Isso é chamado de execução passo a passo (_step by step_), onde o "passo" é uma única instrução. O usuário do depurador pode clicar em um botão ou executar um comando e apenas uma instrução do processo será executada, e o usuário pode ver o resultado da instrução e optar pelo que fazer em seguida.
 
 Isso é implementado na arquitetura x86-64 usando a _trap flag_ (TF) no registrador [EFLAGS](../aprofundando-em-assembly/flags-do-processador.md#system-flags). Quando a TF está ligada cada instrução executada dispara [uma exceção](../aprofundando-em-assembly/interrupcoes-de-software.md) #BP, permitindo assim que o depurador retome o controle após executar uma instrução.
 
