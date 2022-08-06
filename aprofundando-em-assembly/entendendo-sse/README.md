@@ -16,7 +16,7 @@ Na arquitetura x86 existem literalmente milhares de instruções SIMD. Esteja ci
 
 ## Registradores XMM
 
-A tecnologia SSE adiciona novos registradores independentes de 128 bits de tamanho cada. Em todos os modos de processamento são adicionados oito novos registradores **XMM0** até **XMM7**, e em 64-bit também há mais oito registradores **XMM8** até **XMM15** que podem ser acessados usando o [prefixo REX](../prefixos.md#rex). Isso dá um total de 16 registradores em 64-bit e 8 registradores nos outros modos de processamento.
+A tecnologia SSE adiciona novos registradores independentes de 128 bits de tamanho cada. Em todos os modos de operação são adicionados oito novos registradores **XMM0** até **XMM7**, e em 64-bit também há mais oito registradores **XMM8** até **XMM15** que podem ser acessados usando o [prefixo REX](../prefixos.md#rex). Isso dá um total de 16 registradores em 64-bit e 8 registradores nos outros modos de operação.
 
 Esses registradores podem armazenar vários dados diferentes de mesmo tipo/tamanho, conforme demonstra tabela abaixo:
 

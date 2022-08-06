@@ -20,8 +20,8 @@ Onde `67 66 8B 03` e `66 67 8B 03` dariam na mesma, o processador executaria as 
 
 ### Atributo address-size
 
-{% content-ref url="../../a-base/modos-de-processamento.md" %}
-[modos-de-processamento.md](../../a-base/modos-de-processamento.md)
+{% content-ref url="../../a-base/modos-de-operacao.md" %}
+[modos-de-operacao.md](../../a-base/modos-de-operacao.md)
 {% endcontent-ref %}
 
 Em modo de 16-bit e modo de 32-bit, desde o processador i386, é possível usar tanto [endereçamento](../../a-base/enderecamento.md) de 16-bit como de 32-bit. No exemplo anterior a instrução `mov eax, [ebx]` foi compilada no modo de 16-bit, porém usando endereçamento e operando de 32-bit.

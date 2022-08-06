@@ -5,7 +5,7 @@
 * [Como usar este livro](como-usar-este-livro.md)
 * [A base](a-base/README.md)
   * [Noção geral da arquitetura](a-base/arquitetura-x86.md)
-  * [Modos de processamento](a-base/modos-de-processamento.md)
+  * [Modos de operação](a-base/modos-de-operacao.md)
   * [Sintaxe](a-base/sintaxe.md)
   * [Registradores gerais](a-base/registradores-gerais.md)
   * [Endereçamento](a-base/enderecamento.md)
