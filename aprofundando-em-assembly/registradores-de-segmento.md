@@ -7,7 +7,7 @@ description: Segmentação da memória RAM.
 Na arquitetura x86 o acesso a memória RAM é comumente dividido em segmentos. Um segmento de memória nada mais é que um pedaço da memória RAM que o programador usa dando algum sentido a ele. Por exemplo, podemos usar um segmento só para armazenar variáveis. E usar outro para armazenar o código executado pelo processador.
 
 {% hint style="warning" %}
-Rodando sob um sistema operacional a segmentação da memória é totalmente controlada pelo _kernel_. Ou seja, não tente fazer o que você não tem permissão. :wink: 
+Rodando sob um sistema operacional a segmentação da memória é totalmente controlada pelo _kernel_. Ou seja, não tente fazer o que você não tem permissão. :wink:&#x20;
 {% endhint %}
 
 ### Barramento de endereço
@@ -75,7 +75,7 @@ O operador `<<` denota um deslocamento de bits para a esquerda, uma operação _
 
 Além dos registradores de segmento do IA-16, em IA-32 se ganha mais dois registradores de segmento:  `FS` e `GS`.
 
-Diferente dos registradores gerais, os registradores de segmento não são expandidos. Permanecem com o tamanho de 16 bits.
+Diferente dos [registradores de propósito geral](../a-base/registradores-de-proposito-geral.md), os registradores de segmento não são expandidos. Permanecem com o tamanho de 16 bits.
 
 Em _protected mode_ os registradores de segmento não são usados para gerar um endereço lógico junto com o _offset_, ao invés disso, serve de seletor identificando o segmento por um índice em uma tabela que lista os segmentos.
 
@@ -83,4 +83,4 @@ Em _protected mode_ os registradores de segmento não são usados para gerar um 
 
 Em x86-64 não é mais usado esse esquema de segmentação de memória. CS, DS, ES e SS são tratados como se o endereço base fosse zero independentemente do valor nesses registradores.
 
-Já os registradores FS e GS são exceções e ainda podem ser usados pelo sistema operacional para endereçamento de estruturas especiais na memória. Como por exemplo no Linux, em x86-64, FS é usado para apontar para a [Thread Local Storage](../programando-junto-com-c/variaveis-em-c.md#variaveis-\_thread_local).
+Já os registradores FS e GS são exceções e ainda podem ser usados pelo sistema operacional para endereçamento de estruturas especiais na memória. Como por exemplo no Linux, em x86-64, FS é usado para apontar para a [Thread Local Storage](../programando-junto-com-c/variaveis-em-c.md#variaveis-\_thread\_local).

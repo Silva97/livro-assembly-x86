@@ -1,8 +1,8 @@
 ---
-description: Entendendo os registradores da arquitetura x86
+description: Entendendo os registradores da arquitetura x86-64
 ---
 
-# Registradores gerais
+# Registradores de propósito geral
 
 Seguindo o modelo da arquitetura de Von Neumann, interno a CPU existem pequenos espaços de memória chamados de _registers_, ou em português, registradores.
 
@@ -14,15 +14,15 @@ Operações com o valor no registrador
 Memória = Registrador
 ```
 
-### Mapeamento dos registradores gerais
+### Mapeamento dos registradores
 
 Afim de aumentar a versatilidade no uso de registradores, para poder manipular dados de tamanhos variados no mesmo espaço de memória do registrador, alguns registradores são subdivido em registradores menores. Isso seria o "mapeamento" dos registradores que faz com que vários registradores de tamanhos diferentes compartilhem o mesmo espaço. Se você entende como funciona uma `union` em C já deve ter entendido a lógica aqui.
 
-Lá nos primórdios da arquitetura x86 os registradores tinham o tamanho de 16 bits (2 bytes). Os processadores IA-32 aumentaram o tamanho desses registradores para acompanhar a largura do barramento interno de 32 bits (4 bytes). A referência para o registrador completo ganhou um prefixo 'E' que seria a primeira letra de "Extended" (estendido). Processadores x86-64 aumentaram mais uma vez o tamanho desses registradores para 64 bits (8 bytes), dessa vez dando um prefixo 'R' que seria de "Re-extended" (re-estendido). Só que também trazendo alguns novos registradores gerais.
+Lá nos primórdios da arquitetura x86 os registradores tinham o tamanho de 16 bits (2 bytes). Os processadores IA-32 aumentaram o tamanho desses registradores para acompanhar a largura do barramento interno de 32 bits (4 bytes). A referência para o registrador completo ganhou um prefixo 'E' que seria a primeira letra de "Extended" (estendido). Processadores x86-64 aumentaram mais uma vez o tamanho desses registradores para 64 bits (8 bytes), dessa vez dando um prefixo 'R' que seria de "Re-extended" (re-estendido). Só que também trazendo alguns novos registradores de propósito geral.
 
-### Registradores gerais (IA-16)
+### Registradores de propósito geral (IA-16)
 
-Os registradores de propósito geral (GPR na sigla em inglês) são registradores que são, como o nome sugere, de uso geral pelas instruções. Na arquitetura IA-16 nós temos os registradores de 16 bits que são mapeados em subdivisões como explicado acima.
+Os registradores de propósito geral (**GPR** na sigla em inglês) são registradores que são, como o nome sugere, de uso geral pelas instruções. Na arquitetura IA-16 nós temos os registradores de 16 bits que são mapeados em subdivisões como explicado acima.
 
 Determinadas instruções da arquitetura usam alguns desses registradores para tarefas específicas mas eles não são limitados somente para esse uso. Você pode usá-los da maneira que quiser porém recomendo seguir o padrão para melhorar a legibilidade do código. O "apelido" na tabela abaixo é o nome dado aos registradores em inglês, serve para fins de memorização.
 
@@ -58,11 +58,11 @@ Esse mesmo mapeamento ocorre também nos registradores BX, CX e DX. Como podemos
 Do processador 80386 em diante, em _real mode_, é possível usar as versões estendidas dos registradores existentes em IA-32. Porém os registradores estendidos de x86-64 só podem ser acessados em submodo de 64-bit.
 {% endhint %}
 
-### Registradores gerais (IA-32)
+### Registradores de propósito geral (IA-32)
 
 Como já explicado no IA-32 os registradores são estendidos para 32 bits de tamanho e ganham o prefixo 'E', ficando assim a lista: `EAX, EBX, ECX, EDX, ESP, EBP, ESI, EDI`
 
-**Todos** os outros registradores gerais existentes em IA-16 não deixam de existir em IA-32. Eles são mapeados nos 2 bytes menos significativos dos registradores estendidos. Por exemplo o registrador EAX fica mapeado da seguinte forma:
+**Todos** os outros registradores de propósito geral existentes em IA-16 não deixam de existir em IA-32. Eles são mapeados nos 2 bytes menos significativos dos registradores estendidos. Por exemplo o registrador EAX fica mapeado da seguinte forma:
 
 ![](<../.gitbook/assets/Captura de tela de 2019-07-21 13-21-29.png>)
 
@@ -149,13 +149,13 @@ Teste o código e tente alterar AH e/ou AL ao invés de AX diretamente.
 Caso ainda não tenha reparado o retorno da nossa função `assembly()` é guardado no registrador EAX. Isso será explicado mais para frente nos tópicos sobre [convenção de chamada](../programando-junto-com-c/convencao-de-chamada-da-system-v-abi.md).
 {% endhint %}
 
-### Registradores gerais (x86-64)
+### Registradores de propósito geral (x86-64)
 
 Os registradores de propósito geral em x86-64 são estendidos para 64 bits e ganham o prefixo 'R', ficando a lista: `RAX, RBX, RCX, RDX, RSP, RBP, RSI, RDI`
 
-Todos os registradores gerais em IA-32 são mapeados nos 4 bytes menos significativos dos registradores re-estendidos seguindo o mesmo padrão de mapeamento anterior.
+Todos os registradores de propósito geral em IA-32 são mapeados nos 4 bytes menos significativos dos registradores re-estendidos seguindo o mesmo padrão de mapeamento anterior.
 
-E há também um novo padrão de mapeamento do x86-64 com novos registradores gerais. Os novos nomes dos registradores são uma letra 'R' seguido de um número de 8 a 15.
+E há também um novo padrão de mapeamento do x86-64 com novos registradores de propósito geral. Os novos nomes dos registradores são uma letra 'R' seguido de um número de 8 a 15.
 
 O mapeamento dos novos registradores são um pouco diferentes. Podemos usar o sufixo 'B' para acessar o byte menos significativo, o sufixo 'W' para acessar a _word_ (2 bytes) menos significativa e 'D' para acessar a _doubleword_ (4 bytes) menos significativa. Usando R8 como exemplo podemos montar a tabela abaixo:
 
@@ -168,12 +168,12 @@ O mapeamento dos novos registradores são um pouco diferentes. Podemos usar o su
 Em x86-64 também é possível acessar o byte menos significativo dos registradores RSP, RBP, RSI e RDI. O que não é possível em IA-32 ou IA-16. Eles são mapeados em `SPL`, `BPL`, `SIL` e `DIL`.
 
 {% hint style="info" %}
-Esses registradores novos podem ser usados da maneira que você quiser, assim como os outros registradores gerais.
+Esses registradores novos podem ser usados da maneira que você quiser, assim como os outros registradores de propósito geral.
 {% endhint %}
 
-### Escrita nos registradores gerais em x86-64
+### Escrita nos registradores em x86-64
 
-A escrita de dados nos 4 bytes menos significativos de um registrador em x86-64 funciona de maneira um pouco diferente do que nós estamos acostumados. Observe o exemplo:
+A escrita de dados nos 4 bytes menos significativos de um registrador de propósito geral em x86-64 funciona de maneira um pouco diferente do que nós estamos acostumados. Observe o exemplo:
 
 ```nasm
 mov rax, 0x11223344aabbccdd
@@ -182,4 +182,4 @@ mov eax, 0x1234
 
 A instrução na linha 2 mudaria o valor de RAX para `0x0000000000001234`. Isso acontece porque o valor é _zero-extended_, ou seja, ele é estendido de forma que os 4 bytes mais significativos de RAX são zerados.
 
-O mesmo vale para todos os registradores gerais, incluindo os registradores R8..R15 caso você escreva algum valor em R8D..R15D.
+O mesmo vale para todos os registradores de propósito geral, incluindo os registradores R8..R15 caso você escreva algum valor em R8D..R15D.

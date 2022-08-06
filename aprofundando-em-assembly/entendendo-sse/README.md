@@ -54,7 +54,7 @@ Para facilitar o entendimento irei usar o termo _float_ para se referir aos núm
 | word(n)      | Indica N _words_ sinalizadas na memória RAM.                                                                                           |
 | dword(n)     | Indica N _double words_ (4 bytes) na memória RAM.                                                                                      |
 | qword(n)     | Indica N _quadwords_ (8 bytes) na memória RAM.                                                                                         |
-| reg32/64     | [Registrador de propósito geral](../../a-base/registradores-gerais.md) de 32 ou 64 bits.                                               |
+| reg32/64     | [Registrador de propósito geral](../../a-base/registradores-de-proposito-geral.md) de 32 ou 64 bits.                                   |
 | imm8         | Operando imediato de 8 bits de tamanho.                                                                                                |
 
 As instruções SSE terminam com um sufixo de duas letras onde a penúltima indica se ela lida com dados _packed_ ou _scalar_, e a última letra indica o tipo do dado sendo manipulado. Por exemplo a instrução MOVA**PS** onde o **P** indica que a instrução manipula dados _packed_, enquanto o **S** indica o tipo do dado como _**s**ingle-precision floating-point_, ou seja, _float_ de 32 bits de tamanho.

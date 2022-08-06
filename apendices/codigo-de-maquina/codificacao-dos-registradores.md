@@ -18,7 +18,7 @@ R/M -> 011
 
 Repare que essa instrução usa o campo `REG` como extensão do opcode e o R/M é usado para especificar o operando. Não coincidentemente o código 3 (`0b011`) é usado para identificar o registrador ST3.
 
-Já instruções que usam [registradores de propósito geral](../../a-base/registradores-gerais.md), qual especificamente será usado depende do tamanho do operando na instrução (veja [Atributos e prefixos](atributos-e-prefixos.md)).
+Já instruções que usam [registradores de propósito geral](../../a-base/registradores-de-proposito-geral.md), qual especificamente será usado depende do tamanho do operando na instrução (veja [Atributos e prefixos](atributos-e-prefixos.md)).
 
 Por exemplo as seguintes instruções compiladas em modo de 64-bit:
 

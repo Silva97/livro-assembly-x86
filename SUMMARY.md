@@ -7,7 +7,7 @@
   * [Noção geral da arquitetura](a-base/arquitetura-x86.md)
   * [Modos de operação](a-base/modos-de-operacao.md)
   * [Sintaxe](a-base/sintaxe.md)
-  * [Registradores gerais](a-base/registradores-gerais.md)
+  * [Registradores de propósito geral](a-base/registradores-de-proposito-geral.md)
   * [Endereçamento](a-base/enderecamento.md)
   * [Pilha](a-base/pilha.md)
   * [Saltos](a-base/saltos.md)

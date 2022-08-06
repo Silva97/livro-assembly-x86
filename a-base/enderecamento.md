@@ -46,7 +46,7 @@ mov [si+di], ax ; ERRADO!
 Em IA-32 o código de máquina tem também o byte SIB que é um novo modo de endereçamento. Enquanto em IA-16 nós temos apenas uma base e um índice, em IA-32 nós ganhamos também um fator de escala. O fator de escala é basicamente um número que irá multiplicar o valor de índice.
 
 * O valor do fator de escala pode ser 1, 2, 4 ou 8.
-* O registrador de índice pode ser qualquer um dos registradores gerais **exceto** ESP.
+* O registrador de índice pode ser qualquer um dos registradores de propósito geral **exceto** ESP.
 * O registrador de base pode ser qualquer registrador geral.
 * O deslocamento pode ser de 8 ou 32 bits.
 

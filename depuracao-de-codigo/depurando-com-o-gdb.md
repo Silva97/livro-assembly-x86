@@ -517,7 +517,7 @@ O comando `info` contém diversos subcomandos para exibir informações sobre o 
 
 #### info registers
 
-Exibe os valores dos registradores. Pode-se passar como argumento uma lista (separada por espaço) dos registradores para exibir. Sem argumentos exibe o valor de todos os [registradores de propósito geral](../a-base/registradores-gerais.md), [registradores de segmento](../aprofundando-em-assembly/registradores-de-segmento.md) e [EFLAGS](../aprofundando-em-assembly/flags-do-processador.md). Exemplo:
+Exibe os valores dos registradores. Pode-se passar como argumento uma lista (separada por espaço) dos registradores para exibir. Sem argumentos exibe o valor de todos os [registradores de propósito geral](../a-base/registradores-de-proposito-geral.md), [registradores de segmento](../aprofundando-em-assembly/registradores-de-segmento.md) e [EFLAGS](../aprofundando-em-assembly/flags-do-processador.md). Exemplo:
 
 ```
 (gdb) info reg rax rbx

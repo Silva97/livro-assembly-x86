@@ -251,7 +251,7 @@ Abaixo a lista de algumas restrições disponíveis no GCC.
 | Restrição | Descrição                                                                                                                 |
 | --------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `m`       | Operando na memória.                                                                                                      |
-| `r`       | Operando em um [registrador de propósito geral](../a-base/registradores-gerais.md).                                       |
+| `r`       | Operando em um [registrador de propósito geral](../a-base/registradores-de-proposito-geral.md).                           |
 | `i`       | Um valor inteiro imediato.                                                                                                |
 | `F`       | Um valor _floating-point_ imediato.                                                                                       |
 | `g`       | Um operando na memória, registrador de propósito geral ou inteiro imediato. Mesmo efeito que usar `"rim"` como restrição. |

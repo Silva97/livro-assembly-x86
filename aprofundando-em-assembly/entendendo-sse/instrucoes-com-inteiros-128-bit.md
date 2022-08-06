@@ -20,7 +20,7 @@ PEXTRW reg32/64, xmm(n), imm8
 PEXTRW uword(1), xmm(n), imm8  ; Adicionado no SSE4
 ```
 
-Copia uma das 8 _words_ contidas no registrador XMM e armazena no [registrador de propósito geral](../../a-base/registradores-gerais.md) de 32 ou 64 bits. O valor é movido para os 16 bits menos significativos do registrador e todos os outros bits são zerados. Também é possível armazenar a _word_ diretamente na memória principal.
+Copia uma das 8 _words_ contidas no registrador XMM e armazena no [registrador de propósito geral](../../a-base/registradores-de-proposito-geral.md) de 32 ou 64 bits. O valor é movido para os 16 bits menos significativos do registrador e todos os outros bits são zerados. Também é possível armazenar a _word_ diretamente na memória principal.
 
 O operando imediato é um valor entre **0** e **7** que indica o índice da _word_ no registrador XMM. Apenas os 3 bits menos significativos do valor são considerados, os demais são ignorados.
 

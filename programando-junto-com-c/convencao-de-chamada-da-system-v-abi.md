@@ -47,7 +47,7 @@ Vale lembrar que [CALL](../aprofundando-em-assembly/call-e-ret.md) empilha o end
 
 ### Passagem de parâmetros
 
-Os parâmetros inteiros (e ponteiros) são passados em [registradores de propósito geral](../a-base/registradores-gerais.md) na seguinte ordem: RDI, RSI, RDX, RCX, R8 e R9. Parâmetros _float_ ou _double_ são passados nos registradores XMM0 até XMM7 como [valores escalares](../aprofundando-em-assembly/entendendo-sse/#registradores-xmm) (na parte menos significativa do registrador).
+Os parâmetros inteiros (e ponteiros) são passados em [registradores de propósito geral](../a-base/registradores-de-proposito-geral.md) na seguinte ordem: RDI, RSI, RDX, RCX, R8 e R9. Parâmetros _float_ ou _double_ são passados nos registradores XMM0 até XMM7 como [valores escalares](../aprofundando-em-assembly/entendendo-sse/#registradores-xmm) (na parte menos significativa do registrador).
 
 Caso a função precise de mais argumentos e os registradores acabem, os demais argumentos serão empilhados na ordem **inversa**. Por exemplo caso uma função precise de 9 argumentos inteiros eles seriam definidos na seguinte ordem pela função chamadora:
 
