@@ -49,6 +49,8 @@ A ideia aqui é simplesmente chamar a função `assembly()` que iremos usar para
 ```
 bits 64
 
+section .text
+
 global assembly
 assembly:
   mov eax, 777
@@ -60,7 +62,7 @@ No GCC você pode especificar se quer compilar código de 32-bit ou 64-bit usand
 
 No nasm é necessário usar a opção **-f** para especificar o formato do arquivo de saída, no meu Linux eu usei -**f elf64** para especificar o formato de arquivo ELF. Caso use Windows então você deve especificar **-f win64**.
 
-Por fim, para fazer a ligação dos dois arquivos objeto de saída podemos usar mais uma vez o GCC. Usar o ld diretamente exige incluir alguns arquivos objeto da libc, o que varia de sistema para sistema, portanto prefiro optar pelo GCC que irá por baixo dos panos rodar o ld incluindo os arquivos objetos apropriados. Para compilar e [linkar](https://pt.wikipedia.org/wiki/Ligador) os dois arquivos então fica da seguinte forma:
+Por fim, para fazer a ligação dos dois arquivos objeto de saída podemos usar mais uma vez o GCC. Usar o ld diretamente exige incluir alguns arquivos objeto da libc, o que varia de sistema para sistema, portanto prefiro optar pelo GCC que irá por baixo dos panos rodar o ld incluindo os arquivos objetos apropriados. Para compilar e [linkar](https://pt.wikipedia.org/wiki/Ligador) os dois arquivos então fica da seguinte forma **no Linux**:
 
 ```
 $ nasm assembly.asm -f elf64
@@ -69,12 +71,23 @@ $ gcc assembly.o main.o -o test -no-pie
 $ ./test
 ```
 
+No **Windows** fica assim:
+
+```
+$ nasm assembly.asm -f win64
+$ gcc -c main.c -o main.o
+$ gcc assembly.obj main.o -o test -no-pie
+$ .\test
+```
+
+**Nota**: Repare que no Windows o nome padrão do arquivo de saída do nasm usa a extensão `.obj` ao invés de `.o`.
+
 Usamos a opção **-o** no GCC para especificar o nome do arquivo de saída. E **-no-pie** para garantir que um [determinado recurso](https://en.wikipedia.org/wiki/Position-independent\_executable) do GCC não seja habilitado. O comando final acima seria somente a execução do nosso executável `test` em um sistema Linux. A execução do programa produziria o seguinte resultado no print abaixo, caso tudo tenha ocorrido bem.
 
 ![](<../.gitbook/assets/Captura de tela de 2019-07-16 10-47-32.png>)
 
 {% hint style="info" %}
-Mantenha essa PoC guardada no seu computador para eventuais testes. Você não será capaz de entender como ela funciona agora, mas ela será útil para testar conceitos para poder vê-los na prática. Eventualmente tudo será explicado.
+Mantenha essa PoC guardada no seu computador para eventuais testes. Você não será capaz de entender como ela funciona agora mas ela será útil para testar conceitos para poder vê-los na prática. Eventualmente tudo será explicado.
 {% endhint %}
 
 ### Makefile
